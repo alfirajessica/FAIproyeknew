@@ -7,12 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace faiproyek
 {
-    public partial class home : System.Web.UI.Page
+    public partial class shop : System.Web.UI.Page
     {
-        string namauser = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            namauser = Request.QueryString["nama"];
+
         }
     }
 }

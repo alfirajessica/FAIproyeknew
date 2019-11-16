@@ -1,0 +1,10 @@
+DATABASE
+
+TABLE users
+nama
+email
+no telp
+password
+role (penjual/pembeli)
+
+
