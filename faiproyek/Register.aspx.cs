@@ -13,7 +13,7 @@ namespace faiproyek
     {
         string conn = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security = True; Connect Timeout = 30";
         SqlConnection sqlconn;
-
+        
         string role = ""; //B (pembeli) --- S(penjual) 
 
         public void connection()
