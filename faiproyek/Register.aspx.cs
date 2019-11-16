@@ -24,6 +24,12 @@ namespace faiproyek
         }
         public void reset()
         {
+            tx_email.Text = "";
+            tx_konpass.Text = "";
+            tx_nama.Text = "";
+            tx_notelp.Text = "";
+            tx_pass.Text = "";
+            Label1.Text = "";
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,12 +46,12 @@ namespace faiproyek
             {
                 role = "B";
                 if (tx_email.Text == null || tx_nama.Text == null ||
-                    tx_notelp.Text == null || tx_pass == null)
+                    tx_notelp.Text == null || tx_pass == null )
                 {
                     Label1.Text = "tidak dapat register";
                 }
                 if (tx_email.Text != "" && tx_nama.Text != "" &&
-                     tx_notelp.Text != "" && tx_pass.Text != "")
+                     tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
 
                 {
                     SqlCommand cmd = new SqlCommand("insert into Person values(@Email, @Nama, @Password, @NoTelp, @Role)", sqlconn);
@@ -57,13 +63,17 @@ namespace faiproyek
                     cmd.ExecuteNonQuery();
                     Label1.Text = "berhasil";
                     Response.Write("<script>alert('register successful');</script>");
+                    reset();
+                    Response.Redirect("login.aspx");
                 }
                
             }
             catch (Exception ex)
             {
-                //  Response.Write("<script>alert('"+ex.Message.ToString() + "');</script>");
                 Label1.Text = ex.Message.ToString();
+                Response.Write("<script>alert('"+ex.Message.ToString() + "');</script>");
+                reset();
+                
             }
             sqlconn.Close();
            
