@@ -71,6 +71,7 @@
     <Content Include="home.aspx" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="shop.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -121,6 +122,20 @@
     <Compile Include="Home.Master.designer.cs">
       <DependentUpon>Home.Master</DependentUpon>
     </Compile>
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Register.Master.cs">
+      <DependentUpon>Register.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.Master.designer.cs">
+      <DependentUpon>Register.Master</DependentUpon>
+    </Compile>
     <Compile Include="shop.aspx.cs">
       <DependentUpon>shop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -142,6 +157,7 @@
     <None Include="packages.config" />
     <Content Include="Home.Master" />
     <Content Include="Shop.Master" />
+    <Content Include="Register.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

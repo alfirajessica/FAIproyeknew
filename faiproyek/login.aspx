@@ -16,6 +16,6 @@
        <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
 
    </div>
-    <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_login" runat="server" Text="Button" OnClick="btn_login_Click" />
+    <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_login" runat="server" Text="Login" OnClick="btn_login_Click" />
   
 </asp:Content>
