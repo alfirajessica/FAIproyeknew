@@ -1,11 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="faiproyek.home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="WEBtopbarLogindanFAQ" runat="server">
-     <div class="right-top-bar flex-w h-full">
-         <asp:HyperLink ID="HyperLink1" class="flex-c-m trans-04 p-lr-25" runat="server">Help & FAQs</asp:HyperLink>  
-         <asp:HyperLink ID="linkLogin" class="flex-c-m trans-04 p-lr-25" runat="server" NavigateUrl="~/login.aspx">Login</asp:HyperLink>  
-      </div>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="myaccount" runat="server">
+    
+    <div class="btn-group">
+        <asp:Label  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ID="lb_namaUser" runat="server"></asp:Label>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">My Account</a>
+            <a class="dropdown-item active" href="index.aspx">Logout</a>
+        </div>
+    </div>
+ 
 </asp:Content>
 
 

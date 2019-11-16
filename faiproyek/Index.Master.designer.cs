@@ -10,7 +10,7 @@
 namespace faiproyek {
     
     
-    public partial class Site1 {
+    public partial class Index {
         
         /// <summary>
         /// head control.
@@ -31,12 +31,12 @@ namespace faiproyek {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// myaccount control.
+        /// WEBtopbarLogindanFAQ control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder myaccount;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder WEBtopbarLogindanFAQ;
     }
 }
