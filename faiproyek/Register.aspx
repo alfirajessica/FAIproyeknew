@@ -7,6 +7,7 @@
         <ContentTemplate>
         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
 
+<%--            REGISTER--%>
        <%-- email--%>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Email tidak bole kosong" Display="Dynamic" Font-Bold="False" Font-Size="8pt" ForeColor="Red" ControlToValidate="tx_email"></asp:RequiredFieldValidator>
         <div class="bor8 m-b-20 how-pos4-parent">
@@ -42,7 +43,8 @@
 		    <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
 	    </div>
 
-         <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_regist_pembeli" runat="server" Text="Register sebagai Pembeli" OnClick="btn_regist_pembeli_Click" ValidateRequestMode="Enabled" />
+            <asp:Label ID="lb_notif" runat="server"></asp:Label>
+            <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_regist_pembeli" runat="server" Text="Register sebagai Pembeli" OnClick="btn_regist_pembeli_Click" ValidateRequestMode="Enabled" />
             <br />
          <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_regist_penjual" runat="server" Text="Register sebagai penjual" OnClick="btn_regist_penjual_Click" />
 

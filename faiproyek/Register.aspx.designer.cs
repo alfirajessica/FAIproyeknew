@@ -130,6 +130,15 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.TextBox tx_notelp;
         
         /// <summary>
+        /// lb_notif control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_notif;
+        
+        /// <summary>
         /// btn_regist_pembeli control.
         /// </summary>
         /// <remarks>

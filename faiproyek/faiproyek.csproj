@@ -67,6 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\shoesDatabase.mdf" />
+    <Content Include="App_Data\shoesDatabase_log.ldf">
+      <DependentUpon>shoesDatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="home.aspx" />
     <Content Include="index.aspx" />
