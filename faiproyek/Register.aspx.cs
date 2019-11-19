@@ -82,7 +82,7 @@ namespace faiproyek
 
                     string body = "Hello " + tx_nama.Text.Trim() + ",";
                     body += "<br /><br />Please click the following link to activate your account";
-                    body += "<br /><a href=http://localhost:62767/login.aspx> Click here to activate your account.</a>";
+                    body += "<br /><a href=http://localhost:62767/Activation.aspx?email="+tx_email.Text+"> Click here to activate your account.</a>";
                     body += "<br /><br />Thanks";
                     mail.Body = body;
 
