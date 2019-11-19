@@ -69,8 +69,9 @@ namespace faiproyek
                     //konfirmasi email yang dikirim email user
                     SmtpClient client = new SmtpClient("smtp.gmail.com");
                     client.Port = 587;
-                    client.Credentials = new NetworkCredential("alfirajessica@gmail.com", "@AJS1499");
-                    //parameter : email(gmail), password email
+
+                    //ini email dan password khusus proyek fai
+                    client.Credentials = new NetworkCredential("shoesfai@gmail.com", "Fai123FAI");
                     client.EnableSsl = true;
 
                     MailMessage mail = new MailMessage();
@@ -78,11 +79,14 @@ namespace faiproyek
                     mail.To.Add(tx_email.Text);
                     mail.Subject = "welcome to Shoes";
 
-                  
 
-                    mail.Body = "<br /><a href = '" +
-                        Request.Url.AbsoluteUri.Replace("Register.aspx", "login.aspx" +
-                        tx_email.Text) + "'>Click here to activate your account.</a>";
+                    string body = "Hello " + tx_nama.Text.Trim() + ",";
+                    body += "<br /><br />Please click the following link to activate your account";
+                    body += "<br /><a href=http://localhost:62767/login.aspx> Click here to activate your account.</a>";
+                    body += "<br /><br />Thanks";
+                    mail.Body = body;
+
+                  //  mail.Body = "COBA AJA";
 
                     mail.CC.Add("alfirajessica@gmail.com");
                     mail.IsBodyHtml = true;

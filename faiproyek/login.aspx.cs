@@ -29,6 +29,7 @@ namespace faiproyek
             if (!Page.IsPostBack)
             {
                 connection();
+                string email = Request.QueryString["email"];
             }
         }
 
