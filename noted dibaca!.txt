@@ -4,19 +4,39 @@ utk aspx nya diawali huruf kecil (dengan nama yang sama dgn master pagenya)
 
 *YANG DITANDAI ADA ARTINYA SUDAH ADA MASTER PAGE DAN ASPX NYA!
 
+*global view
+Register.aspx -- ada
+login.aspx -- ada
+index.aspx -- ada
+forget.aspx  (lupa password)
+accounsetting.aspx  (Setting akun : pass, nama)
+
 User biasa/pembeli
 Register.aspx -- ada
 login.aspx -- ada
 index.aspx -- ada
 home.aspx -- ada
 shop.aspx -- ada
+cart.aspx
+checkout.aspx
+history.aspx
+
 
 
 user penjual/seller
 Register.aspx -- ada
 login.aspx -- ada
 index.aspx -- ada
-dashboardseller.aspx
+homeseller.aspx  (tempat utk menampilkan notifikasi jika ada yg beli, proses pesanan !! gunakan status)
+produkseller.aspx (tempat utk upload produk/nambah produk)
+reportseller.aspx 
+
+
+untuk admin
+homeadmin.aspx  (Dashboard)
+
+ 
+
 
 
 

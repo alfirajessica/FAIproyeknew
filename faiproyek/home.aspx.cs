@@ -28,8 +28,17 @@ namespace faiproyek
             if (!Page.IsPostBack)
             {
                 connection();
-                email = Request.QueryString["email"]; //mendapatkan email dari login 
-                find_namaUser();
+                if (Session["email"] != null)
+                {
+                    email = Session["email"].ToString();
+                    find_namaUser();
+                }
+                else if (Session["email"] == null)
+                {
+                    Response.Redirect("login.aspx");
+                }
+                //  email = Request.QueryString["email"]; //mendapatkan email dari login 
+                
             }
         }
 

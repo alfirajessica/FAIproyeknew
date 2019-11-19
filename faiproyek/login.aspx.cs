@@ -37,6 +37,11 @@ namespace faiproyek
                 connection();
                 string email = Request.QueryString["email"];
                 tx_email.Text = email;
+
+                if (Session["email"] != null)
+                {
+                    Response.Redirect("home.aspx");
+                }
             }
         }
 
@@ -75,7 +80,8 @@ namespace faiproyek
                     //seller tidak dapat pergi ke home.aspx karena home.aspx dikhususkan hanya utk pembeli
                     if (role == "B")
                     {
-                        Response.Redirect("home.aspx?email=" + tx_email.Text);
+                        Session["email"] = tx_email.Text;
+                        Response.Redirect("home.aspx");
                     }
 
                     //khusus seller nanti tampilannya beda lagi. 

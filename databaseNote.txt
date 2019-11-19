@@ -23,5 +23,6 @@ size_sepatu
 warna_sepatu
 stok_sepatu
 harga_sepatu
-deskripsi produk
+deskripsi_sepatu
+image_sepatu
 
