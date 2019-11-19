@@ -1,0 +1,45 @@
+keterangan!!
+utk nama master pagenya diawali huruf besar.Master
+utk aspx nya diawali huruf kecil (dengan nama yang sama dgn master pagenya)
+
+*YANG DITANDAI ADA ARTINYA SUDAH ADA MASTER PAGE DAN ASPX NYA!
+
+User biasa/pembeli
+Register.aspx -- ada
+login.aspx -- ada
+index.aspx -- ada
+home.aspx -- ada
+shop.aspx -- ada
+
+
+user penjual/seller
+Register.aspx -- ada
+login.aspx -- ada
+index.aspx -- ada
+dashboardseller.aspx
+
+
+
+home.aspx
+- yg dapat lihat ini cuma user (buyer) pembeli
+- master pagenya yg Home.Master
+- ini ditampilkan jika user sudah melakukan login
+
+index.aspx
+- ini ditampilkan jika user belum login sebagai landing page nya
+- master pagenya yg Index.Master
+
+Register.aspx
+- semua user bisa register disini (pembeli dan penjual)
+- setelah user register pasti akan dikirmkan email konfirmasi
+- jika email konfirmasi telah diverifikasi oleh user, user akan langsung diarahkan ke halaman login (tx_email akan otomatis terisi)
+- master pagenya Register.Master
+
+login.aspx
+- semua user dapat melakukan login
+- setela login user akan di arahkan ke halaman masing2 (home utk user/pembeli) (homeseller utk user penjual)
+- master pagenya Login.Master
+
+shop.aspx
+- akan ditampilkan berbagai macam produk sepatu
+- master pagenya Shop.Master

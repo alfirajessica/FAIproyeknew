@@ -1,0 +1,27 @@
+DATABASE
+
+kita tidak 
+
+TABLE users
+nama
+email
+no telp
+password
+role (penjual/pembeli)
+
+table jenis_sepatu
+id_jenis_sepatu
+nama_jenis
+
+TABLE barang
+id_barang
+email_vendor
+nama_sepatu
+merek_sepatu
+id_jenis_sepatu
+size_sepatu
+warna_sepatu
+stok_sepatu
+harga_sepatu
+deskripsi produk
+
