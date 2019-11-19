@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="accountsetting.aspx" />
     <Content Include="Activation.aspx" />
     <Content Include="App_Data\shoesDatabase.mdf" />
     <Content Include="App_Data\shoesDatabase_log.ldf">
@@ -81,6 +82,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="accountsetting.aspx.cs">
+      <DependentUpon>accountsetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accountsetting.aspx.designer.cs">
+      <DependentUpon>accountsetting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AccountSetting.Master.cs">
+      <DependentUpon>AccountSetting.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccountSetting.Master.designer.cs">
+      <DependentUpon>AccountSetting.Master</DependentUpon>
+    </Compile>
     <Compile Include="Activation.aspx.cs">
       <DependentUpon>Activation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -174,6 +189,7 @@
     <Content Include="Login.Master" />
     <Content Include="Index.Master" />
     <Content Include="HomeSeller.Master" />
+    <Content Include="AccountSetting.Master" />
     <None Include="packages.config" />
     <Content Include="Home.Master" />
     <Content Include="Shop.Master" />

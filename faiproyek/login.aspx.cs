@@ -80,6 +80,7 @@ namespace faiproyek
                     //seller tidak dapat pergi ke home.aspx karena home.aspx dikhususkan hanya utk pembeli
                     if (role == "B")
                     {
+                        //send session ke home
                         Session["email"] = tx_email.Text;
                         Response.Redirect("home.aspx");
                     }
@@ -87,7 +88,7 @@ namespace faiproyek
                     //khusus seller nanti tampilannya beda lagi. 
                     if (role == "S")
                     {
-                        Response.Redirect("home.aspx?nama=" + tx_email.Text);
+                        Response.Redirect("home.aspx");
                     }
                 }
                 catch (Exception ex)
