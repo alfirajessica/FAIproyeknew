@@ -10,20 +10,47 @@
     <br />
 
      <%-- email--%>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Email tidak bole kosong" Display="Dynamic" Font-Bold="False" Font-Size="8pt" ForeColor="Red" ControlToValidate="tx_email"></asp:RequiredFieldValidator>
     <div class="bor8 m-b-20 how-pos4-parent">
-        <asp:TextBox placeholder="email" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_email" runat="server" TextMode="Email"></asp:TextBox>
+        <asp:TextBox placeholder="email" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_email" runat="server" TextMode="Email" Enabled="False"></asp:TextBox>
         <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
     </div>
 
-     <%-- password baru --%>
-     <div class="bor8 m-b-20 how-pos4-parent">
-        <asp:TextBox placeholder="password" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_passbaru" runat="server" MaxLength="8" TextMode="Password"></asp:TextBox>
+     <%--nama--%>
+     <div class="bor8 m-b-20 how-pos4-parent" ID="nama" runat="server">
+         <asp:TextBox placeholder="nama" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_nama" runat="server"> </asp:TextBox>
+		 <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+	 </div>
+
+     <%--notelp--%>
+     <div class="bor8 m-b-20 how-pos4-parent" ID="notelp" runat="server">
+       <asp:TextBox placeholder="nomor telepon" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_notelp" runat="server" MaxLength="12" TextMode="Number"></asp:TextBox>
+       <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+	 </div>
+   
+     <%-- password lama dan utk konfirmasi pengubahn data (jika dia memilih ubah password)  --%>
+     <div class="bor8 m-b-20 how-pos4-parent" ID="pass_lama" runat="server">
+        <asp:TextBox placeholder="password anda" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_passlama" runat="server" MaxLength="8" TextMode="Password"></asp:TextBox>
         <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
 	 </div>
 
+     <%-- password baru --%>
+     <div class="bor8 m-b-20 how-pos4-parent" ID="pass_baru" runat="server">
+        <asp:TextBox placeholder="password baru" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_passbaru" runat="server" MaxLength="8" TextMode="Password"></asp:TextBox>
+        <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+	 </div>
 
-    <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
-    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-    
+    <asp:Label ID="lb_notif" runat="server"></asp:Label>
+
+    <%--button submit data diri baru--%>
+    <div class="bor8 m-b-20 how-pos4-parent" ID="submit" runat="server">
+        <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" runat="server" Text="Submit" ID="btn_submit" OnClick="btn_submit_Click" />
+	</div>
+
+    <%--button submit ubah pass--%>
+    <div class="bor8 m-b-20 how-pos4-parent" ID="submitpass" runat="server">
+        <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" runat="server" Text="Submit password baru" ID="btn_submitpassbaru" OnClick="btn_submitpassbaru_Click" />
+	</div>
+
+
+
 </asp:Content>

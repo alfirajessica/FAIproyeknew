@@ -9,7 +9,7 @@ Register.aspx -- ada
 login.aspx -- ada
 index.aspx -- ada
 forget.aspx  (lupa password)
-accounsetting.aspx  (Setting akun : pass, nama)
+accounsetting.aspx -- ada  (Setting akun : pass, nama)
 
 User biasa/pembeli
 Register.aspx -- ada

@@ -67,6 +67,7 @@ namespace faiproyek
             {
                 try
                 {
+
                     SqlCommand cmd = new SqlCommand("select Role from Person where Email='" + tx_email.Text + "'", sqlconn);
                     SqlDataReader myReader = null;
                     myReader = cmd.ExecuteReader();
