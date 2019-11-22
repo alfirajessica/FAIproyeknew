@@ -67,7 +67,6 @@ namespace faiproyek
             {
                 try
                 {
-
                     SqlCommand cmd = new SqlCommand("select Role from Person where Email='" + tx_email.Text + "'", sqlconn);
                     SqlDataReader myReader = null;
                     myReader = cmd.ExecuteReader();
@@ -89,7 +88,9 @@ namespace faiproyek
                     //khusus seller nanti tampilannya beda lagi. 
                     if (role == "S")
                     {
-                        Response.Redirect("home.aspx");
+                        //send session ke homeseller
+                        Session["email"] = tx_email.Text;
+                        Response.Redirect("homeseller.aspx");
                     }
                 }
                 catch (Exception ex)

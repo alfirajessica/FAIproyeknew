@@ -42,7 +42,46 @@ namespace faiproyek
             }
         }
 
-        
+        public void register_insertDB()
+        {
+            SqlCommand cmd = new SqlCommand("insert into Person values(@Email, @Nama, @Password, @NoTelp, @Role, @Status)", sqlconn);
+            cmd.Parameters.AddWithValue("@Email", tx_email.Text);
+            cmd.Parameters.AddWithValue("@Nama", tx_nama.Text);
+            cmd.Parameters.AddWithValue("@Password", tx_pass.Text);
+            cmd.Parameters.AddWithValue("@NoTelp", tx_notelp.Text);
+            cmd.Parameters.AddWithValue("@Role", role.ToString());
+            cmd.Parameters.AddWithValue("@Status", status.ToString());
+            cmd.ExecuteNonQuery();
+        }
+
+        public void sent_emailkonfirmasi()
+        {
+            //konfirmasi email yang dikirim email user
+            SmtpClient client = new SmtpClient("smtp.gmail.com");
+            client.Port = 587;
+
+            //ini email dan password khusus proyek fai
+            client.Credentials = new NetworkCredential("shoesfai@gmail.com", "Fai123FAI");
+            client.EnableSsl = true;
+
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("alfirajessica@gmail.com");
+            mail.To.Add(tx_email.Text);
+            mail.Subject = "welcome to Shoes";
+
+
+            string body = "Hello " + tx_nama.Text.Trim() + ",";
+            body += "<br /><br />Please click the following link to activate your account";
+            body += "<br /><a href=http://localhost:62767/Activation.aspx?email=" + tx_email.Text + "> Click here to activate your account.</a>";
+            body += "<br /><br />Thanks";
+            mail.Body = body;
+
+            //  mail.Body = "COBA AJA";
+            mail.CC.Add(tx_email.Text);
+            mail.IsBodyHtml = true;
+            client.Send(mail);
+            Response.Write("email terkirim");
+        }
 
         protected void btn_regist_pembeli_Click(object sender, EventArgs e)
         {
@@ -59,53 +98,17 @@ namespace faiproyek
                      tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
 
                 {
-                    SqlCommand cmd = new SqlCommand("insert into Person values(@Email, @Nama, @Password, @NoTelp, @Role, @Status)", sqlconn);
-                    cmd.Parameters.AddWithValue("@Email", tx_email.Text);
-                    cmd.Parameters.AddWithValue("@Nama", tx_nama.Text);
-                    cmd.Parameters.AddWithValue("@Password", tx_pass.Text);
-                    cmd.Parameters.AddWithValue("@NoTelp", tx_notelp.Text);
-                    cmd.Parameters.AddWithValue("@Role", role.ToString());
-                    cmd.Parameters.AddWithValue("@Status", status.ToString());
-                    cmd.ExecuteNonQuery();
-
-                    //konfirmasi email yang dikirim email user
-                    SmtpClient client = new SmtpClient("smtp.gmail.com");
-                    client.Port = 587;
-
-                    //ini email dan password khusus proyek fai
-                    client.Credentials = new NetworkCredential("shoesfai@gmail.com", "Fai123FAI");
-                    client.EnableSsl = true;
-
-                    MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress("alfirajessica@gmail.com");
-                    mail.To.Add(tx_email.Text);
-                    mail.Subject = "welcome to Shoes";
-
-
-                    string body = "Hello " + tx_nama.Text.Trim() + ",";
-                    body += "<br /><br />Please click the following link to activate your account";
-                    body += "<br /><a href=http://localhost:62767/Activation.aspx?email="+tx_email.Text+"> Click here to activate your account.</a>";
-                    body += "<br /><br />Thanks";
-                    mail.Body = body;
-
-                  //  mail.Body = "COBA AJA";
-
-                    mail.CC.Add("alfirajessica@gmail.com");
-                    mail.IsBodyHtml = true;
-                    client.Send(mail);
-                    Response.Write("email terkirim");
-
-                    Label1.Text = "berhasil";
-                    lb_notif.Text = "Konfirmasi email anda sekarang!";
-                    Response.Write("<script>alert('register successful');</script>");
+                    register_insertDB();
+                    sent_emailkonfirmasi();
+                   
+                    Response.Write("<script>alert('register successful, Konfirmasi email anda sekarang!');</script>");            
                     reset();
-                    //Response.Redirect("login.aspx");
                 }
                
             }
             catch (Exception ex)
             {
-                lb_notif.Text = "Email telah digunakan";
+                Response.Write("<script>alert('register failed, Email telah digunakan');</script>");
                 Label1.Text = ex.Message.ToString();
                 Response.Write("<script>alert('"+ex.Message.ToString() + "');</script>");
                 reset();
@@ -118,6 +121,37 @@ namespace faiproyek
         protected void btn_regist_penjual_Click(object sender, EventArgs e)
         {
             //menuju dashboard
+            connection();
+            try
+            {
+                role = "S"; status = "U";
+                if (tx_email.Text == null || tx_nama.Text == null ||
+                    tx_notelp.Text == null || tx_pass == null)
+                {
+                    Label1.Text = "tidak dapat register";
+                }
+                if (tx_email.Text != "" && tx_nama.Text != "" &&
+                     tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
+
+                {
+                    register_insertDB();
+                    sent_emailkonfirmasi();
+
+                    Response.Write("<script>alert('register successful, Konfirmasi email anda sekarang!');</script>");
+                    reset();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('register failed, Email telah digunakan');</script>");
+                Label1.Text = ex.Message.ToString();
+                Response.Write("<script>alert('" + ex.Message.ToString() + "');</script>");
+                reset();
+
+            }
+            sqlconn.Close();
+
         }
     }
 }

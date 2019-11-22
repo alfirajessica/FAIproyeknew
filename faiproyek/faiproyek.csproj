@@ -76,8 +76,11 @@
     <Content Include="CaptchaImage.aspx" />
     <Content Include="Global.asax" />
     <Content Include="home.aspx" />
+    <Content Include="homeseller.aspx" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
+    <Content Include="masterbarangseller.aspx" />
+    <Content Include="masterpesanan.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="shop.aspx" />
     <Content Include="Web.config" />
@@ -121,6 +124,13 @@
     <Compile Include="home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="homeseller.aspx.cs">
+      <DependentUpon>homeseller.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="homeseller.aspx.designer.cs">
+      <DependentUpon>homeseller.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HomeSeller.Master.cs">
       <DependentUpon>HomeSeller.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,6 +165,34 @@
     </Compile>
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
+    </Compile>
+    <Compile Include="masterbarangseller.aspx.cs">
+      <DependentUpon>masterbarangseller.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="masterbarangseller.aspx.designer.cs">
+      <DependentUpon>masterbarangseller.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterBarangSeller.Master.cs">
+      <DependentUpon>MasterBarangSeller.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterBarangSeller.Master.designer.cs">
+      <DependentUpon>MasterBarangSeller.Master</DependentUpon>
+    </Compile>
+    <Compile Include="masterpesanan.aspx.cs">
+      <DependentUpon>masterpesanan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="masterpesanan.aspx.designer.cs">
+      <DependentUpon>masterpesanan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPesanan.Master.cs">
+      <DependentUpon>MasterPesanan.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPesanan.Master.designer.cs">
+      <DependentUpon>MasterPesanan.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Home.Master.cs">
@@ -198,6 +236,8 @@
     <Content Include="Index.Master" />
     <Content Include="HomeSeller.Master" />
     <Content Include="AccountSetting.Master" />
+    <Content Include="MasterBarangSeller.Master" />
+    <Content Include="MasterPesanan.Master" />
     <None Include="packages.config" />
     <Content Include="Home.Master" />
     <Content Include="Shop.Master" />
