@@ -135,12 +135,23 @@
         <div class="content mt-3">
             <div class="animated fadeIn">
 
-
                 <form id="form1" runat="server" class="form-horizontal">
+                    <div>   
+                        <asp:ScriptManager ID="ScriptManager1" runat="server">  </asp:ScriptManager>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+                                </asp:contentplaceholder>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </form>
+
+             <%--   <form id="form1" runat="server" class="form-horizontal">
                        <div>
                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
                        </div>
-                   </form>
+                   </form>--%>
 
 
             </div><!-- .content -->

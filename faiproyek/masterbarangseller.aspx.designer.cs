@@ -13,6 +13,15 @@ namespace faiproyek {
     public partial class masterbarangseller {
         
         /// <summary>
+        /// FileUpload1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        
+        /// <summary>
         /// tx_namasepatu control.
         /// </summary>
         /// <remarks>
@@ -22,22 +31,22 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.TextBox tx_namasepatu;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// dl_jenissepatu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList dl_jenissepatu;
         
         /// <summary>
-        /// TextBox1 control.
+        /// tx_deskripsi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox tx_deskripsi;
         
         /// <summary>
         /// btn_submitsepatu1 control.
@@ -49,39 +58,57 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.Button btn_submitsepatu1;
         
         /// <summary>
-        /// TextBox2 control.
+        /// btn_editsepatu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.Button btn_editsepatu;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// tx_sizesepatu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.TextBox tx_sizesepatu;
         
         /// <summary>
-        /// TextBox3 control.
+        /// dl_warnasepatu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.DropDownList dl_warnasepatu;
         
         /// <summary>
-        /// Button1 control.
+        /// tx_stoksepatu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.TextBox tx_stoksepatu;
+        
+        /// <summary>
+        /// btn_addDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_addDetail;
+        
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

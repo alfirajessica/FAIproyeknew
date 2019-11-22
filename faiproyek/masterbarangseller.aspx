@@ -11,6 +11,8 @@
             </div>
             <div class="card-body card-block">
                 <%-- isi--%>
+                <%--gambar sepatu--%>
+                <asp:FileUpload ID="FileUpload1" runat="server" />
 
                 <%-- nama sepatu--%>
                 <div class="row form-group">
@@ -22,15 +24,16 @@
                     </div>
                 </div>
 
-                 <%-- kategori sepatu--%>
+                 <%-- jenis sepatu--%>
                 <div class="row form-group">
                     <div class="col col-md-3">
                         <label for="select" class=" form-control-label">Jenis Sepatu</label>
                     </div>
                     <div class="col-12 col-md-8">
-                        <asp:DropDownList ID="DropDownList1" runat="server" class="form-control">
+                        <asp:DropDownList ID="dl_jenissepatu" runat="server" class="form-control">
                         <asp:ListItem class="form-control">Flatshoes</asp:ListItem>
                         <asp:ListItem class="form-control">Sneaker</asp:ListItem>
+                        <asp:ListItem class="form-control">Sports</asp:ListItem>
                          </asp:DropDownList>
                     </div>        
                 </div>
@@ -41,13 +44,16 @@
                         <label for="select" class=" form-control-label">Deskripsi</label>
                     </div>
                     <div class="col-12 col-md-8">
-                         <asp:TextBox name="textarea-input" rows="5" ID="TextBox1" placeholder="deskripsi" class="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                         <asp:TextBox name="textarea-input" rows="5" ID="tx_deskripsi" placeholder="deskripsi" class="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
                     </div>
                 </div>
 
                  <%--submit pertama untuk masukin ke database HSepatu--%>
                 <asp:Button ID="btn_submitsepatu1" runat="server" Text="Submit"  class="btn btn-primary btn-sm" />
-    
+                
+                <%--btn edit ini akan muncul saat ia telah melakukan submit, jd diawal button ini akann visible false--%>
+                <asp:Button ID="btn_editsepatu" runat="server" Text="Edit"  class="btn btn-primary btn-sm" />
+
             </div>
         </div>
     </div>
@@ -60,13 +66,12 @@
             </div>
             <div class="card-body card-block">
                 <%-- isi--%>
-
                 <%-- size sepatu--%>
                 <div class="row form-group">
                     <div class="col col-md-3">
                         <label for="text-input" class=" form-control-label">Size</label></div>
                     <div class="col-12 col-md-8">
-                        <asp:TextBox ID="TextBox2" placeholder="Size" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                        <asp:TextBox ID="tx_sizesepatu" placeholder="Size" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
                         <small class="form-text text-muted">This is a help text</small>
                     </div>
                 </div>
@@ -77,7 +82,7 @@
                         <label for="select" class=" form-control-label">Warna</label>
                     </div>
                     <div class="col-12 col-md-8">
-                        <asp:DropDownList ID="DropDownList2" runat="server" class="form-control">
+                        <asp:DropDownList ID="dl_warnasepatu" runat="server" class="form-control">
                         <asp:ListItem class="form-control">Merah</asp:ListItem>
                         <asp:ListItem class="form-control">Putih</asp:ListItem>
                         <asp:ListItem class="form-control">Hitam</asp:ListItem>
@@ -90,14 +95,54 @@
                     <div class="col col-md-3">
                         <label for="text-input" class=" form-control-label">Stok</label></div>
                     <div class="col-12 col-md-8">
-                        <asp:TextBox ID="TextBox3" placeholder="Stok" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                        <asp:TextBox ID="tx_stoksepatu" placeholder="Stok" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
                         <small class="form-text text-muted">This is a help text</small>
                     </div>
                 </div>
 
-                 <%--submit kedua untuk masukin ke database DSepatu--%>
-                <asp:Button ID="Button1" runat="server" Text="Submit"  class="btn btn-primary btn-sm" />
+                 <%--submit kedua untuk masukin ke database DSepatu dan munculkan ke table bawah--%>
+                <asp:Button ID="btn_addDetail" runat="server" Text="Add Detail"  class="btn btn-primary btn-sm" />
     
+            </div>
+        </div>
+    </div>
+    </div>
+
+<%--    table--%>
+    <div class="row">
+        <!--/.TABLE BARANG-->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+               <strong>Detail Sepatu</strong>
+            </div>
+            <div class="card-body card-block">
+                <%-- isi--%>
+                
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+                    <Columns>
+                        <asp:BoundField DataField="id" HeaderText="#" >
+                        <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Size" HeaderText="Size" >
+                        <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Warna" HeaderText="Warna" >
+                        <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Stok" HeaderText="Stok" >
+                        <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:BoundField>
+                        <asp:TemplateField AccessibleHeaderText="Action" HeaderText="Action" ShowHeader="False">
+                            <ItemTemplate>
+                                <%--kalau edit isi dari table row yg dipilih masuk ke detal barang--%>
+                                <asp:Button class="btn btn-primary btn-sm" ID="Button1" runat="server" CausesValidation="False" CommandName="Select" Text="Edit" />
+                                <asp:Button class="btn btn-danger btn-sm" ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                            </ItemTemplate>
+                            <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
             </div>
         </div>
     </div>
@@ -107,25 +152,6 @@
   
     
      
-
-    <%-- WARNA sepatu--%>
-   <%--<div class="row form-group">
-       <div class="col col-md-3">
-           <label for="select" class=" form-control-label"></label>
-       </div>
-       <div class="col-12 col-md-9">
-           <asp:DropDownList ID="DropDownList2" runat="server" class="form-control">
-           <asp:ListItem class="form-control">Flatshoes</asp:ListItem>
-           <asp:ListItem class="form-control">Sneaker</asp:ListItem>
-            </asp:DropDownList>
-       </div>        
-   </div>--%>
-
-
-   
-
-   <%-- size sepatu yg tersedia--%>
-
 
 
 </asp:Content>
