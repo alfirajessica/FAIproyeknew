@@ -73,6 +73,7 @@
     <Content Include="App_Data\shoesDatabase_log.ldf">
       <DependentUpon>shoesDatabase.mdf</DependentUpon>
     </Content>
+    <Content Include="CaptchaImage.aspx" />
     <Content Include="Global.asax" />
     <Content Include="home.aspx" />
     <Content Include="index.aspx" />
@@ -102,6 +103,13 @@
     </Compile>
     <Compile Include="Activation.aspx.designer.cs">
       <DependentUpon>Activation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CaptchaImage.aspx.cs">
+      <DependentUpon>CaptchaImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CaptchaImage.aspx.designer.cs">
+      <DependentUpon>CaptchaImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

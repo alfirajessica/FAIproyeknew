@@ -50,7 +50,7 @@ namespace faiproyek
             Boolean cek = false;
             String role = "";  //B (pembeli) buyer -- S (seller) penjual
             connection();
-            SqlDataAdapter da = new SqlDataAdapter("select * from Person", sqlconn);
+            SqlDataAdapter da = new SqlDataAdapter("select * from Person where Status='C'", sqlconn);
             DataTable dt = new DataTable();
             da.Fill(dt);
 

@@ -43,7 +43,9 @@
 		    <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
 	    </div>
 
-
+        <%--captcha--%>
+           <%-- <asp:Image ID="imgCaptcha" runat="server" ImageUrl="CaptchaImage.aspx"/>
+            <asp:TextBox ID="tx_captcha" runat="server"></asp:TextBox>--%>
 
          <asp:Label ID="lb_notif" runat="server"></asp:Label>
          <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_regist_pembeli" runat="server" Text="Register sebagai Pembeli" OnClick="btn_regist_pembeli_Click" ValidateRequestMode="Enabled" />

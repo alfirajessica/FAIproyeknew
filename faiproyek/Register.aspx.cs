@@ -42,6 +42,8 @@ namespace faiproyek
             }
         }
 
+        
+
         protected void btn_regist_pembeli_Click(object sender, EventArgs e)
         {
             connection();
@@ -103,16 +105,14 @@ namespace faiproyek
             }
             catch (Exception ex)
             {
-                lb_notif.Text = "";
+                lb_notif.Text = "Email telah digunakan";
                 Label1.Text = ex.Message.ToString();
                 Response.Write("<script>alert('"+ex.Message.ToString() + "');</script>");
                 reset();
                 
             }
             sqlconn.Close();
-           
-
-         //   Response.Redirect("login.aspx");
+        
         }
 
         protected void btn_regist_penjual_Click(object sender, EventArgs e)
