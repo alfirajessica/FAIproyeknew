@@ -136,40 +136,12 @@
             <div class="animated fadeIn">
 
 
-                <div class="row">
-                    
-                    <!--/.col-->
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong>Master </strong> Barang
+                <form id="form1" runat="server" class="form-horizontal">
+                       <div>
+                           <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                       </div>
+                   </form>
 
-                            </div>
-                            <div class="card-body card-block">
-                                <form id="form1" runat="server" class="form-horizontal">
-                                    <div>
-                                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-
-                                        </asp:ContentPlaceHolder>
-
-                                    </div>
-
-                                </form>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> Submit
-                                </button>
-                                <button type="reset" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-ban"></i> Reset
-                                </button>
-                            </div>
-
-                        </div>
-                                
-                    </div>
-
-                </div><!-- .animated -->
 
             </div><!-- .content -->
 
