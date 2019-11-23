@@ -26,3 +26,13 @@ harga_sepatu
 deskripsi_sepatu
 image_sepatu
 
+
+ <form id="form1" runat="server" class="form-horizontal">
+                                    <div>
+                                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+                                        </asp:ContentPlaceHolder>
+
+                                    </div>
+
+                                </form>

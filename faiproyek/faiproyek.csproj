@@ -73,6 +73,7 @@
     <Content Include="App_Data\shoesDatabase_log.ldf">
       <DependentUpon>shoesDatabase.mdf</DependentUpon>
     </Content>
+    <Content Include="blob.aspx" />
     <Content Include="CaptchaImage.aspx" />
     <Content Include="Global.asax" />
     <Content Include="home.aspx" />
@@ -106,6 +107,13 @@
     </Compile>
     <Compile Include="Activation.aspx.designer.cs">
       <DependentUpon>Activation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="blob.aspx.cs">
+      <DependentUpon>blob.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="blob.aspx.designer.cs">
+      <DependentUpon>blob.aspx</DependentUpon>
     </Compile>
     <Compile Include="CaptchaImage.aspx.cs">
       <DependentUpon>CaptchaImage.aspx</DependentUpon>
@@ -249,7 +257,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Upload\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

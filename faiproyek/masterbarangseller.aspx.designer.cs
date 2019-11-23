@@ -13,13 +13,13 @@ namespace faiproyek {
     public partial class masterbarangseller {
         
         /// <summary>
-        /// FileUpload1 control.
+        /// lb_namauser1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.Label lb_namauser1;
         
         /// <summary>
         /// tx_namasepatu control.
@@ -49,6 +49,24 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.TextBox tx_deskripsi;
         
         /// <summary>
+        /// FileUpload1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        
+        /// <summary>
+        /// btn_reset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_reset;
+        
+        /// <summary>
         /// btn_submitsepatu1 control.
         /// </summary>
         /// <remarks>
@@ -56,6 +74,15 @@ namespace faiproyek {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_submitsepatu1;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// btn_editsepatu control.

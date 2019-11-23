@@ -1,7 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterBarangSeller.Master" AutoEventWireup="true" CodeBehind="masterbarangseller.aspx.cs" Inherits="faiproyek.masterbarangseller" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<%--header nama user--%>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <asp:Label class="navbar-brand" ID="lb_namauser1" runat="server" Text=""></asp:Label>
+               <%-- <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>--%>
+                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+            </div>
+</asp:Content>
+
+<%--isi konten--%>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div class="row">
     <!--/.MASTER BARANG-->
     <div class="col-lg-7">
@@ -11,8 +24,7 @@
             </div>
             <div class="card-body card-block">
                 <%-- isi--%>
-                <%--gambar sepatu--%>
-                <asp:FileUpload ID="FileUpload1" runat="server" />
+               
 
                 <%-- nama sepatu--%>
                 <div class="row form-group">
@@ -48,9 +60,20 @@
                     </div>
                 </div>
 
+                 <%--gambar sepatu--%>
+                 <div class="row form-group">
+                     <div class="col col-md-3"><label for="file-input" class=" form-control-label">File Sepatu</label></div>
+                     <div class="col-12 col-md-9">
+                         <asp:FileUpload ID="FileUpload1" runat="server" class="form-control-file"/>
+                         <br />
+                          <asp:Button ID="btn_reset" runat="server" Text="Reset" />
+                     </div>
+                 </div>
+
                  <%--submit pertama untuk masukin ke database HSepatu--%>
-                <asp:Button ID="btn_submitsepatu1" runat="server" Text="Submit"  class="btn btn-primary btn-sm" />
-                
+                <asp:Button ID="btn_submitsepatu1" runat="server" Text="Submit"  class="btn btn-primary btn-sm" OnClick="btn_submitsepatu1_Click" />
+                <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+
                 <%--btn edit ini akan muncul saat ia telah melakukan submit, jd diawal button ini akann visible false--%>
                 <asp:Button ID="btn_editsepatu" runat="server" Text="Edit"  class="btn btn-primary btn-sm" />
 
@@ -121,18 +144,21 @@
                 
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
                     <Columns>
-                        <asp:BoundField DataField="id" HeaderText="#" >
+                        <asp:BoundField DataField="id_sepatu" HeaderText="#" >
                         <HeaderStyle BackColor="Black" ForeColor="White" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Size" HeaderText="Size" >
+                        <asp:BoundField DataField="Email_seller" HeaderText="Email" >
                         <HeaderStyle BackColor="Black" ForeColor="White" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Warna" HeaderText="Warna" >
+                        <asp:BoundField DataField="Nama_sepatu" HeaderText="Nama" >
                         <HeaderStyle BackColor="Black" ForeColor="White" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Stok" HeaderText="Stok" >
+                        <asp:BoundField DataField="Jenis_sepatu" HeaderText="Jenis_sepatu" >
                         <HeaderStyle BackColor="Black" ForeColor="White" />
                         </asp:BoundField>
+                        <asp:BoundField DataField="Deskripsi" HeaderText="Deskripsi" />
+                        <asp:ImageField DataAlternateTextField="Gambar" DataAlternateTextFormatString="Gambar" DataImageUrlField="Id_sepatu" DataImageUrlFormatString="blob.aspx?Id_sepatu={0}" HeaderText="Gambar">
+                        </asp:ImageField>
                         <asp:TemplateField AccessibleHeaderText="Action" HeaderText="Action" ShowHeader="False">
                             <ItemTemplate>
                                 <%--kalau edit isi dari table row yg dipilih masuk ke detal barang--%>
@@ -148,10 +174,4 @@
     </div>
     </div>
   
-
-  
-    
-     
-
-
 </asp:Content>
