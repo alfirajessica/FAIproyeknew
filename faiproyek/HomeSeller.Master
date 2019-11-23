@@ -45,7 +45,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Barang</a>
                                 <ul class="sub-menu children dropdown-menu">
                                     <li><i class="menu-icon fa fa-fort-awesome"></i><asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/tambahbarangseller.aspx">Tambah Barang Baru</asp:HyperLink></li>
-                                    <li><i class="menu-icon ti-themify-logo"></i><asp:HyperLink ID="HyperLink6" runat="server">Tambah Detail Barang</asp:HyperLink></li>
+                                    <li><i class="menu-icon ti-themify-logo"></i><asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/detailbarangseller.aspx">Tambah Detail Barang</asp:HyperLink></li>
                                 </ul>
                             </li>
                            

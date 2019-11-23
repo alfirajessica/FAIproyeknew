@@ -75,6 +75,7 @@
     </Content>
     <Content Include="blob.aspx" />
     <Content Include="CaptchaImage.aspx" />
+    <Content Include="detailbarangseller.aspx" />
     <Content Include="Global.asax" />
     <Content Include="home.aspx" />
     <Content Include="homeseller.aspx" />
@@ -121,6 +122,20 @@
     </Compile>
     <Compile Include="CaptchaImage.aspx.designer.cs">
       <DependentUpon>CaptchaImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="detailbarangseller.aspx.cs">
+      <DependentUpon>detailbarangseller.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="detailbarangseller.aspx.designer.cs">
+      <DependentUpon>detailbarangseller.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetailBarangSeller.Master.cs">
+      <DependentUpon>DetailBarangSeller.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetailBarangSeller.Master.designer.cs">
+      <DependentUpon>DetailBarangSeller.Master</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -246,6 +261,7 @@
     <Content Include="AccountSetting.Master" />
     <Content Include="TambahBarangSeller.Master" />
     <Content Include="MasterPesanan.Master" />
+    <Content Include="DetailBarangSeller.Master" />
     <None Include="packages.config" />
     <Content Include="Home.Master" />
     <Content Include="Shop.Master" />
@@ -257,9 +273,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Upload\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
