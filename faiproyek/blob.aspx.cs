@@ -33,8 +33,8 @@ namespace faiproyek
             }
 
             email = Session["email"].ToString();
-            SqlCommand cmd = new SqlCommand("select foto from Hsepatu where Email=@Email", sqlconn);
-            cmd.Parameters.AddWithValue("@Email", email);
+            SqlCommand cmd = new SqlCommand("select Gambar from Hsepatu where Id_sepatu=@Id_sepatu", sqlconn);
+            cmd.Parameters.AddWithValue("@Id_sepatu", Request.QueryString["Id_sepatu"].ToString());
             try
             {
 
@@ -42,9 +42,9 @@ namespace faiproyek
                 byte[] temp1 = (byte[])temp;
                 Bitmap bmp = new Bitmap(new MemoryStream(temp1));
                 //merubah ukuran bmp menjadi 100x100 disimpan di bmp2
-                Bitmap bmp2 = new Bitmap(bmp, 100, 100);
+                Bitmap bmp2 = new Bitmap(bmp, 150, 150);
                 MemoryStream io = new MemoryStream();
-                bmp2.Save(io, ImageFormat.Png);
+                bmp2.Save(io, ImageFormat.Jpeg);
 
 
                 // Output the content of the buffer to the browser
@@ -57,7 +57,7 @@ namespace faiproyek
             {
                 //jika di database null
                 Bitmap bmp = new Bitmap(Server.MapPath("th.jpg"));
-                Bitmap bmp2 = new Bitmap(bmp, 100, 100);
+                Bitmap bmp2 = new Bitmap(bmp, 150, 150);
                 MemoryStream io = new MemoryStream();
                 bmp2.Save(io, ImageFormat.Png);
                 Response.Clear();

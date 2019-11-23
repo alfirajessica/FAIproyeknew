@@ -80,7 +80,7 @@
     <Content Include="homeseller.aspx" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
-    <Content Include="masterbarangseller.aspx" />
+    <Content Include="tambahbarangseller.aspx" />
     <Content Include="masterpesanan.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="shop.aspx" />
@@ -174,19 +174,19 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
-    <Compile Include="masterbarangseller.aspx.cs">
-      <DependentUpon>masterbarangseller.aspx</DependentUpon>
+    <Compile Include="tambahbarangseller.aspx.cs">
+      <DependentUpon>tambahbarangseller.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="masterbarangseller.aspx.designer.cs">
-      <DependentUpon>masterbarangseller.aspx</DependentUpon>
+    <Compile Include="tambahbarangseller.aspx.designer.cs">
+      <DependentUpon>tambahbarangseller.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterBarangSeller.Master.cs">
-      <DependentUpon>MasterBarangSeller.Master</DependentUpon>
+    <Compile Include="TambahBarangSeller.Master.cs">
+      <DependentUpon>TambahBarangSeller.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterBarangSeller.Master.designer.cs">
-      <DependentUpon>MasterBarangSeller.Master</DependentUpon>
+    <Compile Include="TambahBarangSeller.Master.designer.cs">
+      <DependentUpon>TambahBarangSeller.Master</DependentUpon>
     </Compile>
     <Compile Include="masterpesanan.aspx.cs">
       <DependentUpon>masterpesanan.aspx</DependentUpon>
@@ -244,7 +244,7 @@
     <Content Include="Index.Master" />
     <Content Include="HomeSeller.Master" />
     <Content Include="AccountSetting.Master" />
-    <Content Include="MasterBarangSeller.Master" />
+    <Content Include="TambahBarangSeller.Master" />
     <Content Include="MasterPesanan.Master" />
     <None Include="packages.config" />
     <Content Include="Home.Master" />
