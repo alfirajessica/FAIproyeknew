@@ -24,13 +24,23 @@
                     <strong>Pilih </strong> Barang 
                 </div>
                 <div class="card-body card-block">
-                    <%-- isi--%>
-                    <%-- id dan nama sepatu--%>
+                    
+                    <%-- Id sepatu--%>
+                   <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="select" class=" form-control-label">Id Barang</label>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                        </div>        
+                    </div>
+
+                    <%--nama sepatu--%>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input" class=" form-control-label">Id - Nama Barang</label></div>
+                            <label for="text-input" class=" form-control-label">Nama Barang</label></div>
                         <div class="col-12 col-md-8">
-                            <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="dl_daftarsepatu" runat="server" class="form-control" OnSelectedIndexChanged="dl_daftarsepatu_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                         </div>
                     </div>
 
@@ -40,13 +50,13 @@
                             <label for="select" class=" form-control-label">Deskripsi</label>
                         </div>
                         <div class="col-12 col-md-8">
-                            <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                            <asp:Label ID="lb_deskripsi" runat="server" Text=""></asp:Label>
                         </div>        
                     </div>
 
 
                      <%--yakin ini barangnya--%>
-                    <asp:Button ID="Button3" runat="server" Text="Add Detail"  class="btn btn-primary btn-sm" />
+                    <asp:Button ID="btn_ok" runat="server" Text="OK"  class="btn btn-primary btn-sm" OnClick="btn_ok_Click" />
         
                 </div>
             </div>
@@ -63,7 +73,7 @@
                     <%-- size sepatu--%>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input" class=" form-control-label">Size</label></div>
+                            <label for="text-input" min="1" class=" form-control-label">Size</label></div>
                         <div class="col-12 col-md-8">
                             <asp:TextBox ID="tx_sizesepatu" placeholder="Size" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
                             <small class="form-text text-muted">This is a help text</small>
@@ -76,10 +86,16 @@
                             <label for="select" class=" form-control-label">Warna</label>
                         </div>
                         <div class="col-12 col-md-8">
-                            <asp:DropDownList ID="dl_warnasepatu" runat="server" class="form-control">
+                            <asp:DropDownList ID="dl_warnasepatu" runat="server" class="form-control" AutoPostBack="True">
                             <asp:ListItem class="form-control">Merah</asp:ListItem>
                             <asp:ListItem class="form-control">Putih</asp:ListItem>
                             <asp:ListItem class="form-control">Hitam</asp:ListItem>
+                                <asp:ListItem>Biru</asp:ListItem>
+                                <asp:ListItem>Hijau</asp:ListItem>
+                                <asp:ListItem>Abu-Abu</asp:ListItem>
+                                <asp:ListItem>Merah Muda</asp:ListItem>
+                                <asp:ListItem>Kuning</asp:ListItem>
+                                <asp:ListItem>Jingga</asp:ListItem>
                              </asp:DropDownList>
                         </div>        
                     </div>
@@ -89,14 +105,14 @@
                         <div class="col col-md-3">
                             <label for="text-input" class=" form-control-label">Stok</label></div>
                         <div class="col-12 col-md-8">
-                            <asp:TextBox ID="tx_stoksepatu" placeholder="Stok" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="tx_stoksepatu" min="1" placeholder="Stok" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
                             <small class="form-text text-muted">This is a help text</small>
                         </div>
                     </div>
 
                      <%--submit kedua untuk masukin ke database DSepatu dan munculkan ke table bawah--%>
-                    <asp:Button ID="btn_addDetail" runat="server" Text="Add Detail"  class="btn btn-primary btn-sm" />
-        
+                    <asp:Button ID="btn_addDetail" runat="server" Text="Add Detail"  class="btn btn-primary btn-sm" OnClick="btn_addDetail_Click" />
+                    <asp:Label ID="lb_notif2" runat="server"></asp:Label>
                 </div>
             </div>
         </div>
@@ -114,23 +130,23 @@
             <div class="card-body card-block">
                 <%-- isi--%>
                 
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+                <asp:GridView class="table table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" Width="965px">
                     <Columns>
-                        <asp:BoundField DataField="id_sepatu" HeaderText="#" >
+                        <asp:BoundField DataField="Id_detail" HeaderText="#" >
                         <HeaderStyle BackColor="Black" ForeColor="White" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Email_seller" HeaderText="Email" >
+                        <asp:BoundField DataField="Id_sepatu" HeaderText="Id sepatu" >
                         <HeaderStyle BackColor="Black" ForeColor="White" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Nama_sepatu" HeaderText="Nama" >
+                        <asp:BoundField DataField="Size" HeaderText="Size" >
                         <HeaderStyle BackColor="Black" ForeColor="White" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Jenis_sepatu" HeaderText="Jenis_sepatu" >
+                        <asp:BoundField DataField="Warna" HeaderText="Warna" >
                         <HeaderStyle BackColor="Black" ForeColor="White" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Deskripsi" HeaderText="Deskripsi" />
-                        <asp:ImageField DataAlternateTextField="Gambar" DataAlternateTextFormatString="Gambar" DataImageUrlField="Id_sepatu" DataImageUrlFormatString="blob.aspx?Id_sepatu={0}" HeaderText="Gambar">
-                        </asp:ImageField>
+                        <asp:BoundField DataField="Stok" HeaderText="Stok" >
+                        <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:BoundField>
                         <asp:TemplateField AccessibleHeaderText="Action" HeaderText="Action" ShowHeader="False">
                             <ItemTemplate>
                                 <%--kalau edit isi dari table row yg dipilih masuk ke detal barang--%>

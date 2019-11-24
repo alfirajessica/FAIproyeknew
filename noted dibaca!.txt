@@ -1,9 +1,10 @@
 keterangan!!
-utk nama master pagenya diawali huruf besar.Master
-utk aspx nya diawali huruf kecil (dengan nama yang sama dgn master pagenya)
+utk nama master pagenya diawali huruf besar.Master (cth : Login.Master)
+utk aspx nya diawali huruf kecil (dengan nama yang sama dgn master pagenya) (cth: login.aspx)
 
 *YANG DITANDAI ADA ARTINYA SUDAH ADA MASTER PAGE DAN ASPX NYA!
 
+------ ini view nya --------------------------
 *global view
 Register.aspx -- ada
 login.aspx -- ada
@@ -27,13 +28,15 @@ user penjual/seller
 Register.aspx -- ada
 login.aspx -- ada
 index.aspx -- ada
-homeseller.aspx  (tempat utk menampilkan notifikasi jika ada yg beli, proses pesanan !! gunakan status)
-produkseller.aspx (tempat utk upload produk/nambah produk)
+homeseller.aspx -- ada 
+tambahbarangsellerseller.aspx -- ada
+detailbarangseller.aspx -- ada
 reportseller.aspx 
 
 
 untuk admin
 homeadmin.aspx  (Dashboard)
+------ end of view --------------------------
 
  
 

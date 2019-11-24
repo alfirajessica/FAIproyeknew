@@ -32,6 +32,10 @@ namespace faiproyek
                     email = Session["email"].ToString();
                     find_namaUser();
                 }
+                else if (Session["email"] == null)
+                {
+                    Response.Redirect("login.aspx");
+                }
             }
         }
 

@@ -22,31 +22,40 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.Label lb_namauser1;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Label3 control.
+        /// dl_daftarsepatu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.DropDownList dl_daftarsepatu;
         
         /// <summary>
-        /// Button3 control.
+        /// lb_deskripsi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Label lb_deskripsi;
+        
+        /// <summary>
+        /// btn_ok control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_ok;
         
         /// <summary>
         /// tx_sizesepatu control.
@@ -83,6 +92,15 @@ namespace faiproyek {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_addDetail;
+        
+        /// <summary>
+        /// lb_notif2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_notif2;
         
         /// <summary>
         /// GridView1 control.
