@@ -82,11 +82,12 @@ namespace faiproyek
                 {
 
                     email = Session["email"].ToString();
-                    SqlCommand cmd = new SqlCommand("insert into Hsepatu values(@Email_seller, @Nama_sepatu, @Jenis_sepatu, @Deskripsi, @Gambar)", sqlconn);
+                    SqlCommand cmd = new SqlCommand("insert into Hsepatu values(@Email_seller, @Nama_sepatu, @Jenis_sepatu, @Deskripsi, @Gambar, @Harga)", sqlconn);
                     cmd.Parameters.AddWithValue("@Email_seller", email);
                     cmd.Parameters.AddWithValue("@Nama_sepatu", tx_namasepatu.Text);
                     cmd.Parameters.AddWithValue("@Jenis_sepatu", dl_jenissepatu.SelectedItem.Text);
                     cmd.Parameters.AddWithValue("@Deskripsi", tx_deskripsi.Text);
+                    cmd.Parameters.AddWithValue("@Harga", tx_harga.Text);
                     cmd.Parameters.Add("@Gambar", SqlDbType.Image).Value = imgbyte;
                     cmd.ExecuteNonQuery();
 

@@ -49,6 +49,15 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.DropDownList dl_jenissepatu;
         
         /// <summary>
+        /// tx_harga control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tx_harga;
+        
+        /// <summary>
         /// tx_deskripsi control.
         /// </summary>
         /// <remarks>

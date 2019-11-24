@@ -46,6 +46,16 @@
                              </asp:DropDownList>
                         </div>        
                     </div>
+
+                     <%-- harga sepatu--%>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="select" class=" form-control-label">Harga Sepatu</label>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <asp:TextBox placeholder="Harga Sepatu" class="form-control" ID="tx_harga" runat="server" TextMode="Number"></asp:TextBox>
+                        </div>        
+                    </div>
                     
                     <%-- deskripsi sepatu--%>
                     <div class="row form-group">
