@@ -35,7 +35,10 @@ namespace faiproyek
                     email = Session["email"].ToString();
                     find_namaUser();
                     datatable();
-                    //dataSubmitsepatu();
+                }
+                else if (Session["email"] == null)
+                {
+                    Response.Redirect("login.aspx");
                 }
             }
         }
@@ -130,6 +133,21 @@ namespace faiproyek
             GridView2.DataSource = ds.Tables[0];
             GridView2.DataBind();
             sqlconn.Close();
+        }
+
+        protected void GridView2_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            
+            string Id_sepatu, Nama_sepatu, Jenis_sepatu, Deskripsi = "";
+            Id_sepatu = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label1") as Label).Text;
+            Nama_sepatu = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label3") as Label).Text;
+            Jenis_sepatu = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label4") as Label).Text;
+            Deskripsi = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label5") as Label).Text;
+
+            tx_deskripsi.Text = Deskripsi;
+            tx_namasepatu.Text = Nama_sepatu;
+            dl_jenissepatu.SelectedValue = Jenis_sepatu;
+            lb_idsepatu.Text = Id_sepatu;
         }
 
         protected void btn_saveImage_Click(object sender, EventArgs e)

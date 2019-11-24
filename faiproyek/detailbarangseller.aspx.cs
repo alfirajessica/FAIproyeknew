@@ -244,12 +244,6 @@ namespace faiproyek
 
         }
 
-       
-
-
-
-
-
 
         //jika user telah memilih barang mana yang mau ditambahkan detailnya
         //detail akan enabled true

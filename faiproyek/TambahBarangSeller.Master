@@ -35,7 +35,7 @@
                         
                         <ul class="nav navbar-nav">
                             <li>
-                                <a href="#"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                                <a href="homeseller.aspx"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                             </li>
                             <li>
                                 <asp:HyperLink ID="HyperLink2" runat="server">Pesanan</asp:HyperLink>
@@ -132,14 +132,6 @@
                 <%--Master Tambah barang baru -- Edit Barang lama -- Hapus Barang--%>
                 <asp:contentplaceholder id="ContentPlaceHolder2" runat="server"></asp:contentplaceholder>
                 
-               <%-- sementara--%>
-               <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-                        <asp:contentplaceholder id="ContentPlaceHolder3" runat="server">
-                        </asp:contentplaceholder>
-                    </ContentTemplate>
-                </asp:UpdatePanel>--%>
-
             </div><!-- .animated -->
         </div> <!-- .content -->
 

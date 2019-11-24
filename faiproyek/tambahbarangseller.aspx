@@ -22,7 +22,7 @@
                     <strong>Master </strong> Barang
                 </div>
                 <div class="card-body card-block">
-                    
+                    <asp:Label ID="lb_idsepatu" runat="server" Text=""></asp:Label>
                     <%-- nama sepatu--%>
                     <div class="row form-group">
                         <div class="col col-md-3">
@@ -78,24 +78,61 @@
 
                            <%-- ajax tidak bisa jalan di fileupload karena ada postbacktrigger--%>
                             <%--table barang apa saja yang dimilki seller/user/vendor--%>
-                            <asp:GridView class="table table-bordered" ID="GridView2" runat="server" AutoGenerateColumns="False">
+                            <asp:GridView class="table table-bordered" ID="GridView2" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanging="GridView2_SelectedIndexChanging">
                                 <Columns>
-                                    <asp:BoundField DataField="id_sepatu" HeaderText="#" >
+                                    <asp:TemplateField HeaderText="#">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("id_sepatu") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("id_sepatu") %>'></asp:Label>
+                                        </ItemTemplate>
                                         <HeaderStyle BackColor="Black" ForeColor="White" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="Email_seller" HeaderText="Email" Visible="False" >
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Email" Visible="False">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Email_seller") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Email_seller") %>'></asp:Label>
+                                        </ItemTemplate>
                                         <HeaderStyle BackColor="Black" ForeColor="White" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="Nama_sepatu" HeaderText="Nama" >
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Nama">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Nama_sepatu") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("Nama_sepatu") %>'></asp:Label>
+                                        </ItemTemplate>
                                         <HeaderStyle BackColor="Black" ForeColor="White" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="Jenis_sepatu" HeaderText="Jenis_sepatu" >
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Jenis_sepatu">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Jenis_sepatu") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("Jenis_sepatu") %>'></asp:Label>
+                                        </ItemTemplate>
                                         <HeaderStyle BackColor="Black" ForeColor="White" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="Deskripsi" HeaderText="Deskripsi" Visible="False" />
-                                    <asp:ImageField DataAlternateTextField="Gambar" DataAlternateTextFormatString="Gambar" DataImageUrlField="Id_sepatu" DataImageUrlFormatString="blob.aspx?Id_sepatu={0}" HeaderText="Gambar">
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Deskripsi" Visible="False">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Deskripsi") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Deskripsi") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Gambar">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox6" runat="server" Text='<%# Eval("Id_sepatu") %>' Tooltip='<%# Eval("Gambar", "Gambar") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Image ID="Image1" runat="server" AlternateText='<%# Eval("Gambar", "Gambar") %>' ImageUrl='<%# Eval("Id_sepatu", "blob.aspx?Id_sepatu={0}") %>' />
+                                        </ItemTemplate>
                                         <HeaderStyle BackColor="Black" ForeColor="White" />
-                                    </asp:ImageField>
+                                    </asp:TemplateField>
                                     <asp:TemplateField AccessibleHeaderText="Action" HeaderText="Action" ShowHeader="False">
                                         <ItemTemplate>
                                             <%--kalau edit isi dari table row yg dipilih masuk ke detal barang--%>
