@@ -75,8 +75,7 @@
                     <strong>Detail </strong> Barang
                 </div>
                 <div class="card-body card-block">
-                    <%-- isi--%>
-                    <%-- size sepatu--%>
+                    <%-- isi--%>                    <%-- size sepatu--%>
                     <div class="row form-group">
                         <div class="col col-md-3">
                             <label for="text-input" class=" form-control-label">Size</label></div>
@@ -96,13 +95,13 @@
                             <asp:ListItem class="form-control">Merah</asp:ListItem>
                             <asp:ListItem class="form-control">Putih</asp:ListItem>
                             <asp:ListItem class="form-control">Hitam</asp:ListItem>
-                                <asp:ListItem>Biru</asp:ListItem>
-                                <asp:ListItem>Hijau</asp:ListItem>
-                                <asp:ListItem>Abu-Abu</asp:ListItem>
-                                <asp:ListItem>Merah Muda</asp:ListItem>
-                                <asp:ListItem>Kuning</asp:ListItem>
-                                <asp:ListItem>Jingga</asp:ListItem>
-                             </asp:DropDownList>
+                            <asp:ListItem class="form-control">Biru</asp:ListItem>
+                            <asp:ListItem class="form-control">Hijau</asp:ListItem>
+                            <asp:ListItem class="form-control">Abu-Abu</asp:ListItem>
+                            <asp:ListItem class="form-control">Merah Muda</asp:ListItem>
+                            <asp:ListItem class="form-control">Kuning</asp:ListItem>
+                            <asp:ListItem class="form-control">Jingga</asp:ListItem>
+                            </asp:DropDownList>
                         </div>        
                     </div>
 
@@ -111,13 +110,21 @@
                         <div class="col col-md-3">
                             <label for="text-input" class=" form-control-label">Stok</label></div>
                         <div class="col-12 col-md-8">
-                            <asp:TextBox ID="tx_stoksepatu" min="1" placeholder="Stok" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
-                            <asp:RangeValidator  class="form-text text-muted" ID="rangeval_stok" runat="server" ErrorMessage="pastikan input stok benar" Display="Dynamic" MinimumValue="1" ControlToValidate="tx_stoksepatu"></asp:RangeValidator>                                                    </div>
+                            <asp:TextBox ID="tx_stoksepatu" min="1" max="1000" placeholder="Stok" class="form-control" runat="server" TextMode="Number" OnTextChanged="tx_stoksepatu_TextChanged"></asp:TextBox>
+                        </div>
                     </div>
 
-                     <%--submit kedua untuk masukin ke database DSepatu dan munculkan ke table bawah--%>
-                    <asp:Button ID="btn_addDetail" runat="server" Text="Add Detail"  class="btn btn-primary btn-sm" OnClick="btn_addDetail_Click" />
-                    <asp:Label ID="lb_notif2" runat="server"></asp:Label>
+                      <%--submit kedua untuk masukin ke database DSepatu dan munculkan ke table bawah--%>
+                    <div class="row form-group">
+                        <div class="col col-md-8">
+                            <asp:Label ID="lb_notif3" class=" form-control-label" runat="server" Text="Yakin ingin tambah Detail barang ini?"></asp:Label>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <asp:Button ID="btn_addDetail" runat="server" Text="Add Detail"  class="btn btn-primary btn-sm" OnClick="btn_addDetail_Click" />
+                            <asp:Button ID="btn_update" runat="server" Text="Update" class="btn btn-primary btn-sm" OnClick="btn_update_Click"/>
+                        </div>                               
+                    </div>
+                    <asp:Label ID="lb_notif2" runat="server"></asp:Label>                   
                 </div>
             </div>
         </div>
@@ -135,23 +142,53 @@
             <div class="card-body card-block">
                 <%-- isi--%>
                 
-                <asp:GridView class="table table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" Width="965px">
+                <asp:GridView class="table table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" Width="965px" OnSelectedIndexChanging="GridView1_SelectedIndexChanging" OnRowDeleting="GridView1_RowDeleting">
                     <Columns>
-                        <asp:BoundField DataField="Id_detail" HeaderText="#" >
-                        <HeaderStyle BackColor="Black" ForeColor="White" />
-                        </asp:BoundField>
-                        <asp:BoundField DataField="Id_sepatu" HeaderText="Id sepatu" >
-                        <HeaderStyle BackColor="Black" ForeColor="White" />
-                        </asp:BoundField>
-                        <asp:BoundField DataField="Size" HeaderText="Size" >
-                        <HeaderStyle BackColor="Black" ForeColor="White" />
-                        </asp:BoundField>
-                        <asp:BoundField DataField="Warna" HeaderText="Warna" >
-                        <HeaderStyle BackColor="Black" ForeColor="White" />
-                        </asp:BoundField>
-                        <asp:BoundField DataField="Stok" HeaderText="Stok" >
-                        <HeaderStyle BackColor="Black" ForeColor="White" />
-                        </asp:BoundField>
+                        <asp:TemplateField HeaderText="#">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Id_detail") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Id_detail") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Id sepatu">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Size">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Size") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("Size") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Warna">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Warna") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label4" runat="server" Text='<%# Bind("Warna") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Stok">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Stok") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label5" runat="server" Text='<%# Bind("Stok") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle BackColor="Black" ForeColor="White" />
+                        </asp:TemplateField>
                         <asp:TemplateField AccessibleHeaderText="Action" HeaderText="Action" ShowHeader="False">
                             <ItemTemplate>
                                 <%--kalau edit isi dari table row yg dipilih masuk ke detal barang--%>

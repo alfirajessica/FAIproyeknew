@@ -15,6 +15,9 @@ namespace faiproyek
         SqlConnection sqlconn;
         string email, nama, deskripsi = "";
 
+        //simpan data sementara edit
+        string id_detail, size, warna, stok;
+
         public void connection()
         {
             sqlconn = new SqlConnection(conn);
@@ -39,8 +42,7 @@ namespace faiproyek
                 {
                     Response.Redirect("login.aspx");
                 }
-                //  email = Request.QueryString["email"]; //mendapatkan email dari login 
-
+               
             }
         }
 
@@ -84,6 +86,75 @@ namespace faiproyek
             sqlconn.Close();
             getData_Dsepatu();
             reset();
+            lb_notif3.Visible = false;
+        }
+
+        //berfungsi pada button action - edit
+        protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            btn_update.Visible = true;
+            lb_notif2.Visible = false;
+            lb_notif3.Visible = true;
+            lb_notif3.Text = "Yakin ingin update detail barang ini?";
+            btn_addDetail.Visible = false;
+
+            
+            id_detail = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label1") as Label).Text;
+            size = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label3") as Label).Text;
+            warna = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label4") as Label).Text;
+            stok = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label5") as Label).Text;
+
+            lb_notif2.Text = id_detail;
+           
+            tx_sizesepatu.Text = size;
+            tx_stoksepatu.Text = stok;
+            dl_warnasepatu.SelectedValue = warna;
+
+        }
+
+        protected void tx_stoksepatu_TextChanged(object sender, EventArgs e)
+        {
+            lb_notif3.Visible = true;
+        }
+
+        //update detail barang
+        protected void btn_update_Click(object sender, EventArgs e)
+        {
+            connection();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("update Dsepatu set Size=@Size, Warna=@Warna, Stok=@Stok where Id_detail=" + lb_notif2.Text + "", sqlconn);
+                cmd.Parameters.AddWithValue("@Size", tx_sizesepatu.Text);
+                cmd.Parameters.AddWithValue("@Warna", dl_warnasepatu.SelectedValue.ToString());
+                cmd.Parameters.AddWithValue("@Stok", tx_stoksepatu.Text);
+                cmd.ExecuteNonQuery();
+                lb_notif2.Text = "Update berhasil";
+                
+            }
+            catch (Exception ex)
+            {
+
+                lb_notif2.Text = ex.Message.ToString();
+            }
+            sqlconn.Close();
+            getData_Dsepatu();
+            reset();
+            lb_notif3.Visible = false;
+            btn_addDetail.Visible = true;
+            btn_update.Visible = false;
+        }
+
+        //delete detail barang
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            id_detail = (GridView1.Rows[e.RowIndex].FindControl("Label1") as Label).Text;
+
+            connection();
+            SqlCommand cmd = new SqlCommand("delete from Dsepatu where Id_detail=" + id_detail + "", sqlconn);
+            cmd.ExecuteNonQuery();
+            sqlconn.Close();
+
+            getData_Dsepatu();
         }
 
         //--------------------------------------------------------------------------------------------//
@@ -111,7 +182,9 @@ namespace faiproyek
             tx_stoksepatu.Text = "";
             dl_warnasepatu.SelectedIndex = -1;
         }
-       
+
+        
+
         //untk daftar sepatu yang ada di dropdownlist
         public void list_sepatu()
         {
@@ -158,7 +231,9 @@ namespace faiproyek
             dl_warnasepatu.Enabled = false;
             dl_warnasepatu.SelectedIndex = -1;
             btn_addDetail.Enabled = false;
+            btn_update.Visible = false;
             lb_notif2.Visible = false;
+            lb_notif3.Visible = false;
 
             btn_pilihbrglain.Visible = false;
             Label1.Enabled = true;
@@ -169,7 +244,12 @@ namespace faiproyek
 
         }
 
-        
+       
+
+
+
+
+
 
         //jika user telah memilih barang mana yang mau ditambahkan detailnya
         //detail akan enabled true
@@ -180,7 +260,9 @@ namespace faiproyek
             tx_stoksepatu.Enabled = true;
             dl_warnasepatu.Enabled = true;
             btn_addDetail.Enabled = true;
+            btn_update.Visible = false;
             lb_notif2.Visible = true;
+            lb_notif3.Visible = true;
 
             btn_pilihbrglain.Visible = true;
             Label1.Enabled = false;

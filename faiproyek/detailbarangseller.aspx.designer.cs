@@ -112,13 +112,13 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.TextBox tx_stoksepatu;
         
         /// <summary>
-        /// rangeval_stok control.
+        /// lb_notif3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator rangeval_stok;
+        protected global::System.Web.UI.WebControls.Label lb_notif3;
         
         /// <summary>
         /// btn_addDetail control.
@@ -128,6 +128,15 @@ namespace faiproyek {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_addDetail;
+        
+        /// <summary>
+        /// btn_update control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_update;
         
         /// <summary>
         /// lb_notif2 control.
