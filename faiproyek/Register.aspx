@@ -52,6 +52,8 @@
          <br />
          <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_regist_penjual" runat="server" Text="Register sebagai penjual" OnClick="btn_regist_penjual_Click" />
 
+            <asp:Label ID="Label2" runat="server" Text="Sudah punya akun?"></asp:Label>
+    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/login.aspx">Login disini</asp:HyperLink>
         </ContentTemplate>
     </asp:UpdatePanel>     
 </asp:Content>

@@ -101,7 +101,7 @@ namespace faiproyek
             }
             if (cek == false || tx_email.Text == "" || tx_password.Text == "")
             {
-                lb_notif.Text = "cek kembali username dan password anda";
+                lb_notif.Text = "Anda belum terdaftar";
             }
 
             sqlconn.Close();
