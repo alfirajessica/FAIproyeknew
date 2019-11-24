@@ -49,6 +49,15 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.Label lb_deskripsi;
         
         /// <summary>
+        /// lb_notif1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_notif1;
+        
+        /// <summary>
         /// btn_ok control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.Button btn_ok;
         
         /// <summary>
+        /// btn_pilihbrglain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_pilihbrglain;
+        
+        /// <summary>
         /// tx_sizesepatu control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,15 @@ namespace faiproyek {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tx_sizesepatu;
+        
+        /// <summary>
+        /// rangeval_size control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rangeval_size;
         
         /// <summary>
         /// dl_warnasepatu control.
@@ -83,6 +110,15 @@ namespace faiproyek {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tx_stoksepatu;
+        
+        /// <summary>
+        /// rangeval_stok control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rangeval_stok;
         
         /// <summary>
         /// btn_addDetail control.

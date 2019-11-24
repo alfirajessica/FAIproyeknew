@@ -49,15 +49,21 @@
                         <div class="col col-md-3">
                             <label for="select" class=" form-control-label">Deskripsi</label>
                         </div>
-                        <div class="col-12 col-md-8">
+                        <div class="col-12 col-md-8" style="left: 0px; top: 0px">
                             <asp:Label ID="lb_deskripsi" runat="server" Text=""></asp:Label>
                         </div>        
                     </div>
 
-
                      <%--yakin ini barangnya--%>
-                    <asp:Button ID="btn_ok" runat="server" Text="OK"  class="btn btn-primary btn-sm" OnClick="btn_ok_Click" />
-        
+                    <div class="row form-group">
+                        <div class="col col-md-8">
+                            <asp:Label ID="lb_notif1" class=" form-control-label" runat="server" Text="Yakin ingin tambah Detail barang ini?"></asp:Label>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <asp:Button ID="btn_ok" runat="server" Text="OK"  class="btn btn-primary btn-sm" OnClick="btn_ok_Click" />
+                            <asp:Button ID="btn_pilihbrglain" runat="server" class="btn btn-primary btn-sm" Text="Ganti barang" OnClick="btn_pilihbrglain_Click" />
+                        </div>                               
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,10 +79,10 @@
                     <%-- size sepatu--%>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input" min="1" class=" form-control-label">Size</label></div>
+                            <label for="text-input" class=" form-control-label">Size</label></div>
                         <div class="col-12 col-md-8">
-                            <asp:TextBox ID="tx_sizesepatu" placeholder="Size" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
-                            <small class="form-text text-muted">This is a help text</small>
+                            <asp:TextBox ID="tx_sizesepatu" min="1" max="90" placeholder="Size" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:RangeValidator  class="form-text text-muted" ID="rangeval_size" runat="server" ErrorMessage="pastikan input size benar" Display="Dynamic" MaximumValue="90" MinimumValue="1" ControlToValidate="tx_sizesepatu"></asp:RangeValidator>                            
                         </div>
                     </div>
 
@@ -106,8 +112,7 @@
                             <label for="text-input" class=" form-control-label">Stok</label></div>
                         <div class="col-12 col-md-8">
                             <asp:TextBox ID="tx_stoksepatu" min="1" placeholder="Stok" class="form-control" runat="server" TextMode="Number"></asp:TextBox>
-                            <small class="form-text text-muted">This is a help text</small>
-                        </div>
+                            <asp:RangeValidator  class="form-text text-muted" ID="rangeval_stok" runat="server" ErrorMessage="pastikan input stok benar" Display="Dynamic" MinimumValue="1" ControlToValidate="tx_stoksepatu"></asp:RangeValidator>                                                    </div>
                     </div>
 
                      <%--submit kedua untuk masukin ke database DSepatu dan munculkan ke table bawah--%>

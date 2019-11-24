@@ -47,11 +47,19 @@ namespace faiproyek
         protected void dl_daftarsepatu_SelectedIndexChanged(object sender, EventArgs e)
         {
             detail_Hsepatu();
+            btn_ok.Enabled = true;
+            lb_notif1.Visible = true;
         }
 
         protected void btn_ok_Click(object sender, EventArgs e)
         {
             detail_barang_true();
+        }
+
+        protected void btn_pilihbrglain_Click(object sender, EventArgs e)
+        {
+            detail_barang_false();
+            reset();
         }
 
         protected void btn_addDetail_Click(object sender, EventArgs e)
@@ -60,7 +68,6 @@ namespace faiproyek
             try
             {
                 SqlCommand cmd = new SqlCommand("insert into Dsepatu values (@Id_sepatu, @Size, @Warna, @Stok)", sqlconn);
-
                 cmd.Parameters.AddWithValue("@Id_sepatu", dl_daftarsepatu.SelectedValue);
                 cmd.Parameters.AddWithValue("@Size", tx_sizesepatu.Text);
                 cmd.Parameters.AddWithValue("@Warna", dl_warnasepatu.SelectedValue.ToString());
@@ -151,7 +158,18 @@ namespace faiproyek
             dl_warnasepatu.Enabled = false;
             dl_warnasepatu.SelectedIndex = -1;
             btn_addDetail.Enabled = false;
+            lb_notif2.Visible = false;
+
+            btn_pilihbrglain.Visible = false;
+            Label1.Enabled = true;
+            lb_deskripsi.Enabled = true;
+            dl_daftarsepatu.Enabled = true;
+            btn_ok.Enabled = false;
+            lb_notif1.Visible = false;
+
         }
+
+        
 
         //jika user telah memilih barang mana yang mau ditambahkan detailnya
         //detail akan enabled true
@@ -162,11 +180,15 @@ namespace faiproyek
             tx_stoksepatu.Enabled = true;
             dl_warnasepatu.Enabled = true;
             btn_addDetail.Enabled = true;
+            lb_notif2.Visible = true;
 
+            btn_pilihbrglain.Visible = true;
             Label1.Enabled = false;
             lb_deskripsi.Enabled = false;
             dl_daftarsepatu.Enabled = false;
-            btn_ok.Enabled = false;
+            btn_ok.Visible = false;
+            lb_notif1.Visible = false;
+            
         }
 
 
