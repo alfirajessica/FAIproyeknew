@@ -115,42 +115,41 @@
     </div>
 
     <%--DATALIST PRODUCT--%>
-    
-   
-    <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" TabIndex="5" CellPadding="0" HorizontalAlign="Left">
+    <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" TabIndex="5" CellPadding="0" HorizontalAlign="Left" CellSpacing="10">
         <ItemStyle Height="400px" VerticalAlign="Top" Width="400px" />
         <ItemTemplate>  
             
-            <div class="block2-pic hov-img0">
-               
+            <div class="block2-pic hov-img0">               
                 <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Id_sepatu", "blob.aspx?Id_sepatu={0}") %>'/>
                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                     Quick View
                 </a>
             </div>
+
             <div class="block2-txt flex-w flex-t p-t-14">
                 <div class="block2-txt-child1 flex-col-l ">
-                    <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									<%#Eval("Nama_sepatu")%>
-								</a>
+                    <a href="" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        <%#Eval("Nama_sepatu")%>
+                    </a>
+                    
+                    <span class="stext-105 cl3">
+                        <%#Eval("Harga")%>
+                    </span>
 
-								<span class="stext-105 cl3">
-									<%#Eval("Harga")%>
-								</span>
+                </div>
+                
+                <div class="block2-txt-child2 flex-r p-t-3">
+                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                        <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
+                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 
-                             
-							</div>
+                    </a>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-						</div>
+            </div>
                 
         </ItemTemplate>
-        <SeparatorStyle BorderStyle="Solid" />
+        <SeparatorStyle BorderStyle="Solid" BackColor="Black" BorderWidth="5px" />
     </asp:DataList>
    
 
