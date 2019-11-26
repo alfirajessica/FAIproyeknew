@@ -31,10 +31,13 @@ namespace faiproyek
                 {
                     email = Session["email"].ToString();
                     find_namaUser();
+                    product_Datalist();
                 }
                 else if (Session["email"] == null)
                 {
                     Response.Redirect("login.aspx");
+                    //find_namaUser();
+                    //product_Datalist();
                 }
 
             }
@@ -56,6 +59,22 @@ namespace faiproyek
             }
 
             sqlconn.Close();
+        }
+
+        //memunculkan product dalam datalist
+        public void product_Datalist()
+        {
+            connection();
+            SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
+                "from Hsepatu H, Person P where H.Email_seller=P.Email", sqlconn);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "Hsepatu");
+
+            DataList1.DataSource = ds.Tables[0];
+            DataList1.DataBind();
+            sqlconn.Close();
+
         }
     }
 }
