@@ -35,6 +35,7 @@ namespace faiproyek
                     email = Session["email"].ToString();
                     find_namaUser();
                     datatable();
+                    category();
                 }
                 else if (Session["email"] == null)
                 {
@@ -62,6 +63,19 @@ namespace faiproyek
             sqlconn.Close();
         }
 
+
+        //read semua kategori yanng ada pada table category
+        public void category()
+        {
+            connection();
+            SqlCommand cmd = new SqlCommand("select Id_category, Nama_category from Category", sqlconn);
+            dl_jenissepatu.DataSource = cmd.ExecuteReader();
+            dl_jenissepatu.DataTextField = "Nama_category";
+            dl_jenissepatu.DataValueField = "Id_category";
+            dl_jenissepatu.DataBind();
+            sqlconn.Close();
+
+        }
         protected void btn_submitsepatu1_Click(object sender, EventArgs e)
         {
 

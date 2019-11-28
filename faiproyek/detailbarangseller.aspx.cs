@@ -37,6 +37,7 @@ namespace faiproyek
                     find_namaUser();
                     detail_barang_false();
                     list_sepatu();
+                    get_warna();
                 }
                 else if (Session["email"] == null)
                 {
@@ -280,6 +281,18 @@ namespace faiproyek
 
             GridView1.DataSource = ds.Tables[0];
             GridView1.DataBind();
+            sqlconn.Close();
+        }
+
+        //get semua warna dari table warna
+        public void get_warna()
+        {
+            connection();
+            SqlCommand cmd = new SqlCommand("select Id_warna, Nama_warna from Warna", sqlconn);
+            dl_warnasepatu.DataSource = cmd.ExecuteReader();
+            dl_warnasepatu.DataTextField = "Nama_warna";
+            dl_warnasepatu.DataValueField = "Id_warna";
+            dl_warnasepatu.DataBind();
             sqlconn.Close();
         }
     }

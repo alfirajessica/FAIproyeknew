@@ -9,6 +9,11 @@
             left: 0px;
             top: 0px;
         }
+        .auto-style2 {
+            float: left;
+            height: 169px;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="myaccount" runat="server">
@@ -16,7 +21,7 @@
         <asp:Label  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ID="lb_namaUser" runat="server"></asp:Label>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="accountsetting.aspx">My Account</a>
-            <a class="dropdown-item active" href="index.aspx">Logout</a>
+            <a class="dropdown-item" href="index.aspx">Logout</a>
         </div>
     </div>
 </asp:Content>
@@ -40,72 +45,61 @@
     <div class="panel-filter w-full p-t-10">
         <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
             
-            <%--filter by ringkas--%>
             <div class="filter-col1 p-r-15 p-b-27">
                 <div class="mtext-102 cl2 p-b-15">
-                    Filter By
+                    Gender
                 </div>
                 <ul>      
                     <li class="p-b-6">
-                        <asp:RadioButtonList class="filter-link stext-106 trans-04" ID="RadioButtonList1" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" RepeatLayout="Flow" TabIndex="10">
-                            <asp:ListItem>aa</asp:ListItem>
-                        </asp:RadioButtonList>
-                        <a href="#" class="filter-link stext-106 trans-04">Gender : All
-
-                        </a>
-
+                        <asp:DropDownList ID="dl_gender" runat="server" AutoPostBack="True" class="form-control">
+                            <asp:ListItem>Man</asp:ListItem>
+                            <asp:ListItem>Women</asp:ListItem>
+                            <asp:ListItem>All</asp:ListItem>
+                        </asp:DropDownList>
                     </li>
                 </ul>
             </div>
             
-            <%-- filter berdasarkan harga--%>
+            <%--DATALIST PRODUCT--%>
             <div class="filter-col2 p-r-15 p-b-27">
                 <div class="mtext-102 cl2 p-b-15">
                     Price
                 </div>
                 <ul>
                     <li class="p-b-6">
-                        <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-                            All
-
-                        </a>
-
+                        <asp:DropDownList ID="dl_price" runat="server" AutoPostBack="True" class="form-control">
+                            <asp:ListItem>Rp0 - Rp1.000.000</asp:ListItem>
+                            <asp:ListItem>Rp1.000.000 - Rp3.000.000</asp:ListItem>
+                            <asp:ListItem>&gt; 3.000.000</asp:ListItem>
+                        </asp:DropDownList>
                     </li>
 
                 </ul>
 
             </div>
-            
-            <%-- filter berdasarkan warna--%>
+
             <div class="filter-col3 p-r-15 p-b-27">
                 <div class="mtext-102 cl2 p-b-15">
                     Color
-
                 </div>
                 <ul>
                     <li class="p-b-6">
-                        <span class="fs-15 lh-12 m-r-6" style="color: #222;">
-                            <i class="zmdi zmdi-circle"></i>
-                        </span>
-                        <a href="#" class="filter-link stext-106 trans-04">
-                            Black
-
-                        </a>
-
+                        <asp:DropDownList ID="dl_warnasepatu" runat="server" AutoPostBack="True" class="form-control">
+                           
+                        </asp:DropDownList>
                     </li>
 
                 </ul>
 
             </div>
             
-            <%--filter berdasarkan category--%>
+
             <div class="filter-col4 p-b-27">
                 <div class="mtext-102 cl2 p-b-15">
                     Category
-
                 </div>
-                <div class="flex-w p-t-4 m-r--5">
-
+                <div class="flex-w p-t-4 m-r--5"> 
+                    <asp:DropDownList ID="dl_category" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="dl_category_SelectedIndexChanged"></asp:DropDownList>
                 </div>
 
             </div>
@@ -116,7 +110,8 @@
 
     <%--DATALIST PRODUCT--%>
     <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" TabIndex="5" CellPadding="0" HorizontalAlign="Left" CellSpacing="10">
-        <ItemStyle Height="400px" VerticalAlign="Top" Width="400px" />
+        <ItemStyle Height="400px" VerticalAlign="Top" Width="400px" BorderColor="White" />
+
         <ItemTemplate>  
             
             <div class="block2-pic hov-img0">               
@@ -144,12 +139,16 @@
                         <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 
                     </a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
             </div>
                 
         </ItemTemplate>
-        <SeparatorStyle BorderStyle="Solid" BackColor="Black" BorderWidth="5px" />
+       
+        <SeparatorTemplate >
+            <hr />
+            </SeparatorTemplate>
+        <SeparatorStyle BorderStyle="Solid" BackColor="White" BorderWidth="5px" />
     </asp:DataList>
    
 

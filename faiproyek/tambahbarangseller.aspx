@@ -33,16 +33,13 @@
                         </div>
                     </div>
                     
-                    <%-- jenis sepatu--%>
+                    <%-- jenis/category sepatu--%>
                     <div class="row form-group">
                         <div class="col col-md-3">
                             <label for="select" class=" form-control-label">Jenis Sepatu</label>
                         </div>
                         <div class="col-12 col-md-8">
                             <asp:DropDownList ID="dl_jenissepatu" runat="server" class="form-control">
-                            <asp:ListItem class="form-control">Flatshoes</asp:ListItem>
-                            <asp:ListItem class="form-control">Sneaker</asp:ListItem>
-                            <asp:ListItem class="form-control">Sports</asp:ListItem>
                              </asp:DropDownList>
                         </div>        
                     </div>

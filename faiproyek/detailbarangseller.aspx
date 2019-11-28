@@ -92,15 +92,7 @@
                         </div>
                         <div class="col-12 col-md-8">
                             <asp:DropDownList ID="dl_warnasepatu" runat="server" class="form-control" AutoPostBack="True">
-                            <asp:ListItem class="form-control">Merah</asp:ListItem>
-                            <asp:ListItem class="form-control">Putih</asp:ListItem>
-                            <asp:ListItem class="form-control">Hitam</asp:ListItem>
-                            <asp:ListItem class="form-control">Biru</asp:ListItem>
-                            <asp:ListItem class="form-control">Hijau</asp:ListItem>
-                            <asp:ListItem class="form-control">Abu-Abu</asp:ListItem>
-                            <asp:ListItem class="form-control">Merah Muda</asp:ListItem>
-                            <asp:ListItem class="form-control">Kuning</asp:ListItem>
-                            <asp:ListItem class="form-control">Jingga</asp:ListItem>
+                            
                             </asp:DropDownList>
                         </div>        
                     </div>
