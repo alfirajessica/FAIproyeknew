@@ -43,7 +43,14 @@ namespace faiproyek
                 }
             }
         }
-
+        public void reset()
+        {
+            tx_deskripsi.Text = "";
+            tx_harga.Text = "";
+            tx_namasepatu.Text = "";
+            dl_gender.SelectedIndex = -1;
+            dl_jenissepatu.SelectedIndex = -1;
+        }
         //function utk menemukan nama user setelah user melakukan login
         //nama user akan ditampilkan di bagian paling kanan
         public void find_namaUser()
@@ -76,6 +83,8 @@ namespace faiproyek
             sqlconn.Close();
 
         }
+
+       
         protected void btn_submitsepatu1_Click(object sender, EventArgs e)
         {
 
@@ -96,7 +105,7 @@ namespace faiproyek
                 {
 
                     email = Session["email"].ToString();
-                    SqlCommand cmd = new SqlCommand("insert into Hsepatu values(@Email_seller, @Nama_sepatu, @Jenis_sepatu, @Deskripsi, @Gambar, @Harga, @Gender)", sqlconn);
+                    SqlCommand cmd = new SqlCommand("insert into H_sepatu values(@Email_seller, @Nama_sepatu, @Jenis_sepatu, @Deskripsi, @Gambar, @Harga, @Gender)", sqlconn);
                     cmd.Parameters.AddWithValue("@Email_seller", email);
                     cmd.Parameters.AddWithValue("@Nama_sepatu", tx_namasepatu.Text);
                     cmd.Parameters.AddWithValue("@Jenis_sepatu", dl_jenissepatu.SelectedItem.Text);
@@ -107,7 +116,8 @@ namespace faiproyek
                     cmd.ExecuteNonQuery();
 
                     Label1.Text = "Uploaded successfully";
-                    datatable();               
+                    datatable();
+                    reset();
                 }
                 catch (Exception ex)
                 {
@@ -126,11 +136,10 @@ namespace faiproyek
         {
 
             connection();
-            SqlCommand cmd = new SqlCommand("select top 1 * from Hsepatu order by Id_sepatu desc", sqlconn);
-
+            SqlCommand cmd = new SqlCommand("select top 1 * from H_sepatu order by Id_sepatu desc", sqlconn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-            adapter.Fill(ds, "Hsepatu");
+            adapter.Fill(ds, "H_sepatu");
 
             GridView2.DataSource = ds.Tables[0];
             GridView2.DataBind();
@@ -141,10 +150,10 @@ namespace faiproyek
         {
             connection();
             SqlCommand cmd = new SqlCommand("", sqlconn);
-            cmd.CommandText = "select * from Hsepatu";
+            cmd.CommandText = "select * from H_sepatu";
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-            adapter.Fill(ds, "Hsepatu");
+            adapter.Fill(ds, "H_sepatu");
 
             GridView2.DataSource = ds.Tables[0];
             GridView2.DataBind();

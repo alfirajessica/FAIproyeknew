@@ -81,6 +81,7 @@
     <Content Include="homeseller.aspx" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
+    <Content Include="showdetailbarang.aspx" />
     <Content Include="tambahbarangseller.aspx" />
     <Content Include="masterpesanan.aspx" />
     <Content Include="Register.aspx" />
@@ -189,6 +190,20 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
+    <Compile Include="showdetailbarang.aspx.cs">
+      <DependentUpon>showdetailbarang.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="showdetailbarang.aspx.designer.cs">
+      <DependentUpon>showdetailbarang.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShowDetailBarang.Master.cs">
+      <DependentUpon>ShowDetailBarang.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShowDetailBarang.Master.designer.cs">
+      <DependentUpon>ShowDetailBarang.Master</DependentUpon>
+    </Compile>
     <Compile Include="tambahbarangseller.aspx.cs">
       <DependentUpon>tambahbarangseller.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -266,6 +281,7 @@
     <Content Include="Home.Master" />
     <Content Include="Shop.Master" />
     <Content Include="Register.Master" />
+    <Content Include="ShowDetailBarang.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -85,7 +85,7 @@
                         </div>
                     </div>
 
-                     <%-- kategori sepatu--%>
+                     <%-- warna sepatu--%>
                     <div class="row form-group">
                         <div class="col col-md-3">
                             <label for="select" class=" form-control-label">Warna</label>

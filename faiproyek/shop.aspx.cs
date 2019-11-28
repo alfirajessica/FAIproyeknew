@@ -33,7 +33,7 @@ namespace faiproyek
                     find_namaUser();
                     product_Datalist();
 
-                    //filter
+                    // isi filter
                     category();
                     get_warna();
 
@@ -62,7 +62,6 @@ namespace faiproyek
                 nama = (myReader["Nama"].ToString());
                 lb_namaUser.Text = nama;
             }
-
             sqlconn.Close();
         }
 
@@ -84,10 +83,10 @@ namespace faiproyek
         {
             connection();
             SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
-                "from Hsepatu H, Person P where H.Email_seller=P.Email", sqlconn);
+                "from H_sepatu H, Person P where H.Email_seller=P.Email", sqlconn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-            adapter.Fill(ds, "Hsepatu");
+            adapter.Fill(ds, "H_sepatu");
 
             DataList1.DataSource = ds.Tables[0];
             DataList1.DataBind();
@@ -126,10 +125,10 @@ namespace faiproyek
             {
                 connection();
                 SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
-                   "from Hsepatu H, Person P where H.Email_seller=P.Email and H.Harga >=" + 100000 + "and H.Harga < " + 1000000 + "", sqlconn);
+                   "from H_sepatu H, Person P where H.Email_seller=P.Email and H.Harga >=" + 100000 + "and H.Harga < " + 1000000 + "", sqlconn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
-                adapter.Fill(ds, "Hsepatu");
+                adapter.Fill(ds, "H_sepatu");
 
                 DataList1.DataSource = ds.Tables[0];
                 DataList1.DataBind();
@@ -140,10 +139,10 @@ namespace faiproyek
             {
                 connection();
                 SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
-                   "from Hsepatu H, Person P where H.Email_seller=P.Email and H.Harga >=" + 1000000 + "and H.Harga < " + 3000000 + "", sqlconn);
+                   "from H_sepatu H, Person P where H.Email_seller=P.Email and H.Harga >=" + 1000000 + "and H.Harga < " + 3000000 + "", sqlconn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
-                adapter.Fill(ds, "Hsepatu");
+                adapter.Fill(ds, "H_sepatu");
 
                 DataList1.DataSource = ds.Tables[0];
                 DataList1.DataBind();
@@ -154,10 +153,10 @@ namespace faiproyek
             {
                 connection();
                 SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
-                   "from Hsepatu H, Person P where H.Email_seller=P.Email and H.Harga >=" + 3000000  + "", sqlconn);
+                   "from H_sepatu H, Person P where H.Email_seller=P.Email and H.Harga >=" + 3000000  + "", sqlconn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
-                adapter.Fill(ds, "Hsepatu");
+                adapter.Fill(ds, "H_sepatu");
 
                 DataList1.DataSource = ds.Tables[0];
                 DataList1.DataBind();
@@ -173,10 +172,10 @@ namespace faiproyek
             string cat = dl_category.SelectedItem.Text;
             connection();
             SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
-               "from Hsepatu H, Person P where H.Email_seller=P.Email and H.Jenis_sepatu='" + cat+"'", sqlconn);
+               "from H_sepatu H, Person P where H.Email_seller=P.Email and H.Jenis_sepatu='" + cat+"'", sqlconn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-            adapter.Fill(ds, "Hsepatu");
+            adapter.Fill(ds, "H_sepatu");
 
             DataList1.DataSource = ds.Tables[0];
             DataList1.DataBind();
@@ -190,10 +189,10 @@ namespace faiproyek
             string gender = dl_gender.SelectedItem.ToString();
                 connection();
                 SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga, H.Gender " +
-                   "from Hsepatu H, Person P where H.Email_seller=P.Email and H.Gender='"+gender + "'", sqlconn);
+                   "from H_sepatu H, Person P where H.Email_seller=P.Email and H.Gender='"+gender + "'", sqlconn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
-                adapter.Fill(ds, "Hsepatu");
+                adapter.Fill(ds, "H_sepatu");
 
                 DataList1.DataSource = ds.Tables[0];
                 DataList1.DataBind();

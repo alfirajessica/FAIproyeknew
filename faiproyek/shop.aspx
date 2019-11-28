@@ -109,21 +109,20 @@
     </div>
 
     <%--DATALIST PRODUCT--%>
-    <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="4" TabIndex="5" CellPadding="0" HorizontalAlign="Left" CellSpacing="10">
+    <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" TabIndex="5" CellPadding="0" HorizontalAlign="Left" CellSpacing="10">
         <ItemStyle Height="400px" VerticalAlign="Top" Width="400px" BorderColor="White" />
 
         <ItemTemplate>  
             
             <div class="block2-pic hov-img0">               
-                <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Id_sepatu", "blob.aspx?Id_sepatu={0}") %>'/>
-                <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                    Quick View
-                </a>
+                <asp:Image href="showdetailbarang.aspx"  ID="Image1" runat="server" ImageUrl='<%# Eval("Id_sepatu", "blob.aspx?Id_sepatu={0}") %>' Width="300" Height="300" />
+                <asp:Button ID="Button1" runat="server" Text=" Quick View" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-10 trans-04 js-show-modal1" PostBackUrl="~/showdetailbarang.aspx" />
+               
             </div>
 
             <div class="block2-txt flex-w flex-t p-t-14">
                 <div class="block2-txt-child1 flex-col-l ">
-                    <a href="" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                    <a href="showdetailbarang.aspx?id_sepatu=<%# Eval("Id_sepatu") %>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                         <%#Eval("Nama_sepatu")%>
                     </a>
                     
@@ -139,16 +138,12 @@
                         <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 
                     </a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
             </div>
                 
         </ItemTemplate>
-       
-        <SeparatorTemplate >
-            <hr />
-            </SeparatorTemplate>
-        <SeparatorStyle BorderStyle="Solid" BackColor="White" BorderWidth="5px" />
+       <SeparatorStyle BorderStyle="Solid" BackColor="White" BorderWidth="5px" />
     </asp:DataList>
    
 

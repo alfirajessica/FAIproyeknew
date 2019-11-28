@@ -190,7 +190,7 @@ namespace faiproyek
         public void list_sepatu()
         {
             connection();
-            SqlCommand cmd = new SqlCommand("select Id_sepatu, Nama_sepatu from Hsepatu where Email_seller='" + email + "'", sqlconn);
+            SqlCommand cmd = new SqlCommand("select Id_sepatu, Nama_sepatu from H_sepatu where Email_seller='" + email + "'", sqlconn);
 
             dl_daftarsepatu.DataSource = cmd.ExecuteReader();
             dl_daftarsepatu.DataTextField = "Nama_sepatu";
@@ -208,7 +208,7 @@ namespace faiproyek
             Label1.Text = valueId.ToString();
 
             connection();
-            SqlCommand cmd = new SqlCommand("select Deskripsi from Hsepatu where Id_sepatu="+ dl_daftarsepatu.SelectedValue + "", sqlconn);
+            SqlCommand cmd = new SqlCommand("select Deskripsi from H_sepatu where Id_sepatu="+ dl_daftarsepatu.SelectedValue + "", sqlconn);
             SqlDataReader myReader = null;
             myReader = cmd.ExecuteReader();
 
@@ -277,7 +277,7 @@ namespace faiproyek
 
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-            adapter.Fill(ds, "Hsepatu");
+            adapter.Fill(ds, "H_sepatu");
 
             GridView1.DataSource = ds.Tables[0];
             GridView1.DataBind();
@@ -291,7 +291,7 @@ namespace faiproyek
             SqlCommand cmd = new SqlCommand("select Id_warna, Nama_warna from Warna", sqlconn);
             dl_warnasepatu.DataSource = cmd.ExecuteReader();
             dl_warnasepatu.DataTextField = "Nama_warna";
-            dl_warnasepatu.DataValueField = "Id_warna";
+            dl_warnasepatu.DataValueField = "Nama_warna";
             dl_warnasepatu.DataBind();
             sqlconn.Close();
         }
