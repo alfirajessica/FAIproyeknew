@@ -51,10 +51,10 @@
                 </div>
                 <ul>      
                     <li class="p-b-6">
-                        <asp:DropDownList ID="dl_gender" runat="server" AutoPostBack="True" class="form-control">
+                        <asp:DropDownList ID="dl_gender" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="dl_gender_SelectedIndexChanged">
                             <asp:ListItem>Man</asp:ListItem>
                             <asp:ListItem>Women</asp:ListItem>
-                            <asp:ListItem>All</asp:ListItem>
+                            <asp:ListItem>Unisex</asp:ListItem>
                         </asp:DropDownList>
                     </li>
                 </ul>
@@ -67,8 +67,8 @@
                 </div>
                 <ul>
                     <li class="p-b-6">
-                        <asp:DropDownList ID="dl_price" runat="server" AutoPostBack="True" class="form-control">
-                            <asp:ListItem>Rp0 - Rp1.000.000</asp:ListItem>
+                        <asp:DropDownList ID="dl_price" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="dl_price_SelectedIndexChanged">
+                            <asp:ListItem>Rp100.000 - Rp1.000.000</asp:ListItem>
                             <asp:ListItem>Rp1.000.000 - Rp3.000.000</asp:ListItem>
                             <asp:ListItem>&gt; 3.000.000</asp:ListItem>
                         </asp:DropDownList>
@@ -128,7 +128,7 @@
                     </a>
                     
                     <span class="stext-105 cl3">
-                        <%#Eval("Harga")%>
+                       <%# string.Format("{0:C}", Eval("Harga"))%>
                     </span>
 
                 </div>
@@ -139,7 +139,7 @@
                         <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 
                     </a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
             </div>
                 

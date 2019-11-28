@@ -40,6 +40,15 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.TextBox tx_namasepatu;
         
         /// <summary>
+        /// dl_gender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dl_gender;
+        
+        /// <summary>
         /// dl_jenissepatu control.
         /// </summary>
         /// <remarks>

@@ -66,7 +66,18 @@ namespace faiproyek
             sqlconn.Close();
         }
 
-      
+        protected void dl_category_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filter_category();
+        }
+        protected void dl_price_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filter_price();
+        }
+        protected void dl_gender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filter_gender();
+        }
 
         //memunculkan product dalam datalist
         public void product_Datalist()
@@ -106,26 +117,55 @@ namespace faiproyek
             sqlconn.Close();
         }
 
-        protected void dl_category_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            filter_category();
-        }
-
+        
         //get per filter price sepatu
         public void filter_price()
         {
-            string color = dl_warnasepatu.SelectedItem.Text;
-            connection();
-            SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
-               "from Hsepatu H, Person P where H.Email_seller=P.Email and H.Jenis_sepatu='" + color + "'", sqlconn);
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adapter.Fill(ds, "Hsepatu");
+           
+            if (dl_price.SelectedIndex == 0)
+            {
+                connection();
+                SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
+                   "from Hsepatu H, Person P where H.Email_seller=P.Email and H.Harga >=" + 100000 + "and H.Harga < " + 1000000 + "", sqlconn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "Hsepatu");
 
-            DataList1.DataSource = ds.Tables[0];
-            DataList1.DataBind();
-            sqlconn.Close();
+                DataList1.DataSource = ds.Tables[0];
+                DataList1.DataBind();
+                sqlconn.Close();
+            }
+
+            if (dl_price.SelectedIndex == 1)
+            {
+                connection();
+                SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
+                   "from Hsepatu H, Person P where H.Email_seller=P.Email and H.Harga >=" + 1000000 + "and H.Harga < " + 3000000 + "", sqlconn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "Hsepatu");
+
+                DataList1.DataSource = ds.Tables[0];
+                DataList1.DataBind();
+                sqlconn.Close();
+            }
+
+            if (dl_price.SelectedIndex == 2)
+            {
+                connection();
+                SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
+                   "from Hsepatu H, Person P where H.Email_seller=P.Email and H.Harga >=" + 3000000  + "", sqlconn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "Hsepatu");
+
+                DataList1.DataSource = ds.Tables[0];
+                DataList1.DataBind();
+                sqlconn.Close();
+            }
         }
+
+       
 
         //get per filter gender
         public void filter_category()
@@ -141,6 +181,24 @@ namespace faiproyek
             DataList1.DataSource = ds.Tables[0];
             DataList1.DataBind();
             sqlconn.Close();
+        }
+
+       
+
+        public void filter_gender()
+        {
+            string gender = dl_gender.SelectedItem.ToString();
+                connection();
+                SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga, H.Gender " +
+                   "from Hsepatu H, Person P where H.Email_seller=P.Email and H.Gender='"+gender + "'", sqlconn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "Hsepatu");
+
+                DataList1.DataSource = ds.Tables[0];
+                DataList1.DataBind();
+                sqlconn.Close();
+            
         }
     }
 }

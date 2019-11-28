@@ -32,6 +32,20 @@
                             <small class="form-text text-muted">This is a help text</small>
                         </div>
                     </div>
+
+                     <%-- suitable for --%>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="select" class=" form-control-label">Cocok Untuk</label>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <asp:DropDownList ID="dl_gender" runat="server" class="form-control" AutoPostBack="True">
+                                <asp:ListItem>Men</asp:ListItem>
+                                <asp:ListItem>Women</asp:ListItem>
+                                <asp:ListItem>Unisex</asp:ListItem>
+                             </asp:DropDownList>
+                        </div>        
+                    </div>
                     
                     <%-- jenis/category sepatu--%>
                     <div class="row form-group">
