@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-12 col-md-8">
                             <asp:DropDownList ID="dl_gender" runat="server" class="form-control" AutoPostBack="True">
-                                <asp:ListItem>Men</asp:ListItem>
+                                <asp:ListItem>Man</asp:ListItem>
                                 <asp:ListItem>Women</asp:ListItem>
                                 <asp:ListItem>Unisex</asp:ListItem>
                              </asp:DropDownList>

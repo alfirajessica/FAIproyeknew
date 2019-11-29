@@ -18,7 +18,7 @@
 				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
 					<img src="images/icons/icon-close.png" alt="CLOSE">
 				</button>
-
+                
 				<div class="row">
 					<div class="col-md-6 col-lg-7 p-b-30">
 						<div class="p-l-25 p-r-30 p-lr-0-lg">
@@ -66,6 +66,7 @@
 										<div class="rs1-select2 bor8 bg0">
                                            <%-- size yang tersedia diambil dari detail barang milik barang yg dipilih--%>
                                             <asp:DropDownList ID="dl_size" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="dl_size_SelectedIndexChanged">
+                                                <asp:ListItem>Select Size</asp:ListItem>
                                             </asp:DropDownList>
 										</div>
 									</div>
@@ -80,11 +81,27 @@
 										<div class="rs1-select2 bor8 bg0">
                                              <%-- warna yang tersedia diambil dari detail barang milik barang yg dipilih--%>
                                             <asp:DropDownList ID="dl_color" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="dl_color_SelectedIndexChanged">
+                                                <asp:ListItem>Select Color</asp:ListItem>
                                              </asp:DropDownList>
 										</div>
 									</div>
 								</div>
-                                <asp:Label ID="lb_sisanotif" runat="server" Text=""></asp:Label>
+
+                                
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-203 flex-c-m respon6">
+										Stok tersisa
+									</div>
+
+									<div class="size-204 respon6-next">
+										<div class="rs1-select2 bor8 bg0">
+
+                                          <%-- stok tersisa--%>
+                                             <asp:Label ID="lb_sisanotif" runat="server" Text=""></asp:Label>
+										</div>
+									</div>
+								</div>
+                              
 
 								<div class="flex-w flex-r-m p-b-10">
 									<div class="size-204 flex-w flex-m respon6-next">
@@ -93,8 +110,8 @@
                                                  class="form-control" runat="server" TextMode="Number"></asp:TextBox>
 										</div>
 
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart</button>
+                                        <asp:Button ID="btn_addtocart" runat="server" Text="Add to cart" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" />
+
 									</div>
 								</div>	
 							</div>
