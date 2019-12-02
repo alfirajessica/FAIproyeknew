@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ShowDetailBarang.Master" AutoEventWireup="true" CodeBehind="showdetailbarang.aspx.cs" Inherits="faiproyek.showdetailbarang" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="myaccount" runat="server">
+<%--<asp:Content ID="Content2" ContentPlaceHolderID="myaccount" runat="server">
      <div class="auto-style1">
         <asp:Label  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ID="lb_namaUser" runat="server"></asp:Label>
         <div class="dropdown-menu">
@@ -9,15 +9,15 @@
             <a class="dropdown-item" href="index.aspx">Logout</a>
         </div>
     </div>
-</asp:Content>
+</asp:Content>--%>
 
 <%--detail barang--%>
 <asp:Content ID="Content3" ContentPlaceHolderID="detailbarang" runat="server">
-     <div class="container">
+    
+		<div class="container">
 			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
-				</button>
+				
+                <asp:ImageButton ID="btn_cancel" runat="server" ImageUrl="~/icon-close2.png" OnClick="btn_cancel_Click" />
                 
 				<div class="row">
 					<div class="col-md-6 col-lg-7 p-b-30">
@@ -31,8 +31,22 @@
 										<div class="wrap-pic-w pos-relative">
 
                                             <%--gambar product--%>
-                                            <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Id_sepatu", "blob.aspx?Id_sepatu={1}") %>' alt="IMG-PRODUCT"/>
-											<%--<img src="images/product-detail-01.jpg" >--%>
+                                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BorderStyle="None" GridLines="None" Height="300px" Width="300px">
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="id" Visible="False">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:TextBox>
+                                                        </EditItemTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:ImageField DataImageUrlField="Id_sepatu" DataImageUrlFormatString="blob.aspx?Id_sepatu={0}">
+                                                        <ControlStyle Height="300px" Width="300px" />
+                                                    </asp:ImageField>
+                                                </Columns>
+                                            </asp:GridView>
+                                            
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
 												<i class="fa fa-expand"></i>
@@ -121,5 +135,6 @@
 				</div>
 			</div>
 		</div>
+       
 </asp:Content>
 

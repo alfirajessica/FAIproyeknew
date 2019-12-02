@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Globalization;
 
 namespace faiproyek
 {
@@ -14,6 +15,7 @@ namespace faiproyek
         string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\shoesDatabase.mdf;Integrated Security=True";
         SqlConnection sqlconn;
         string email, nama = "";
+        string getid = "";
 
         public void connection()
         {
@@ -30,12 +32,14 @@ namespace faiproyek
                 if (Session["email"] != null)
                 {
                     email = Session["email"].ToString();
+                   
                     find_namaUser();
                     product_Datalist();
 
                     // isi filter
                     category();
                     get_warna();
+                  
 
                 }
                 else if (Session["email"] == null)
@@ -165,7 +169,7 @@ namespace faiproyek
         }
 
        
-
+        //------------------ FILTER ------------------------------------------------------//
         //get per filter gender
         public void filter_category()
         {
@@ -182,8 +186,6 @@ namespace faiproyek
             sqlconn.Close();
         }
 
-       
-
         public void filter_gender()
         {
             string gender = dl_gender.SelectedItem.ToString();
@@ -199,5 +201,7 @@ namespace faiproyek
                 sqlconn.Close();
             
         }
+        //------------------ END FILTER ------------------------------------------------------//
+
     }
 }

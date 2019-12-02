@@ -13,22 +13,22 @@ namespace faiproyek {
     public partial class showdetailbarang {
         
         /// <summary>
-        /// lb_namaUser control.
+        /// btn_cancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_namaUser;
+        protected global::System.Web.UI.WebControls.ImageButton btn_cancel;
         
         /// <summary>
-        /// Image1 control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
         /// lb_namaproduk control.

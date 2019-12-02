@@ -115,9 +115,7 @@
         <ItemTemplate>  
             
             <div class="block2-pic hov-img0">               
-                <asp:Image href="showdetailbarang.aspx"  ID="Image1" runat="server" ImageUrl='<%# Eval("Id_sepatu", "blob.aspx?Id_sepatu={0}") %>' Width="300" Height="300" />
-                <asp:Button ID="Button1" runat="server" Text=" Quick View" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-10 trans-04 js-show-modal1" PostBackUrl="~/showdetailbarang.aspx" />
-               
+                <asp:Image href="showdetailbarang.aspx"  ID="Image1" runat="server" ImageUrl='<%# Eval("Id_sepatu", "blob.aspx?Id_sepatu={0}") %>' Width="300" Height="300" />               
             </div>
 
             <div class="block2-txt flex-w flex-t p-t-14">
@@ -138,14 +136,13 @@
                         <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 
                     </a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
             </div>
                 
         </ItemTemplate>
        <SeparatorStyle BorderStyle="Solid" BackColor="White" BorderWidth="5px" />
     </asp:DataList>
-   
 
 </div>
 </asp:Content>

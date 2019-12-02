@@ -33,10 +33,12 @@ namespace faiproyek
                 {
                     email = Session["email"].ToString();
                     getid = Request.QueryString["Id_sepatu"];
+                    find_namaUser();
                     dl_size.SelectedIndex = -1;
                     dl_color.SelectedIndex = -1;
                     get_Dsepatu_data();
                     get_Hsepatu_data();
+                    datatable();
                    
                 }
                 else if (Session["email"] == null)
@@ -47,6 +49,21 @@ namespace faiproyek
 
             }
 
+        }
+
+        public void find_namaUser()
+        {
+            connection();
+            SqlCommand cmd = new SqlCommand("select Nama from Person where Email='" + email + "'", sqlconn);
+            SqlDataReader myReader = null;
+            myReader = cmd.ExecuteReader();
+
+            while (myReader.Read())
+            {
+                nama = (myReader["Nama"].ToString());
+                //lb_namaUser.Text = nama;
+            }
+            sqlconn.Close();
         }
 
         //get header data sepatu dari id_sepatu yang didapatkan
@@ -118,6 +135,11 @@ namespace faiproyek
                 sqlconn.Close();
            
         }
+     
+        protected void btn_cancel_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("shop.aspx");
+        }
 
 
         //untuk cek stok ada atau tidak
@@ -127,6 +149,20 @@ namespace faiproyek
             {
                 
             }
+        }
+
+        public void datatable()
+        {
+            connection();
+            SqlCommand cmd = new SqlCommand("", sqlconn);
+            cmd.CommandText = "select * from H_sepatu where Id_sepatu="+getid+"";
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "H_sepatu");
+
+            GridView1.DataSource = ds.Tables[0];
+            GridView1.DataBind();
+            sqlconn.Close();
         }
 
     }

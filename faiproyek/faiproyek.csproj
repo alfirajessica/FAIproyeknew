@@ -79,6 +79,7 @@
     <Content Include="Global.asax" />
     <Content Include="home.aspx" />
     <Content Include="homeseller.aspx" />
+    <Content Include="icon-close2.png" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
     <Content Include="showdetailbarang.aspx" />
