@@ -75,6 +75,7 @@
     </Content>
     <Content Include="blob.aspx" />
     <Content Include="CaptchaImage.aspx" />
+    <Content Include="cart.aspx" />
     <Content Include="detailbarangseller.aspx" />
     <Content Include="Global.asax" />
     <Content Include="home.aspx" />
@@ -124,6 +125,20 @@
     </Compile>
     <Compile Include="CaptchaImage.aspx.designer.cs">
       <DependentUpon>CaptchaImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cart.Master.cs">
+      <DependentUpon>Cart.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cart.Master.designer.cs">
+      <DependentUpon>Cart.Master</DependentUpon>
     </Compile>
     <Compile Include="detailbarangseller.aspx.cs">
       <DependentUpon>detailbarangseller.aspx</DependentUpon>
@@ -278,6 +293,7 @@
     <Content Include="TambahBarangSeller.Master" />
     <Content Include="MasterPesanan.Master" />
     <Content Include="DetailBarangSeller.Master" />
+    <Content Include="Cart.Master" />
     <None Include="packages.config" />
     <Content Include="Home.Master" />
     <Content Include="Shop.Master" />

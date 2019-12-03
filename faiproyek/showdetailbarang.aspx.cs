@@ -16,6 +16,11 @@ namespace faiproyek
         SqlConnection sqlconn;
         string email, nama = "";
         string getid = "";
+        int jumlah, total = 0;
+
+        //utk masukin ke cart
+        string status = ""; //terkonfirmasi (C) -- belum dikonfirmasi sama vendornya (UC)
+
         public void connection()
         {
             sqlconn = new SqlConnection(conn);
@@ -143,14 +148,38 @@ namespace faiproyek
             Response.Redirect("shop.aspx");
         }
 
-
-        //untuk cek stok ada atau tidak
-        public void cek_stok()
+        
+        //simpan data ke table cart ------ jika berhasil simpan, balik lagi ke shop.aspx       
+        protected void btn_addtocart_Click(object sender, EventArgs e)
         {
-            if (dl_size.SelectedIndex >= 0 && dl_color.SelectedIndex >= 0)
+            connection();
+            try
             {
-                
+
+                email = Session["email"].ToString();
+               
+                total = int.Parse(tx_jumlah.Text) * int.Parse(lb_harga.Text);
+                status = "UC";
+                SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Tanggal_beli, @Status)", sqlconn);
+                cmd.Parameters.AddWithValue("@Email_pembeli", email);
+                cmd.Parameters.AddWithValue("@Nama_sepatu", lb_namaproduk.Text);
+                cmd.Parameters.AddWithValue("@Size", dl_size.SelectedItem.Text);
+                cmd.Parameters.AddWithValue("@Warna", dl_color.SelectedItem.Text);
+                cmd.Parameters.AddWithValue("@Jumlah", tx_jumlah.Text);
+                cmd.Parameters.AddWithValue("@Total", total.ToString());
+              //  cmd.Parameters.AddWithValue("@Tanggal_beli", dl_gender.SelectedItem.Text);
+                cmd.Parameters.AddWithValue("@Status", status);
+                cmd.ExecuteNonQuery();
+
+             
+                datatable();
+             
             }
+            catch (Exception ex)
+            {
+               // Label1.Text = ex.Message.ToLower();
+            }
+            sqlconn.Close();
         }
 
         public void datatable()

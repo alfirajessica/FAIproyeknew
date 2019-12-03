@@ -120,7 +120,7 @@
                                                  class="form-control" runat="server" TextMode="Number"></asp:TextBox>
 										</div>
 
-                                        <asp:Button ID="btn_addtocart" runat="server" Text="Add to cart" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" />
+                                        <asp:Button ID="btn_addtocart" runat="server" Text="Add to cart" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" OnClick="btn_addtocart_Click" />
 
 									</div>
 								</div>	
