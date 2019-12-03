@@ -46,11 +46,7 @@
                                                     </asp:ImageField>
                                                 </Columns>
                                             </asp:GridView>
-                                            
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
 										</div>
 									</div>
 
@@ -79,7 +75,7 @@
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
                                            <%-- size yang tersedia diambil dari detail barang milik barang yg dipilih--%>
-                                            <asp:DropDownList ID="dl_size" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="dl_size_SelectedIndexChanged">
+                                            <asp:DropDownList ID="dl_size" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="dl_size_SelectedIndexChanged" AppendDataBoundItems="True">
                                                 <asp:ListItem>Select Size</asp:ListItem>
                                             </asp:DropDownList>
 										</div>
@@ -94,7 +90,7 @@
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
                                              <%-- warna yang tersedia diambil dari detail barang milik barang yg dipilih--%>
-                                            <asp:DropDownList ID="dl_color" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="dl_color_SelectedIndexChanged">
+                                            <asp:DropDownList ID="dl_color" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="dl_color_SelectedIndexChanged" AppendDataBoundItems="True">
                                                 <asp:ListItem>Select Color</asp:ListItem>
                                              </asp:DropDownList>
 										</div>

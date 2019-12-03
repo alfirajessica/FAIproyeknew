@@ -99,7 +99,7 @@ namespace faiproyek
 
             connection();
             SqlCommand cmd2 = new SqlCommand("select Size from Dsepatu where Stok > 0 and Id_sepatu=" + getid + " group by Size", sqlconn);
-            dl_size.DataSource = cmd2.ExecuteReader();
+            dl_size.DataSource = cmd2.ExecuteReader();           
             dl_size.DataTextField = "Size";
             dl_size.DataValueField = "Size";
             dl_size.DataBind();
@@ -125,14 +125,16 @@ namespace faiproyek
 
         protected void dl_size_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dl_color.Items.Clear();
+            dl_color.Items.Add("select color");
             getid = Request.QueryString["Id_sepatu"];
             connection();
-                SqlCommand cmd = new SqlCommand("select Warna, Size from Dsepatu where Size=" + dl_size.SelectedValue +" and Id_sepatu=" + getid + " ", sqlconn);
-                dl_color.DataSource = cmd.ExecuteReader();
-                dl_color.DataTextField = "Warna";
-                dl_color.DataValueField = "Warna";
-                dl_color.DataBind();
-                sqlconn.Close();
+            SqlCommand cmd = new SqlCommand("select Warna from Dsepatu where Size=" + dl_size.SelectedValue +" and Id_sepatu=" + getid + " ", sqlconn);
+            dl_color.DataSource = cmd.ExecuteReader();
+            dl_color.DataTextField = "Warna";
+            dl_color.DataValueField = "Warna";
+            dl_color.DataBind();
+            sqlconn.Close();
            
         }
      
