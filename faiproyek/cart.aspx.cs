@@ -72,7 +72,7 @@ namespace faiproyek
             connection();
             
             SqlCommand cmd = new SqlCommand("", sqlconn);
-            cmd.CommandText = "select * from Cart where Email_pembeli='" + email + "'";
+            cmd.CommandText = "select * from Cart where Status='UC' and Email_pembeli='" + email + "'";
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             adapter.Fill(ds, "Cart");

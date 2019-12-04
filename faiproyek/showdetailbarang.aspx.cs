@@ -267,14 +267,14 @@ namespace faiproyek
             {
                 //simpan data ke table cart 
                 email = Session["email"].ToString();
-                SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Tanggal_beli, @Status, @Id_Sepatu)", sqlconn);
+                SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Status, @Id_Sepatu)", sqlconn);
                 cmd.Parameters.AddWithValue("@Email_pembeli", email.ToString());
                 cmd.Parameters.AddWithValue("@Nama_sepatu", lb_namaproduk.Text);
                 cmd.Parameters.AddWithValue("@Size", dl_size.SelectedItem.Text);
                 cmd.Parameters.AddWithValue("@Warna", dl_color.SelectedItem.Text);
                 cmd.Parameters.AddWithValue("@Jumlah", tx_jumlah.Text);
                 cmd.Parameters.AddWithValue("@Total", total.ToString());
-                cmd.Parameters.AddWithValue("@Tanggal_beli", dateTime);
+              /*  cmd.Parameters.AddWithValue("@Tanggal_beli", dateTime)*/;
                 cmd.Parameters.AddWithValue("@Status", status.ToString());
                 cmd.Parameters.AddWithValue("@Id_Sepatu", getid);
 
