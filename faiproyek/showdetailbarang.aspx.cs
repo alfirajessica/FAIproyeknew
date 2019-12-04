@@ -217,23 +217,30 @@ namespace faiproyek
         //update stok sepatu
         public void update_stoksepatu()
         {
-            connection();
+            
             try
             {
                 //count stok sepatu berdasarkan size, warna dan jumlah yg dipilih user (buyer)
                 int stok_new = int.Parse(lb_sisanotif.Text) - int.Parse(tx_jumlah.Text);
 
-
+                connection();
                 getid = Request.QueryString["Id_sepatu"];
                 SqlCommand cmd = new SqlCommand("select Id_detail from Dsepatu where Id_sepatu="+getid+" and" +
-                    " Size="+dl_size.SelectedItem + " and Warna='"+dl_color.SelectedValue + "' and Stok=" + lb_sisanotif+"", sqlconn);
+                    " Size="+dl_size.SelectedItem + " and Warna='"+dl_color.SelectedValue + "' and Stok=" + int.Parse(lb_sisanotif.Text)+"", sqlconn);
                 SqlDataReader myReader = null;
                 myReader = cmd.ExecuteReader();
                 while (myReader.Read())
                 {
                     getid_detail = int.Parse((myReader["Id_detail"].ToString()));
-                    lb_deskripsi.Text = getid_detail + "";
+                   // lb_deskripsi.Text = getid_detail + "";
                 }
+                sqlconn.Close();
+
+                connection();
+                SqlCommand cmd1 = new SqlCommand("update Dsepatu set Stok=@Stok where Id_detail=" + getid_detail + "", sqlconn);
+                cmd1.Parameters.AddWithValue("@Stok", stok_new);
+                cmd1.ExecuteNonQuery();
+                lb_deskripsi.Text = "Update berhasil";
                 sqlconn.Close();
                 
             }
@@ -273,7 +280,7 @@ namespace faiproyek
 
                 cmd.ExecuteNonQuery();
                 update_stoksepatu();
-                //Response.Redirect("shop.aspx");
+                Response.Redirect("shop.aspx");
             }
             catch (Exception ex)
             {
