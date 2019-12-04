@@ -65,7 +65,7 @@ namespace faiproyek
             client.EnableSsl = true;
 
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("alfirajessica@gmail.com");
+            mail.From = new MailAddress("shoesfai@gmail.com");
             mail.To.Add(tx_email.Text);
             mail.Subject = "welcome to Shoes";
 
