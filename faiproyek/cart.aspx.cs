@@ -30,6 +30,7 @@ namespace faiproyek
                 if (Session["email"] != null)
                 {
                     email = Session["email"].ToString();
+                    Session["edit"] = null;
                     find_namaUser();
                     datatable_cart();
                 }
@@ -55,6 +56,15 @@ namespace faiproyek
             }
 
             sqlconn.Close();
+        }
+
+        protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            string id_sepatu, Id_cart = "";
+            id_sepatu = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label6") as Label).Text;
+            Id_cart = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label7") as Label).Text;
+            Session["edit"] = id_sepatu;
+            Response.Redirect("showdetailbarang.aspx?Id_sepatu="+id_sepatu+"&Id_cart="+Id_cart + "&show=edit");
         }
 
         public void datatable_cart()

@@ -18,33 +18,94 @@
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
-                            <asp:GridView class="table-shopping-cart" ID="GridView1" runat="server" AutoGenerateColumns="False" BorderStyle="None" CellPadding="10" CellSpacing="10">
+                            <asp:GridView class="table-shopping-cart" ID="GridView1" runat="server" AutoGenerateColumns="False" BorderStyle="None" CellPadding="10" CellSpacing="10" AllowPaging="True" GridLines="None" TabIndex="10" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
                                 <Columns>
-                                    <asp:ImageField DataImageUrlField="Id_sepatu" DataImageUrlFormatString="blob.aspx?Id_sepatu={0}" HeaderText="Gambar">
-                                        <ControlStyle Height="150px" Width="150px" />
-                                    </asp:ImageField>
-                                    <asp:BoundField DataField="Nama_sepatu" HeaderText="Nama" />
-                                    <asp:BoundField DataField="Size" HeaderText="Size" />
-                                    <asp:BoundField DataField="Warna" HeaderText="Warna" />
-                                    <asp:BoundField DataField="Jumlah" HeaderText="Jumlah" />
-                                    <asp:BoundField DataField="Total" HeaderText="Total" />
-                                    <asp:CommandField ShowEditButton="True" />
+                                    <asp:TemplateField HeaderText="Product">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("Id_sepatu") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Id_sepatu", "blob.aspx?Id_sepatu={0}") %>' />
+                                        </ItemTemplate>
+                                        <ControlStyle Height="100px" Width="100px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField>
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Nama_sepatu") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Nama_sepatu") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ControlStyle Width="100px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Size">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Size") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Size") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Warna">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Warna") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("Warna") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Quantity">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Jumlah") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("Jumlah") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Total">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Total") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Total", "{0:C}") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ShowHeader="False">
+                                        <ItemTemplate>
+                                            <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Select" Text="Edit" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
+                                    <asp:TemplateField Visible="False">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField Visible="False">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("Id_cart") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label7" runat="server" Text='<%# Bind("Id_cart") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                 </Columns>
+                                <HeaderStyle BorderStyle="Solid" />
                             </asp:GridView>
 							
 						</div>
 
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 							<div class="flex-w flex-m m-r-20 m-tb-5">
-								<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
 									
-								<div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-									Apply coupon
-								</div>
+								
 							</div>
 
 							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-								Update Cart
+								Checkout
 							</div>
 						</div>
 					</div>
@@ -53,7 +114,7 @@
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 						<h4 class="mtext-109 cl2 p-b-30">
-							Cart Totals
+							Cart Details
 						</h4>
 
 						<div class="flex-w flex-t bor12 p-b-13">

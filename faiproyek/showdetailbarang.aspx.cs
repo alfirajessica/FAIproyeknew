@@ -17,10 +17,14 @@ namespace faiproyek
         SqlConnection sqlconn;
         string email, nama = "";
         string getid = "";
-        public int hargasepatu, total = 0;
-
+        public int getid_detail, hargasepatu, total = 0;
+        string id_cart = "";
         //utk masukin ke cart
         string status = ""; //terkonfirmasi (C) -- belum dikonfirmasi sama vendornya (UC)
+
+        //keterangan add(dari shop ke showdetailbarang) 
+        //keterangan edit (dari cart ke showdetailbarang)
+        string show = ""; //add atau edit
 
         public void connection()
         {
@@ -45,7 +49,21 @@ namespace faiproyek
                     get_Dsepatu_data();
                     get_Hsepatu_data();
                     datatable();
-                   
+
+                    if (Session["edit"] != null)
+                    {
+                        btn_addtocart.Text = "Update cart";                                         
+                        show = Request.QueryString["show"];
+                        id_cart = Request.QueryString["Id_cart"];
+                        
+                        show_data_cart(); //munculin data yg di cart -- warna, size, jumlah yang dipilih sebelumnya
+                        datatable();
+                    }
+                    //else if (Session["edit"] == null)
+                    //{
+
+                    //}
+                    
                 }
                 else if (Session["email"] == null)
                 {
@@ -100,9 +118,9 @@ namespace faiproyek
         //get DETAIL data sepatu dari id_sepatu yang didapatkan
         public void get_Dsepatu_data()
         {
-            //SIZE, WARNA, STOK
-           
+            //SIZE,
 
+            getid = Request.QueryString["Id_sepatu"];
             connection();
             SqlCommand cmd2 = new SqlCommand("select Size from Dsepatu where Stok > 0 and Id_sepatu=" + getid + " group by Size", sqlconn);
             dl_size.DataSource = cmd2.ExecuteReader();           
@@ -112,7 +130,7 @@ namespace faiproyek
             sqlconn.Close();
         }
 
-        protected void dl_color_SelectedIndexChanged(object sender, EventArgs e)
+        public void get_stok_sepatu()
         {
             getid = Request.QueryString["Id_sepatu"];
             connection();
@@ -127,6 +145,10 @@ namespace faiproyek
                 lb_sisanotif.Text = (myReader["Stok"].ToString());
             }
             sqlconn.Close();
+        }
+        protected void dl_color_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            get_stok_sepatu();
         }
 
         protected void dl_size_SelectedIndexChanged(object sender, EventArgs e)
@@ -145,8 +167,22 @@ namespace faiproyek
         }
      
         protected void btn_cancel_Click(object sender, ImageClickEventArgs e)
-        {          
-            Response.Redirect("shop.aspx");
+        {
+            //cek dulu apakah session edit != null
+            if (Session["edit"] != null)
+            {
+                Response.Redirect("cart.aspx");
+                //hapus session edit, jd pas di view shop hanya ada session dari email saja
+                Session["edit"] = null;
+            }
+            if (Session["edit"] == null)
+            {
+                Response.Redirect("shop.aspx");
+                //hapus session edit, jd pas di view shop hanya ada session dari email saja
+              //  Session["edit"] = null;
+            }
+
+
         }
 
         public void show_totalprice()
@@ -178,20 +214,51 @@ namespace faiproyek
 
         }
 
+        //update stok sepatu
+        public void update_stoksepatu()
+        {
+            connection();
+            try
+            {
+                //count stok sepatu berdasarkan size, warna dan jumlah yg dipilih user (buyer)
+                int stok_new = int.Parse(lb_sisanotif.Text) - int.Parse(tx_jumlah.Text);
+
+
+                getid = Request.QueryString["Id_sepatu"];
+                SqlCommand cmd = new SqlCommand("select Id_detail from Dsepatu where Id_sepatu="+getid+" and" +
+                    " Size="+dl_size.SelectedItem + " and Warna='"+dl_color.SelectedValue + "' and Stok=" + lb_sisanotif+"", sqlconn);
+                SqlDataReader myReader = null;
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    getid_detail = int.Parse((myReader["Id_detail"].ToString()));
+                    lb_deskripsi.Text = getid_detail + "";
+                }
+                sqlconn.Close();
+                
+            }
+            catch (Exception ex)
+            {
+
+                lb_deskripsi.Text = ex.Message;
+            }
+        }
 
         //simpan data ke table cart ------ jika berhasil simpan, balik lagi ke shop.aspx       
         protected void btn_addtocart_Click(object sender, EventArgs e)
         {
-            show_totalprice();
+            show_totalprice(); 
             DateTime dateTime = DateTime.UtcNow.Date;
             String tglskrg = dateTime.ToString("dd/MM/yyyy");
             total = int.Parse(tx_jumlah.Text) * hargasepatu;
 
             status = "UC";
             getid = Request.QueryString["Id_sepatu"];
+            
             connection();
             try
             {
+                //simpan data ke table cart 
                 email = Session["email"].ToString();
                 SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Tanggal_beli, @Status, @Id_Sepatu)", sqlconn);
                 cmd.Parameters.AddWithValue("@Email_pembeli", email.ToString());
@@ -203,9 +270,10 @@ namespace faiproyek
                 cmd.Parameters.AddWithValue("@Tanggal_beli", dateTime);
                 cmd.Parameters.AddWithValue("@Status", status.ToString());
                 cmd.Parameters.AddWithValue("@Id_Sepatu", getid);
+
                 cmd.ExecuteNonQuery();
-              
-               Response.Redirect("shop.aspx");
+                update_stoksepatu();
+                //Response.Redirect("shop.aspx");
             }
             catch (Exception ex)
             {
@@ -229,5 +297,30 @@ namespace faiproyek
             sqlconn.Close();
         }
 
+        //berdasaran isi yang ada di cart sesuai yg dipilih oleh user sat di view cart
+        public void show_data_cart()
+        {
+            connection();
+            getid = Request.QueryString["Id_sepatu"];
+            id_cart = Request.QueryString["Id_cart"];
+            SqlCommand cmd = new SqlCommand("select Size, Warna, Jumlah, Total" +
+                " from Cart where Id_sepatu=" + getid + " and Id_cart=" + id_cart + "", sqlconn);
+            SqlDataReader myReader = null;
+            myReader = cmd.ExecuteReader();
+
+
+            while (myReader.Read())
+            {
+                CultureInfo culture = CultureInfo.GetCultureInfo("id-ID");
+                double price = Convert.ToDouble((myReader["Total"].ToString()));
+                string result = string.Format(culture, "{0:C2}", price);
+                lb_total.Text = result;
+
+                dl_color.SelectedItem.Text = (myReader["Warna"].ToString());
+                dl_size.SelectedItem.Text = (myReader["Size"].ToString());
+                tx_jumlah.Text = (myReader["Jumlah"].ToString());
+            }
+            sqlconn.Close();
+        }
     }
 }
