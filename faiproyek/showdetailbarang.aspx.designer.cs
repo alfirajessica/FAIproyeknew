@@ -103,6 +103,15 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.TextBox tx_jumlah;
         
         /// <summary>
+        /// lb_total control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_total;
+        
+        /// <summary>
         /// btn_addtocart control.
         /// </summary>
         /// <remarks>

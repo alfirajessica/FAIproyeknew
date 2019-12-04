@@ -117,12 +117,13 @@
 									<div class="size-204 flex-w flex-m respon6-next">
 										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 											 <asp:TextBox ID="tx_jumlah" min="1" max="50" placeholder="Jumlah" 
-                                                 class="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                                                 class="form-control" runat="server" TextMode="Number" OnTextChanged="tx_jumlah_TextChanged" AutoPostBack="True"></asp:TextBox>
 										</div>
+                                        <asp:Label ID="lb_total" runat="server" Text=""></asp:Label>
 
-                                        <asp:Button ID="btn_addtocart" runat="server" Text="Add to cart" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" OnClick="btn_addtocart_Click" />
-
-									</div>
+                                        <asp:Button ID="btn_addtocart" runat="server" Text="Add to cart" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" OnClick="btn_addtocart_Click"/>
+                                        
+                                    </div>
 								</div>	
 							</div>
 							

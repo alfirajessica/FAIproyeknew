@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Globalization;
 
+
 namespace faiproyek
 {
     public partial class showdetailbarang : System.Web.UI.Page
@@ -16,7 +17,7 @@ namespace faiproyek
         SqlConnection sqlconn;
         string email, nama = "";
         string getid = "";
-        int jumlah, total = 0;
+        public int hargasepatu, total = 0;
 
         //utk masukin ke cart
         string status = ""; //terkonfirmasi (C) -- belum dikonfirmasi sama vendornya (UC)
@@ -144,40 +145,71 @@ namespace faiproyek
         }
      
         protected void btn_cancel_Click(object sender, ImageClickEventArgs e)
-        {
+        {          
             Response.Redirect("shop.aspx");
         }
 
-        
+        public void show_totalprice()
+        {
+            getid = Request.QueryString["Id_sepatu"];
+            connection();
+            SqlCommand cmd = new SqlCommand("select Harga" +
+                " from H_sepatu where Id_sepatu=" + getid + "", sqlconn);
+            SqlDataReader myReader = null;
+            myReader = cmd.ExecuteReader();
+            while (myReader.Read())
+            {
+                hargasepatu = int.Parse((myReader["Harga"].ToString()));
+            }
+            sqlconn.Close();
+
+            //digunakan utk insert ke database
+            total = int.Parse(tx_jumlah.Text) * hargasepatu;
+        }
+        protected void tx_jumlah_TextChanged(object sender, EventArgs e)
+        {
+
+            show_totalprice();
+            //convert total ke rupiah -- hanya show di view saja
+            CultureInfo culture = CultureInfo.GetCultureInfo("id-ID");
+            double price_total = Convert.ToDouble(total);
+            string result_total = string.Format(culture, "{0:C2}", price_total);
+            lb_total.Text = result_total;
+
+        }
+
+
         //simpan data ke table cart ------ jika berhasil simpan, balik lagi ke shop.aspx       
         protected void btn_addtocart_Click(object sender, EventArgs e)
         {
+            show_totalprice();
+            DateTime dateTime = DateTime.UtcNow.Date;
+            String tglskrg = dateTime.ToString("dd/MM/yyyy");
+            total = int.Parse(tx_jumlah.Text) * hargasepatu;
+
+            status = "UC";
+            getid = Request.QueryString["Id_sepatu"];
             connection();
             try
             {
-
                 email = Session["email"].ToString();
-               
-                total = int.Parse(tx_jumlah.Text) * int.Parse(lb_harga.Text);
-                status = "UC";
-                SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Tanggal_beli, @Status)", sqlconn);
-                cmd.Parameters.AddWithValue("@Email_pembeli", email);
+                SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Tanggal_beli, @Status, @Id_Sepatu)", sqlconn);
+                cmd.Parameters.AddWithValue("@Email_pembeli", email.ToString());
                 cmd.Parameters.AddWithValue("@Nama_sepatu", lb_namaproduk.Text);
                 cmd.Parameters.AddWithValue("@Size", dl_size.SelectedItem.Text);
                 cmd.Parameters.AddWithValue("@Warna", dl_color.SelectedItem.Text);
                 cmd.Parameters.AddWithValue("@Jumlah", tx_jumlah.Text);
                 cmd.Parameters.AddWithValue("@Total", total.ToString());
-              //  cmd.Parameters.AddWithValue("@Tanggal_beli", dl_gender.SelectedItem.Text);
-                cmd.Parameters.AddWithValue("@Status", status);
+                cmd.Parameters.AddWithValue("@Tanggal_beli", dateTime);
+                cmd.Parameters.AddWithValue("@Status", status.ToString());
+                cmd.Parameters.AddWithValue("@Id_Sepatu", getid);
                 cmd.ExecuteNonQuery();
-
-             
-                datatable();
-             
+              
+               Response.Redirect("shop.aspx");
             }
             catch (Exception ex)
             {
-               // Label1.Text = ex.Message.ToLower();
+                lb_deskripsi.Text = ex.Message.ToString();
             }
             sqlconn.Close();
         }
@@ -185,6 +217,7 @@ namespace faiproyek
         public void datatable()
         {
             connection();
+            getid = Request.QueryString["Id_sepatu"];
             SqlCommand cmd = new SqlCommand("", sqlconn);
             cmd.CommandText = "select * from H_sepatu where Id_sepatu="+getid+"";
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
