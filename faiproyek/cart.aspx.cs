@@ -14,6 +14,7 @@ namespace faiproyek
         string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\shoesDatabase.mdf;Integrated Security=True";
         SqlConnection sqlconn;
         string email, nama = "";
+        string id_sepatu, Id_cart = "";
 
         public void connection()
         {
@@ -60,11 +61,23 @@ namespace faiproyek
 
         protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            string id_sepatu, Id_cart = "";
+           
             id_sepatu = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label6") as Label).Text;
             Id_cart = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label7") as Label).Text;
             Session["edit"] = id_sepatu;
             Response.Redirect("showdetailbarang.aspx?Id_sepatu="+id_sepatu+"&Id_cart="+Id_cart + "&show=edit");
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //delete 
+            Id_cart = (GridView1.Rows[e.RowIndex].FindControl("Label7") as Label).Text;
+            connection();
+            SqlCommand cmd = new SqlCommand("delete from Cart where Id_cart=" + Id_cart + "", sqlconn);
+            cmd.ExecuteNonQuery();
+            sqlconn.Close();
+
+            datatable_cart();
         }
 
         public void datatable_cart()

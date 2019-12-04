@@ -18,7 +18,7 @@
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
-                            <asp:GridView class="table-shopping-cart" ID="GridView1" runat="server" AutoGenerateColumns="False" BorderStyle="None" CellPadding="10" CellSpacing="10" AllowPaging="True" GridLines="None" TabIndex="10" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
+                            <asp:GridView class="table-shopping-cart" ID="GridView1" runat="server" AutoGenerateColumns="False" BorderStyle="None" CellPadding="10" CellSpacing="10" AllowPaging="True" GridLines="None" TabIndex="10" OnRowDeleting="GridView1_RowDeleting" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Product">
                                         <EditItemTemplate>
