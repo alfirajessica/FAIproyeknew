@@ -52,7 +52,7 @@ namespace faiproyek
 
                     if (Session["edit"] != null)
                     {
-                        btn_addtocart.Text = "Update cart";                                         
+                        btn_addtocart.Text = "Update Cart";                                         
                         show = Request.QueryString["show"];
                         id_cart = Request.QueryString["Id_cart"];
                         
@@ -251,6 +251,8 @@ namespace faiproyek
             }
         }
 
+      
+
         //simpan data ke table cart ------ jika berhasil simpan, balik lagi ke shop.aspx       
         protected void btn_addtocart_Click(object sender, EventArgs e)
         {
@@ -261,32 +263,80 @@ namespace faiproyek
 
             status = "UC";
             getid = Request.QueryString["Id_sepatu"];
-            
-            connection();
-            try
-            {
-                //simpan data ke table cart 
-                email = Session["email"].ToString();
-                SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Status, @Id_Sepatu)", sqlconn);
-                cmd.Parameters.AddWithValue("@Email_pembeli", email.ToString());
-                cmd.Parameters.AddWithValue("@Nama_sepatu", lb_namaproduk.Text);
-                cmd.Parameters.AddWithValue("@Size", dl_size.SelectedItem.Text);
-                cmd.Parameters.AddWithValue("@Warna", dl_color.SelectedItem.Text);
-                cmd.Parameters.AddWithValue("@Jumlah", tx_jumlah.Text);
-                cmd.Parameters.AddWithValue("@Total", total.ToString());
-              /*  cmd.Parameters.AddWithValue("@Tanggal_beli", dateTime)*/;
-                cmd.Parameters.AddWithValue("@Status", status.ToString());
-                cmd.Parameters.AddWithValue("@Id_Sepatu", getid);
 
-                cmd.ExecuteNonQuery();
-                update_stoksepatu();
-                Response.Redirect("shop.aspx");
-            }
-            catch (Exception ex)
+            //cari id detail dulu
+            connection();
+            SqlCommand cmd_iddetail = new SqlCommand("select Id_detail from Dsepatu where Id_sepatu=" + getid + " and" +
+                " Size=" + dl_size.SelectedItem + " and Warna='" + dl_color.SelectedValue + "' and Stok=" + int.Parse(lb_sisanotif.Text) + "", sqlconn);
+            SqlDataReader myReader = null;
+            myReader = cmd_iddetail.ExecuteReader();
+            while (myReader.Read())
             {
-                lb_deskripsi.Text = ex.Message.ToString();
+                getid_detail = int.Parse((myReader["Id_detail"].ToString()));
             }
             sqlconn.Close();
+
+            //insert ke table cart sesuai text button text
+            //Add to Cart == shop ke showdetailbarang
+            //Update Cart == cart ke showdetailbarang -- edit 
+            if (btn_addtocart.Text == "Add to Cart")
+            {
+                connection();
+                try
+                {
+                    //simpan data ke table cart 
+                    email = Session["email"].ToString();
+                    SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Status, @Id_detail, @Id_sepatu)", sqlconn);
+                    cmd.Parameters.AddWithValue("@Email_pembeli", email.ToString());
+                    cmd.Parameters.AddWithValue("@Nama_sepatu", lb_namaproduk.Text);
+                    cmd.Parameters.AddWithValue("@Size", dl_size.SelectedItem.Text);
+                    cmd.Parameters.AddWithValue("@Warna", dl_color.SelectedItem.Text);
+                    cmd.Parameters.AddWithValue("@Jumlah", tx_jumlah.Text);
+                    cmd.Parameters.AddWithValue("@Total", total.ToString());
+                    /*  cmd.Parameters.AddWithValue("@Tanggal_beli", dateTime)*/
+                    ;
+                    cmd.Parameters.AddWithValue("@Status", status.ToString());
+                    cmd.Parameters.AddWithValue("@Id_detail", getid_detail);
+                    cmd.Parameters.AddWithValue("@Id_sepatu", getid);
+
+                    cmd.ExecuteNonQuery();
+                   // update_stoksepatu(); -- UPDATE SEPATU HARUSNYA SAAT CHECKOUT BAYAR
+                    Response.Redirect("shop.aspx");
+                }
+                catch (Exception ex)
+                {
+                    lb_deskripsi.Text = ex.Message.ToString();
+                }
+                sqlconn.Close();
+            }
+
+            else if (btn_addtocart.Text == "Update Cart")
+            {
+                connection();
+                try
+                {
+                    id_cart = Request.QueryString["Id_cart"];
+                 
+                    SqlCommand cmd1 = new SqlCommand("update Cart set Size=@Size, Warna=@Warna, Jumlah=@Jumlah, Total=@Total where Id_cart=" + id_cart + "", sqlconn);
+                    cmd1.Parameters.AddWithValue("@Size", dl_size.SelectedItem.Text);
+                    cmd1.Parameters.AddWithValue("@Warna", dl_color.SelectedItem.Text);
+                    cmd1.Parameters.AddWithValue("@Jumlah", tx_jumlah.Text);
+                    cmd1.Parameters.AddWithValue("@Total", total.ToString());
+                    cmd1.ExecuteNonQuery();
+                    lb_deskripsi.Text = "Update berhasil";
+                    // update_stoksepatu(); -- UPDATE SEPATU HARUSNYA SAAT CHECKOUT BAYAR
+                    Response.Redirect("cart.aspx");
+                }
+                catch (Exception ex)
+                {
+
+                    lb_deskripsi.Text = ex.Message.ToString();
+                }
+               
+                sqlconn.Close();
+            }
+            
+           
         }
 
         public void datatable()

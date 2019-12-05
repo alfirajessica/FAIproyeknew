@@ -68,6 +68,13 @@ namespace faiproyek
             Response.Redirect("showdetailbarang.aspx?Id_sepatu="+id_sepatu+"&Id_cart="+Id_cart + "&show=edit");
         }
 
+
+
+        protected void btn_checkout_Click(object sender, EventArgs e)
+        {
+            //memunculkan bagian cart details pembayaran
+        }
+
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             //delete 

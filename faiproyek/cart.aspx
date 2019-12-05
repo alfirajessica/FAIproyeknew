@@ -76,7 +76,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
-                                    <asp:TemplateField Visible="False">
+                                    <asp:TemplateField Visible="False" HeaderText="Id_sepatu">
                                         <EditItemTemplate>
                                             <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:TextBox>
                                         </EditItemTemplate>
@@ -84,12 +84,20 @@
                                             <asp:Label ID="Label6" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField Visible="False">
+                                    <asp:TemplateField Visible="False" HeaderText="Id_cart">
                                         <EditItemTemplate>
                                             <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("Id_cart") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="Label7" runat="server" Text='<%# Bind("Id_cart") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Id_detail" Visible="False">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox9" runat="server" Text='<%# Bind("Id_detail") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label8" runat="server" Text='<%# Bind("Id_detail") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -104,9 +112,8 @@
 								
 							</div>
 
-							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-								Checkout
-							</div>
+                            <asp:Button ID="btn_checkout" runat="server" Text="Checkout" class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" OnClick="btn_checkout_Click"/>
+							
 						</div>
 					</div>
 				</div>
