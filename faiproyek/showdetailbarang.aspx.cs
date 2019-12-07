@@ -286,7 +286,7 @@ namespace faiproyek
                 {
                     //simpan data ke table cart 
                     email = Session["email"].ToString();
-                    SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Status, @Id_detail, @Id_sepatu)", sqlconn);
+                    SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Status, @Id_detail, @Id_sepatu, @Id_order)", sqlconn);
                     cmd.Parameters.AddWithValue("@Email_pembeli", email.ToString());
                     cmd.Parameters.AddWithValue("@Nama_sepatu", lb_namaproduk.Text);
                     cmd.Parameters.AddWithValue("@Size", dl_size.SelectedItem.Text);
@@ -298,7 +298,7 @@ namespace faiproyek
                     cmd.Parameters.AddWithValue("@Status", status.ToString());
                     cmd.Parameters.AddWithValue("@Id_detail", getid_detail);
                     cmd.Parameters.AddWithValue("@Id_sepatu", getid);
-
+                    cmd.Parameters.AddWithValue("@Id_order", "");
                     cmd.ExecuteNonQuery();
                    // update_stoksepatu(); -- UPDATE SEPATU HARUSNYA SAAT CHECKOUT BAYAR
                     Response.Redirect("shop.aspx");

@@ -76,7 +76,7 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li class="active-menu">
+							<li>
 								<a href="home.aspx">Home</a>	
 							</li>
 
@@ -96,7 +96,7 @@
 							
 						</div>
 
-						<a href="cart.aspx" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+						<a href="cart.aspx" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 active-menu">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</a>
 
@@ -200,7 +200,12 @@
 	</header>
 
     <!-- SHOPING CART -->
-    <asp:ContentPlaceHolder ID="shopingcart" runat="server"> </asp:ContentPlaceHolder>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+        <asp:ContentPlaceHolder ID="shopingcart" runat="server"> </asp:ContentPlaceHolder>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    
 	
 
     <!-- Footer -->
