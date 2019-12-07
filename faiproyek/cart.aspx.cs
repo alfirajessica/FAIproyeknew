@@ -309,7 +309,7 @@ namespace faiproyek
             paid_status.ExecuteNonQuery();
             sqlconn.Close();
             Response.Redirect("shop.aspx");
-            //njg bjugy
+            //apa
         }
     }
 }
