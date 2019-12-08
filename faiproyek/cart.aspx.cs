@@ -142,10 +142,11 @@ namespace faiproyek
             try
             {
                 connection();
-                SqlCommand cmd = new SqlCommand("delete from Cart where Id_cart=" + Id_cart + " and Status='UC'", sqlconn);
-                cmd.Parameters.AddWithValue("@Stok", stokskrg);
+                SqlCommand cmd = new SqlCommand("delete from Cart where Id_cart=" + Id_cart + " and Status='UC'", sqlconn);      
                 cmd.ExecuteNonQuery();
                 sqlconn.Close();
+                datatable_cart();
+                get_sumTotal();
             }
             catch (Exception ex)
             {
@@ -161,6 +162,7 @@ namespace faiproyek
         {
             connection();
             string cek_cart; Boolean cek = false;
+            email = Session["email"].ToString();
             SqlCommand cmd = new SqlCommand("", sqlconn);
             cmd.CommandText = "select * from Cart where Status='UC' and Email_pembeli='" + email + "'";          
             SqlDataReader myReader = null;
@@ -191,6 +193,7 @@ namespace faiproyek
             }
             if (cek == false)
             {
+                GridView1.Visible = false;
                 lb_subtotalTable.Text = "cart kosong";
                 btn_checkout.Visible = false;
             }
