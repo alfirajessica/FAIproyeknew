@@ -149,8 +149,9 @@ namespace faiproyek
         public void datatable()
         {
             connection();
+            email = Session["email"].ToString();
             SqlCommand cmd = new SqlCommand("", sqlconn);
-            cmd.CommandText = "select * from H_sepatu";
+            cmd.CommandText = "select * from H_sepatu where Email_seller='"+email+"'";
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             adapter.Fill(ds, "H_sepatu");

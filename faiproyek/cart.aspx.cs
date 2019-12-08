@@ -233,54 +233,62 @@ namespace faiproyek
 
         //men-save data yang di cart ke dlm H_order
         //status -- P (Paid) UP(blm dibayar)
+        string idcarttemp, idcart;
         protected void btn_checkoutPay_Click(object sender, EventArgs e)
         {
            
             DateTime dateTime = DateTime.UtcNow.Date;
             String tglskrg = dateTime.ToString("dd/MM/yyyy");
             get_sumTotal();
-
-            foreach (GridViewRow row in GridView1.Rows)
-            {
-                Label lbid_cart = (Label)row.FindControl("Label7");
-
-                //lb_total.Text = lbid_cart.Text;
-            }
-
+            
+          
+           
+            // idcart = idcarttemp.ToString();
 
             try
             {
                 email = Session["email"].ToString();
 
-                //Ubah dulu status Cart yang dimiliki email tsb
-                connection();
-                SqlCommand cmd_updatecart = new SqlCommand("Update Cart set Status=@Status where Status='UC' and " +
-                    "Email_pembeli='" + email + "'", sqlconn);
-                cmd_updatecart.Parameters.AddWithValue("@Status", "C");
-                cmd_updatecart.ExecuteNonQuery();
-                sqlconn.Close();
+                ////Ubah dulu status Cart yang dimiliki email tsb
+                //connection();
+                //SqlCommand cmd_updatecart = new SqlCommand("Update Cart set Status=@Status where Status='UC' and " +
+                //    "Email_pembeli='" + email + "'", sqlconn);
+                //cmd_updatecart.Parameters.AddWithValue("@Status", "C");
+               
+                //cmd_updatecart.ExecuteNonQuery();
+                //sqlconn.Close();
 
                 //insert ke table H_order
                 connection();                
-                SqlCommand cmd = new SqlCommand("insert into H_Order values(@Tgl_order, @City, @Address, @Total, @Status)", sqlconn);
+                SqlCommand cmd = new SqlCommand("insert into H_Order values(@Tgl_order, @City, @Address, @Total, @Status, @Email_pembeli)", sqlconn);
                 cmd.Parameters.AddWithValue("@Tgl_order", tglskrg);
                 cmd.Parameters.AddWithValue("@City", dl_city.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@Address", tx_address.Text);
                 cmd.Parameters.AddWithValue("@Total", int.Parse(total.ToString()));
                 cmd.Parameters.AddWithValue("@Status", "UP"); //BELUM DIBAYAR
+                cmd.Parameters.AddWithValue("Email_pembeli",email);
                 cmd.ExecuteNonQuery();
                 sqlconn.Close();
 
                 //SELECT ID_ORDER TADI
                 get_IdOrder();
 
-                //update cart milik user yang statusnya udh C, dengan tambahan id_order
-                connection();
-                SqlCommand update_idcart = new SqlCommand("Update Cart set Id_order=@Id_order where Status='C' and " +
-                   "Email_pembeli='" + email + "'", sqlconn);
-                update_idcart.Parameters.AddWithValue("@Id_order", idOrder);
-                update_idcart.ExecuteNonQuery();
-                sqlconn.Close();
+
+                foreach (GridViewRow row in GridView1.Rows)
+                {
+                    Label lbid_cart = (Label)row.FindControl("Label7");
+                    idcart = lbid_cart.Text;
+                    //update cart milik user yang statusnya udh C, dengan tambahan id_order
+                    connection();
+                    SqlCommand update_idcart = new SqlCommand("Update Cart set Status=@Status, Id_order=@Id_order where Id_cart=@Id_cart" +
+                       " and Email_pembeli='" + email + "'", sqlconn);
+                    update_idcart.Parameters.AddWithValue("@Status", "C");
+                    update_idcart.Parameters.AddWithValue("@Id_order", idOrder);
+                    update_idcart.Parameters.AddWithValue("@Id_cart", idcart);
+                    update_idcart.ExecuteNonQuery();
+                    sqlconn.Close();
+                }
+                
 
                 //memunculkan modal success order
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();

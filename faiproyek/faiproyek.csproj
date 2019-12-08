@@ -44,6 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -76,6 +77,7 @@
     <Content Include="blob.aspx" />
     <Content Include="CaptchaImage.aspx" />
     <Content Include="cart.aspx" />
+    <Content Include="dashboardseller.aspx" />
     <Content Include="detailbarangseller.aspx" />
     <Content Include="Global.asax" />
     <Content Include="historyuser.aspx" />
@@ -86,7 +88,6 @@
     <Content Include="login.aspx" />
     <Content Include="showdetailbarang.aspx" />
     <Content Include="tambahbarangseller.aspx" />
-    <Content Include="masterpesanan.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="shop.aspx" />
     <Content Include="Web.config" />
@@ -141,6 +142,20 @@
     </Compile>
     <Compile Include="Cart.Master.designer.cs">
       <DependentUpon>Cart.Master</DependentUpon>
+    </Compile>
+    <Compile Include="dashboardseller.aspx.cs">
+      <DependentUpon>dashboardseller.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashboardseller.aspx.designer.cs">
+      <DependentUpon>dashboardseller.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardSeller.Master.cs">
+      <DependentUpon>DashboardSeller.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DashboardSeller.Master.designer.cs">
+      <DependentUpon>DashboardSeller.Master</DependentUpon>
     </Compile>
     <Compile Include="detailbarangseller.aspx.cs">
       <DependentUpon>detailbarangseller.aspx</DependentUpon>
@@ -250,20 +265,6 @@
     <Compile Include="TambahBarangSeller.Master.designer.cs">
       <DependentUpon>TambahBarangSeller.Master</DependentUpon>
     </Compile>
-    <Compile Include="masterpesanan.aspx.cs">
-      <DependentUpon>masterpesanan.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="masterpesanan.aspx.designer.cs">
-      <DependentUpon>masterpesanan.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MasterPesanan.Master.cs">
-      <DependentUpon>MasterPesanan.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MasterPesanan.Master.designer.cs">
-      <DependentUpon>MasterPesanan.Master</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Home.Master.cs">
       <DependentUpon>Home.Master</DependentUpon>
@@ -314,10 +315,10 @@
     <Content Include="HomeSeller.Master" />
     <Content Include="AccountSetting.Master" />
     <Content Include="TambahBarangSeller.Master" />
-    <Content Include="MasterPesanan.Master" />
     <Content Include="DetailBarangSeller.Master" />
     <Content Include="Cart.Master" />
     <Content Include="HistoryUser.Master" />
+    <Content Include="DashboardSeller.Master" />
     <None Include="packages.config" />
     <Content Include="Home.Master" />
     <Content Include="Shop.Master" />
