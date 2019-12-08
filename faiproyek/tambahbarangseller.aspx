@@ -28,7 +28,7 @@
                         <div class="col col-md-3">
                             <label for="text-input" class=" form-control-label">Nama Sepatu</label></div>
                         <div class="col-12 col-md-8">
-                            <asp:TextBox ID="tx_namasepatu" placeholder="Text" class="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tx_namasepatu" placeholder="Text" class="form-control" runat="server" OnTextChanged="tx_namasepatu_TextChanged"></asp:TextBox>
                             <small class="form-text text-muted">This is a help text</small>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
 
                            <%-- ajax tidak bisa jalan di fileupload karena ada postbacktrigger--%>
                             <%--table barang apa saja yang dimilki seller/user/vendor--%>
-                            <asp:GridView class="table table-bordered" ID="GridView2" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanging="GridView2_SelectedIndexChanging">
+                            <asp:GridView class="table table-bordered" ID="GridView2" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanging="GridView2_SelectedIndexChanging" AllowPaging="True">
                                 <Columns>
                                     <asp:TemplateField HeaderText="#">
                                         <EditItemTemplate>

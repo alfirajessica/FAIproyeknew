@@ -15,10 +15,12 @@ namespace faiproyek
         string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\shoesDatabase.mdf;Integrated Security=True";
         SqlConnection sqlconn;
         string email, nama = "";
-        string id_sepatu, Id_cart, jumlah = "";
+        string id_sepatu, Id_cart, jumlah, id_detail= "";
         int stokdsepatu, stokskrg = 0;
         object total;
         string idOrder = "";
+        string acc_iddetail, accjumlah = "";
+        int stok, stok_new;
 
 
         public void connection()
@@ -134,7 +136,9 @@ namespace faiproyek
             id_sepatu = (GridView1.Rows[e.RowIndex].FindControl("Label6") as Label).Text;
             Id_cart = (GridView1.Rows[e.RowIndex].FindControl("Label7") as Label).Text;
             jumlah = (GridView1.Rows[e.RowIndex].FindControl("Label4") as Label).Text;
-
+            id_detail = (GridView1.Rows[e.RowIndex].FindControl("Label8") as Label).Text;
+            acc_iddetail = id_detail;
+            accjumlah = jumlah;
             try
             {
                 connection();
@@ -150,26 +154,7 @@ namespace faiproyek
             datatable_cart();
             ////dapatkan stok dari Dsepatu berdasarkan id sepatu yang ada
 
-            //try
-            //{
-            //    connection();
-            //    SqlCommand cmdget_stok = new SqlCommand("select Stok from Dsepatu where Id_Sepatu=" + id_sepatu + "", sqlconn);
-            //    SqlDataReader myReader = null;
-            //    myReader = cmdget_stok.ExecuteReader();
-            //    while (myReader.Read())
-            //    {
-            //        stokdsepatu = int.Parse((myReader["Stok"].ToString()));
-            //    }
-            //    sqlconn.Close();
-
-            //    stokskrg =stokdsepatu + int.Parse(jumlah);
-
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    Response.Write(ex.Message);
-            //}
+           
 
 
 
@@ -308,8 +293,63 @@ namespace faiproyek
             paid_status.Parameters.AddWithValue("@Status", "P");
             paid_status.ExecuteNonQuery();
             sqlconn.Close();
+
+            //update stock sepatu
+            update_stoksepatu();
             Response.Redirect("shop.aspx");
-            //apa
+           
+        }
+
+        //update stok sepatu
+        public void update_stoksepatu()
+        {
+            //meghilangkan edit dan delete pada gridview
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                Label lb_iddetail = (Label)row.FindControl("Label8");
+                Label lb_jumlah = (Label)row.FindControl("Label4");
+                acc_iddetail = lb_iddetail.Text;
+                accjumlah = lb_jumlah.Text;
+            }
+           
+           
+            try
+            {
+                connection();
+
+                SqlCommand cmd = new SqlCommand("select Stok from Dsepatu where Id_detail=" + int.Parse(acc_iddetail) + "", sqlconn);
+                SqlDataReader myReader = null;
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    stok = int.Parse((myReader["Stok"].ToString()));
+
+                }
+                sqlconn.Close();
+                 
+            }
+            catch (Exception ex)
+            {
+
+                lb_subtotal.Text = "atas :" + ex.Message;
+            }
+
+            try
+            {
+                stok_new = stok - int.Parse(accjumlah);
+
+                connection();
+                SqlCommand update_stok = new SqlCommand("Update Dsepatu set Stok=@Stok where Id_detail=" + int.Parse(acc_iddetail) + "", sqlconn);
+                update_stok.Parameters.AddWithValue("@Stok", stok_new);
+                update_stok.ExecuteNonQuery();
+                sqlconn.Close();
+            }
+            catch (Exception ex)
+            {
+
+                lb_subtotal.Text = "stok: " + accjumlah+" bwh " + ex.Message;
+            } 
+           
         }
     }
 }

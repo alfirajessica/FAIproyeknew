@@ -76,11 +76,11 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li class="active-menu">
+							<li >
 								<a href="home.aspx">Home</a>	
 							</li>
 
-							<li>
+							<li class="active-menu">
 								<a href="shop.aspx">Shop</a>
 							</li>
 						
@@ -173,7 +173,7 @@
 					</span>
 				</li>
 
-				<li>
+				<li class="active-menu">>
 					<a href="shop.aspx">Shop</a>
 				</li>
 				<li>

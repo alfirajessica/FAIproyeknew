@@ -14,6 +14,7 @@ namespace faiproyek
         string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\shoesDatabase.mdf;Integrated Security=True";
         SqlConnection sqlconn;
         string email, nama, deskripsi = "";
+        string cekid, getstok;
 
         //simpan data sementara edit
         string id_detail, size, warna, stok;
@@ -67,24 +68,68 @@ namespace faiproyek
 
         protected void btn_addDetail_Click(object sender, EventArgs e)
         {
-            connection();
+            Boolean ada = false;
+            int stokbaru;
             try
             {
-                SqlCommand cmd = new SqlCommand("insert into Dsepatu values (@Id_sepatu, @Size, @Warna, @Stok)", sqlconn);
-                cmd.Parameters.AddWithValue("@Id_sepatu", dl_daftarsepatu.SelectedValue);
-                cmd.Parameters.AddWithValue("@Size", tx_sizesepatu.Text);
-                cmd.Parameters.AddWithValue("@Warna", dl_warnasepatu.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@Stok", tx_stoksepatu.Text);
-                cmd.ExecuteNonQuery();
-                lb_notif2.Text = "berhasil tambah detail";
+                //pengecekan apakah detail yang diinputkan user sudah terdaftar sebelumnya atau tidak
+                connection();
+                SqlCommand cek = new SqlCommand("select * from Dsepatu where Id_sepatu="+dl_daftarsepatu.SelectedValue + " and " +
+                    "Size="+int.Parse(tx_sizesepatu.Text) + " and Warna='"+dl_warnasepatu.SelectedItem.Text + "'", sqlconn);
+                SqlDataReader myReader = null;
+                myReader = cek.ExecuteReader();
+
+                while (myReader.Read())
+                {
+                    cekid = (myReader["Id_detail"].ToString());
+                    getstok = (myReader["Stok"].ToString());
+
+                    if (cekid == "")
+                    {
+                        ada = false;
+                    }
+                    else if (cekid != "")
+                    {
+                        ada = true;
+                    }
+                }
+
+                //jika sudah terdaftar, detail yang baru diinputkan akan di update dengan detail yg lama
+                if (ada == true)
+                {
+                    lb_notif2.Text = cekid;
+                    stokbaru = int.Parse(getstok) + int.Parse(tx_stoksepatu.Text);
+                    connection();
+                    SqlCommand cmd_update = new SqlCommand("Update Dsepatu set Stok=@Stok where Id_detail='"+ cekid + "'", sqlconn);
+                    cmd_update.Parameters.AddWithValue("@Stok", stokbaru);
+                    cmd_update.ExecuteNonQuery();
+                    sqlconn.Close();
+
+                }
+
+                //jika tdk ada detail yg sama dgn yg diinputkan user, insert data baru.
+                else if (ada == false)
+                {
+                    connection();
+                    SqlCommand cmd = new SqlCommand("insert into Dsepatu values (@Id_sepatu, @Size, @Warna, @Stok)", sqlconn);
+                    cmd.Parameters.AddWithValue("@Id_sepatu", dl_daftarsepatu.SelectedValue);
+                    cmd.Parameters.AddWithValue("@Size", tx_sizesepatu.Text);
+                    cmd.Parameters.AddWithValue("@Warna", dl_warnasepatu.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@Stok", tx_stoksepatu.Text);
+                    cmd.ExecuteNonQuery();
+                    lb_notif2.Text = "berhasil tambah detail";
+                    sqlconn.Close();
+                }
+                // lb_notif2.Text = "berhasil tambah detail";
+                sqlconn.Close();
             }
             catch (Exception ex)
             {
-
                 lb_notif2.Text = ex.Message.ToString();
             }
+           
 
-            sqlconn.Close();
+           
             getData_Dsepatu();
             reset();
             lb_notif3.Visible = false;

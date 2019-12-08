@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Globalization;
+using System.Configuration;
 
 namespace faiproyek
 {
@@ -16,7 +17,8 @@ namespace faiproyek
         SqlConnection sqlconn;
         string email, nama = "";
         string getid = "";
-
+        //PAGING
+        int PageSize = 9;
         public void connection()
         {
             sqlconn = new SqlConnection(conn);
@@ -39,7 +41,7 @@ namespace faiproyek
                     // isi filter
                     category();
                     get_warna();
-                  
+                    this.GetCustomersPageWise(1);
 
                 }
                 else if (Session["email"] == null)
@@ -108,6 +110,7 @@ namespace faiproyek
             sqlconn.Close();
         }
 
+
         //get semua warna dari table warna
         public void get_warna()
         {
@@ -120,7 +123,112 @@ namespace faiproyek
             sqlconn.Close();
         }
 
-        
+        //------------------ paging ------------------------------------------------------//
+        private void GetCustomersPageWise(int pageIndex)
+        {
+            connection();
+                using (SqlCommand cmd = new SqlCommand("GetCustomersPageWise", sqlconn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@PageIndex", pageIndex);
+                    cmd.Parameters.AddWithValue("@PageSize", PageSize);
+                    cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
+                    cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
+                connection();
+                    IDataReader idr = cmd.ExecuteReader();
+                    DataList1.DataSource = idr;
+                    DataList1.DataBind();
+                    idr.Close();
+                    sqlconn.Close();
+                    int recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);
+                    this.PopulatePager(recordCount, pageIndex);
+                }
+            
+        }
+
+        private void PopulatePager(int recordCount, int currentPage)
+        {
+            List<ListItem> pages = new List<ListItem>();
+            int startIndex, endIndex;
+            int pagerSpan = 5;
+
+            //Calculate the Start and End Index of pages to be displayed.
+            double dblPageCount = (double)((decimal)recordCount / Convert.ToDecimal(PageSize));
+            int pageCount = (int)Math.Ceiling(dblPageCount);
+            startIndex = currentPage > 1 && currentPage + pagerSpan - 1 < pagerSpan ? currentPage : 1;
+            endIndex = pageCount > pagerSpan ? pagerSpan : pageCount;
+            if (currentPage > pagerSpan % 2)
+            {
+                if (currentPage == 2)
+                {
+                    endIndex = 5;
+                }
+                else
+                {
+                    endIndex = currentPage + 2;
+                }
+            }
+            else
+            {
+                endIndex = (pagerSpan - currentPage) + 1;
+            }
+
+            if (endIndex - (pagerSpan - 1) > startIndex)
+            {
+                startIndex = endIndex - (pagerSpan - 1);
+            }
+
+            if (endIndex > pageCount)
+            {
+                endIndex = pageCount;
+                startIndex = ((endIndex - pagerSpan) + 1) > 0 ? (endIndex - pagerSpan) + 1 : 1;
+            }
+
+            //Add the First Page Button.
+            if (currentPage > 1)
+            {
+                pages.Add(new ListItem("First", "1"));
+                
+            }
+
+            //Add the Previous Button.
+            if (currentPage > 1)
+            {
+                pages.Add(new ListItem("<<", (currentPage - 1).ToString()));
+            }
+
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                pages.Add(new ListItem(i.ToString(), i.ToString(), i != currentPage));
+            }
+
+            //Add the Next Button.
+            if (currentPage < pageCount)
+            {
+                pages.Add(new ListItem(">>", (currentPage + 1).ToString()));
+            }
+
+            //Add the Last Button.
+            if (currentPage != pageCount)
+            {
+                pages.Add(new ListItem("Last", pageCount.ToString()));
+            }
+            rptPager.DataSource = pages;
+            rptPager.DataBind();
+        }
+
+        protected void Page_Changed(object sender, EventArgs e)
+        {
+            int pageIndex = int.Parse((sender as LinkButton).CommandArgument);
+            this.GetCustomersPageWise(pageIndex);
+        }
+
+        //------------------ paging end ------------------------------------------------------//
+
+
+
+        //------------------ FILTER ------------------------------------------------------//
+
         //get per filter price sepatu
         public void filter_price()
         {
@@ -169,7 +277,6 @@ namespace faiproyek
         }
 
        
-        //------------------ FILTER ------------------------------------------------------//
         //get per filter gender
         public void filter_category()
         {

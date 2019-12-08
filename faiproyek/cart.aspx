@@ -158,7 +158,8 @@
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
                                 <asp:DropDownList ID="dl_city" runat="server" class="form-control" AutoPostBack="True" CausesValidation="True">
-                                </asp:DropDownList>						
+                                </asp:DropDownList>	
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Choose Your City" ControlToValidate="dl_city"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="flex-w flex-t p-t-15 p-b-30">
@@ -170,6 +171,7 @@
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
                                 <asp:TextBox name="textarea-input" rows="5" ID="tx_address" placeholder="Your address" class="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Fill Your Address" ControlToValidate="tx_address"></asp:RequiredFieldValidator>
                             </div>
                         </div>
 															
@@ -203,7 +205,7 @@
                             <h6>Please Pay using 
                                 <asp:LinkButton ID="link_bayar" runat="server" OnClick="link_bayar_Click">This Link</asp:LinkButton>
                             </h6> <br />
-                           <asp:HyperLink ID="link_home" runat="server" NavigateUrl="~/shop.aspx">Already Paid?</asp:HyperLink>
+                          <%-- <asp:HyperLink ID="link_home" runat="server" NavigateUrl="~/shop.aspx">Already Paid?</asp:HyperLink>--%>
                         </div>
                        
                     </div>

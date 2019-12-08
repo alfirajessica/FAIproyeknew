@@ -110,6 +110,7 @@
 
     <%--DATALIST PRODUCT--%>
     <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" TabIndex="5" CellPadding="0" HorizontalAlign="Left" CellSpacing="10">
+        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" />
         <ItemStyle Height="400px" VerticalAlign="Top" Width="400px" BorderColor="White" />
 
         <ItemTemplate>  
@@ -136,7 +137,7 @@
                         <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 
                     </a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
             </div>
                 
@@ -144,6 +145,15 @@
        <SeparatorStyle BorderStyle="Solid" BackColor="White" BorderWidth="5px" />
     </asp:DataList>
 
+    <div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
+        <asp:Repeater ID="rptPager" runat="server" >
+            <ItemTemplate>
+                <asp:LinkButton class="flex-c-m how-pagination1 trans-04 m-all-7" ID="lnkPage" runat="server" Text='<%#Eval("Text") %>' CommandArgument='<%# Eval("Value") %>'
+                    CssClass='<%# Convert.ToBoolean(Eval("Enabled")) ? "page_enabled" : "page_disabled" %>'
+                    OnClick="Page_Changed" OnClientClick='<%# !Convert.ToBoolean(Eval("Enabled")) ? "return false;" : "" %>' EnableTheming="True" Font-Bold="True" BorderStyle="None" BackColor="White" Height="50" Width="50" TabIndex="10" EnableViewState="True"></asp:LinkButton>
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
 </div>
 </asp:Content>
 

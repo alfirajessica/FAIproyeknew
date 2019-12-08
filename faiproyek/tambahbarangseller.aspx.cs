@@ -169,10 +169,15 @@ namespace faiproyek
             Jenis_sepatu = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label4") as Label).Text;
             Deskripsi = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label5") as Label).Text;
 
-            tx_deskripsi.Text = Deskripsi;
-            tx_namasepatu.Text = Nama_sepatu;
-            dl_jenissepatu.SelectedValue = Jenis_sepatu;
-            lb_idsepatu.Text = Id_sepatu;
+            tx_deskripsi.Text = Deskripsi.ToString();
+            tx_namasepatu.Text = Nama_sepatu.ToString();
+            dl_jenissepatu.SelectedItem.Text = Jenis_sepatu.ToString();
+            lb_idsepatu.Text = Id_sepatu.ToString();
+        }
+
+        protected void tx_namasepatu_TextChanged(object sender, EventArgs e)
+        {
+            Label1.Text = "";
         }
 
         protected void btn_saveImage_Click(object sender, EventArgs e)
