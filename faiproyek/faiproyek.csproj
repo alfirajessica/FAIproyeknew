@@ -78,6 +78,7 @@
     <Content Include="cart.aspx" />
     <Content Include="detailbarangseller.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="historyuser.aspx" />
     <Content Include="home.aspx" />
     <Content Include="homeseller.aspx" />
     <Content Include="icon-close2.png" />
@@ -157,6 +158,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="historyuser.aspx.cs">
+      <DependentUpon>historyuser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="historyuser.aspx.designer.cs">
+      <DependentUpon>historyuser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryUser.Master.cs">
+      <DependentUpon>HistoryUser.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HistoryUser.Master.designer.cs">
+      <DependentUpon>HistoryUser.Master</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
@@ -302,6 +317,7 @@
     <Content Include="MasterPesanan.Master" />
     <Content Include="DetailBarangSeller.Master" />
     <Content Include="Cart.Master" />
+    <Content Include="HistoryUser.Master" />
     <None Include="packages.config" />
     <Content Include="Home.Master" />
     <Content Include="Shop.Master" />

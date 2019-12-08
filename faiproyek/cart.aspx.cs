@@ -142,7 +142,7 @@ namespace faiproyek
             try
             {
                 connection();
-                SqlCommand cmd = new SqlCommand("delete from Cart where Id_cart=" + Id_cart + " ", sqlconn);
+                SqlCommand cmd = new SqlCommand("delete from Cart where Id_cart=" + Id_cart + " and Status='UC'", sqlconn);
                 cmd.Parameters.AddWithValue("@Stok", stokskrg);
                 cmd.ExecuteNonQuery();
                 sqlconn.Close();
@@ -152,15 +152,7 @@ namespace faiproyek
                 Response.Write("error: " + ex.Message);
             }
             datatable_cart();
-            ////dapatkan stok dari Dsepatu berdasarkan id sepatu yang ada
-
            
-
-
-
-
-
-
         }
 
        
@@ -168,15 +160,41 @@ namespace faiproyek
         public void datatable_cart()
         {
             connection();
-            
+            string cek_cart; Boolean cek = false;
             SqlCommand cmd = new SqlCommand("", sqlconn);
-            cmd.CommandText = "select * from Cart where Status='UC' and Email_pembeli='" + email + "'";
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adapter.Fill(ds, "Cart");
+            cmd.CommandText = "select * from Cart where Status='UC' and Email_pembeli='" + email + "'";          
+            SqlDataReader myReader = null;
+            myReader = cmd.ExecuteReader();
 
-            GridView1.DataSource = ds.Tables[0];
-            GridView1.DataBind();
+            while (myReader.Read())
+            {
+                cek_cart = (myReader["Id_cart"].ToString());
+                if (cek_cart != "")
+                {
+                    cek = true;
+                }
+                else if (cek_cart == null)
+                {
+                    cek = false;
+                }
+            }
+            sqlconn.Close();
+            if (cek == true)
+            {
+                connection();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "Cart");
+                GridView1.DataSource = ds.Tables[0];
+                GridView1.DataBind();
+                sqlconn.Close();
+            }
+            if (cek == false)
+            {
+                lb_subtotalTable.Text = "cart kosong";
+                btn_checkout.Visible = false;
+            }
+          
             sqlconn.Close();
         }
 
