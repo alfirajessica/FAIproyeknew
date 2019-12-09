@@ -69,7 +69,7 @@ namespace faiproyek
         {
             email = Session["email"].ToString();
             connection();
-            SqlCommand cmd = new SqlCommand("select * from Cart where Status='C' and Email_pembeli='" + email + "' and Id_order=" + Label7.Text + "", sqlconn);
+            SqlCommand cmd = new SqlCommand("select * from Cart where Status='P' or Status='S' and Email_pembeli='" + email + "' and Id_order=" + Label7.Text + "", sqlconn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adapter.Fill(dt);

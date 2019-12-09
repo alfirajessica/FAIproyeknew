@@ -105,6 +105,7 @@
                                             <asp:Label ID="Label8" runat="server" Text='<%# Bind("Id_detail") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    <asp:BoundField />
                                 </Columns>
                                 <HeaderStyle BorderStyle="Solid" />
                             </asp:GridView>

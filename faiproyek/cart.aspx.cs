@@ -233,7 +233,7 @@ namespace faiproyek
 
         //men-save data yang di cart ke dlm H_order
         //status -- P (Paid) UP(blm dibayar)
-        string idcarttemp, idcart;
+        string idsepatu, idcart, emailseller;
         protected void btn_checkoutPay_Click(object sender, EventArgs e)
         {
            
@@ -260,13 +260,14 @@ namespace faiproyek
 
                 //insert ke table H_order
                 connection();                
-                SqlCommand cmd = new SqlCommand("insert into H_Order values(@Tgl_order, @City, @Address, @Total, @Status, @Email_pembeli)", sqlconn);
+                SqlCommand cmd = new SqlCommand("insert into H_Order values(@Tgl_order, @City, @Address, @Total, @Status, @Email_pembeli, @Email_seller)", sqlconn);
                 cmd.Parameters.AddWithValue("@Tgl_order", tglskrg);
                 cmd.Parameters.AddWithValue("@City", dl_city.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@Address", tx_address.Text);
                 cmd.Parameters.AddWithValue("@Total", int.Parse(total.ToString()));
                 cmd.Parameters.AddWithValue("@Status", "UP"); //BELUM DIBAYAR
-                cmd.Parameters.AddWithValue("Email_pembeli",email);
+                cmd.Parameters.AddWithValue("@Email_pembeli",email);
+                cmd.Parameters.AddWithValue("@Email_seller", email);
                 cmd.ExecuteNonQuery();
                 sqlconn.Close();
 
@@ -277,16 +278,43 @@ namespace faiproyek
                 foreach (GridViewRow row in GridView1.Rows)
                 {
                     Label lbid_cart = (Label)row.FindControl("Label7");
+                    Label lbid_sepatu = (Label)row.FindControl("Label6");
                     idcart = lbid_cart.Text;
+                    idsepatu = lbid_sepatu.Text;
+
+                   
+
+                    //select email seller dari table h_sepatu
+                    connection();
+                    SqlCommand get_emailseller = new SqlCommand("select * From H_sepatu where Id_sepatu="+idsepatu+"", sqlconn);
+                    SqlDataReader myReader = null;
+                    myReader = get_emailseller.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        emailseller = (myReader["Email_seller"].ToString());
+
+                    }
+                    sqlconn.Close();
+
                     //update cart milik user yang statusnya udh C, dengan tambahan id_order
                     connection();
-                    SqlCommand update_idcart = new SqlCommand("Update Cart set Status=@Status, Id_order=@Id_order where Id_cart=@Id_cart" +
+                    SqlCommand update_idcart = new SqlCommand("Update Cart set Status=@Status, Id_order=@Id_order, Email_seller=@Email_seller where Id_cart=@Id_cart" +
                        " and Email_pembeli='" + email + "'", sqlconn);
                     update_idcart.Parameters.AddWithValue("@Status", "C");
                     update_idcart.Parameters.AddWithValue("@Id_order", idOrder);
                     update_idcart.Parameters.AddWithValue("@Id_cart", idcart);
+                    update_idcart.Parameters.AddWithValue("@Email_seller", emailseller);
+
                     update_idcart.ExecuteNonQuery();
                     sqlconn.Close();
+
+                    //connection();
+                    //SqlCommand update_emailsellerOrder = new SqlCommand("Update Cart set  where Id_cart=@Id_cart" +
+                    //   " and Email_pembeli='" + email + "'", sqlconn);
+                    //update_emailsellerOrder.Parameters.AddWithValue("@Id_cart", idcart);
+                    //update_emailsellerOrder.Parameters.AddWithValue("@Email_seller", emailseller);
+                    //update_emailsellerOrder.ExecuteNonQuery();
+                    //sqlconn.Close();
                 }
                 
 
@@ -323,6 +351,13 @@ namespace faiproyek
             paid_status.ExecuteNonQuery();
             sqlconn.Close();
 
+            connection();
+            SqlCommand paid_statuscart = new SqlCommand("Update Cart set Status=@Status where Id_order=" + idOrder + "", sqlconn);
+            paid_statuscart.Parameters.AddWithValue("@Status", "P");
+            paid_statuscart.ExecuteNonQuery();
+            sqlconn.Close();
+
+
             //update stock sepatu
             update_stoksepatu();
             Response.Redirect("shop.aspx");
@@ -339,45 +374,47 @@ namespace faiproyek
                 Label lb_jumlah = (Label)row.FindControl("Label4");
                 acc_iddetail = lb_iddetail.Text;
                 accjumlah = lb_jumlah.Text;
-            }
-           
-           
-            try
-            {
-                connection();
 
-                SqlCommand cmd = new SqlCommand("select Stok from Dsepatu where Id_detail=" + int.Parse(acc_iddetail) + "", sqlconn);
-                SqlDataReader myReader = null;
-                myReader = cmd.ExecuteReader();
-                while (myReader.Read())
+                try
                 {
-                    stok = int.Parse((myReader["Stok"].ToString()));
+                    connection();
+
+                    SqlCommand cmd = new SqlCommand("select Stok from Dsepatu where Id_detail=" + int.Parse(acc_iddetail) + "", sqlconn);
+                    SqlDataReader myReader = null;
+                    myReader = cmd.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        stok = int.Parse((myReader["Stok"].ToString()));
+
+                    }
+                    sqlconn.Close();
 
                 }
-                sqlconn.Close();
-                 
+                catch (Exception ex)
+                {
+
+                    lb_subtotal.Text = "atas :" + ex.Message;
+                }
+
+                try
+                {
+                    stok_new = stok - int.Parse(accjumlah);
+
+                    connection();
+                    SqlCommand update_stok = new SqlCommand("Update Dsepatu set Stok=@Stok where Id_detail=" + int.Parse(acc_iddetail) + "", sqlconn);
+                    update_stok.Parameters.AddWithValue("@Stok", stok_new);
+                    update_stok.ExecuteNonQuery();
+                    sqlconn.Close();
+                }
+                catch (Exception ex)
+                {
+
+                    lb_subtotal.Text = "stok: " + accjumlah + " bwh " + ex.Message;
+                }
             }
-            catch (Exception ex)
-            {
-
-                lb_subtotal.Text = "atas :" + ex.Message;
-            }
-
-            try
-            {
-                stok_new = stok - int.Parse(accjumlah);
-
-                connection();
-                SqlCommand update_stok = new SqlCommand("Update Dsepatu set Stok=@Stok where Id_detail=" + int.Parse(acc_iddetail) + "", sqlconn);
-                update_stok.Parameters.AddWithValue("@Stok", stok_new);
-                update_stok.ExecuteNonQuery();
-                sqlconn.Close();
-            }
-            catch (Exception ex)
-            {
-
-                lb_subtotal.Text = "stok: " + accjumlah+" bwh " + ex.Message;
-            } 
+           
+           
+            
            
         }
     }

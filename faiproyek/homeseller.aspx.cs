@@ -16,7 +16,7 @@ namespace faiproyek
     {
         string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\shoesDatabase.mdf;Integrated Security=True";
         SqlConnection sqlconn;
-        string email, nama = "";
+        string email, nama, id_order, idcart = "";
 
         public void connection()
         {
@@ -36,7 +36,8 @@ namespace faiproyek
                     find_namaUser();
                     GetChartData();
                     GetChartTypes();
-                    //get_header_history();
+
+                    get_header_history();
                 }
                 else if (Session["email"] == null)
                 {
@@ -69,17 +70,69 @@ namespace faiproyek
         //table pesanan
         public void get_header_history()
         {
-            //connection();
-            //email = Session["email"].ToString();
-            //SqlCommand cmd = new SqlCommand("", sqlconn);
-            //cmd.CommandText = "SELECT * FROM H_Order where Email_pembeli='" + email + "'";
-            //SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            //DataSet ds = new DataSet();
-            //adapter.Fill(ds, "H_Order");
+            connection();
+            email = Session["email"].ToString();
+            SqlCommand cmd = new SqlCommand("", sqlconn);
+            cmd.CommandText = "SELECT HO.Id_order, HO.Tgl_order, HO.City, HO.Address, HO.Email_pembeli, C.Status, HO.Total, C.Id_cart FROM H_Order HO, Cart C where HO.Email_pembeli=C.Email_pembeli and C.Email_seller='"+email+"'";
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "H_Order");
 
-            //GridView1.DataSource = ds.Tables[0];
-            //GridView1.DataBind();
-            //sqlconn.Close();
+            GridView1.DataSource = ds.Tables[0];
+            GridView1.DataBind();
+            sqlconn.Close();
+        }
+        protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            id_order = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label1") as Label).Text;
+            Label7.Text = id_order;
+            get_detail();
+
+            GetChartData();
+            GetChartTypes();
+        }
+        public void get_detail()
+        {
+            email = Session["email"].ToString();
+            email = Session["email"].ToString();
+            connection();
+            SqlCommand cmd = new SqlCommand("select * from Cart where Email_seller='" + email + "' and Id_order=" + Label7.Text + "", sqlconn);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            DetailsView1.DataSource = dt;
+            DetailsView1.DataBind();
+            sqlconn.Close();
+         
+
+        }
+
+        protected void DetailsView1_PageIndexChanging(object sender, DetailsViewPageEventArgs e)
+        {
+            DetailsView1.PageIndex = e.NewPageIndex;
+            this.get_detail();
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //update status di Cart dari P(Paid) jd Send (status di vendor)
+            id_order = (GridView1.Rows[e.RowIndex].FindControl("Label1") as Label).Text;
+            idcart = (GridView1.Rows[e.RowIndex].FindControl("Label7") as Label).Text;
+
+            email = Session["email"].ToString();
+            connection();
+            SqlCommand cmd = new SqlCommand("Update Cart set Status=@Status where Id_order=" + id_order + " and Id_cart="+idcart+"", sqlconn);
+            cmd.Parameters.AddWithValue("@Status", "S"); //send
+            cmd.ExecuteNonQuery();
+            sqlconn.Close();
+
+          
+            //kirim bukti pengiriman atau bukti pembelian ke email pembeli
+            
+            get_header_history();
+            GetChartData();
+            GetChartTypes();
         }
 
         //chart 
@@ -91,6 +144,8 @@ namespace faiproyek
                 ddlChart.Items.Add(li);
             }
         }
+
+        
 
         private void GetChartData()
         {
@@ -112,6 +167,8 @@ namespace faiproyek
             }
             sqlconn.Close();
         }
+
+       
 
         protected void ddlChart_SelectedIndexChanged(object sender, EventArgs e)
         {

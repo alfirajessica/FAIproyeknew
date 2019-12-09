@@ -66,7 +66,7 @@
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                        
-                                        <asp:Label ID="Label6" runat="server" Text=' <%# Eval("Status").ToString() == "P" ? "Prosess" : "UnPaid" %>'></asp:Label>
+                                        <asp:Label ID="Label6" runat="server" Text=' <%# Eval("Status").ToString() == "P" ? "Proses" : "Sending" %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:CommandField HeaderText="Action" SelectText="View Details" ShowSelectButton="True" />
@@ -74,7 +74,7 @@
                         </asp:GridView>
                     </div>
                     <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
-                     <asp:DetailsView ID="DetailsView1" class="table-shopping-cart"  runat="server" Height="50px" Width="125px" AllowPaging="True" AutoGenerateRows="False" BackColor="#CCCCFF" BorderStyle="Solid" OnPageIndexChanging="DetailsView1_PageIndexChanging">
+                     <asp:DetailsView ID="DetailsView1" class="table-shopping-cart"  runat="server" Height="50px" Width="210px" AllowPaging="True" AutoGenerateRows="False" BackColor="#CCCCFF" BorderStyle="Solid" OnPageIndexChanging="DetailsView1_PageIndexChanging">
                          <Fields>
                              
                              <asp:TemplateField HeaderText="Image">
@@ -96,6 +96,17 @@
                              <asp:BoundField DataField="Warna" HeaderText="Warna" />
                              <asp:BoundField DataField="Jumlah" HeaderText="Jumlah" />
                              <asp:BoundField DataField="Total" HeaderText="Total" />
+                             <asp:TemplateField HeaderText="Status">
+                                 <EditItemTemplate>
+                                     <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Status") %>'></asp:TextBox>
+                                 </EditItemTemplate>
+                                 <InsertItemTemplate>
+                                     <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Status") %>'></asp:TextBox>
+                                 </InsertItemTemplate>
+                                 <ItemTemplate>
+                                     <asp:Label ID="Label1" runat="server" Text='<%# Eval("Status").ToString() == "P" ? "Paid" : "Sending" %>'></asp:Label>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
                              <asp:BoundField DataField="Id_sepatu" HeaderText="Id_sepatu" Visible="False" />
                          </Fields>
                     </asp:DetailsView>
