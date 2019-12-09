@@ -70,17 +70,50 @@ namespace faiproyek
         //table pesanan
         public void get_header_history()
         {
+            string Idorder; Boolean cek = false;
             connection();
             email = Session["email"].ToString();
             SqlCommand cmd = new SqlCommand("", sqlconn);
             cmd.CommandText = "SELECT HO.Id_order, HO.Tgl_order, HO.City, HO.Address, HO.Email_pembeli, C.Status, HO.Total, C.Id_cart FROM H_Order HO, Cart C where HO.Email_pembeli=C.Email_pembeli and C.Email_seller='"+email+"'";
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adapter.Fill(ds, "H_Order");
 
-            GridView1.DataSource = ds.Tables[0];
-            GridView1.DataBind();
+            SqlDataReader myReader = null;
+            myReader = cmd.ExecuteReader();
+
+            while (myReader.Read())
+            {
+                Idorder = (myReader["Id_order"].ToString());
+                if (Idorder != "")
+                {
+                    cek = true;
+                }
+                else if (Idorder == null)
+                {
+                    cek = false;
+                }
+            }
             sqlconn.Close();
+            if (cek == true)
+            {
+                connection();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "H_Order");
+
+                GridView1.DataSource = ds.Tables[0];
+                GridView1.DataBind();
+                sqlconn.Close();
+            }
+            if (cek == false)
+            {
+                GridView1.Visible = false;
+                //string script = "alert(\"Tidak ada history!\");";
+                //ScriptManager.RegisterStartupScript(this, GetType(),
+                //                      "ServerControlScript", script, true);
+                Label7.Text = "Tidak Ada Pesanan";
+            }
+
+            sqlconn.Close();
+           
         }
         protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {

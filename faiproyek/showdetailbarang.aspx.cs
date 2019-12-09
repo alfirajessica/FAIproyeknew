@@ -307,7 +307,7 @@ namespace faiproyek
                     {
                         //simpan data ke table cart 
                         connection();
-                        SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Status, @Id_detail, @Id_sepatu, @Id_order)", sqlconn);
+                        SqlCommand cmd = new SqlCommand("insert into Cart values(@Email_pembeli, @Nama_sepatu, @Size, @Warna, @Jumlah, @Total, @Status, @Id_detail, @Id_sepatu, @Id_order, @Email_seller)", sqlconn);
                         cmd.Parameters.AddWithValue("@Email_pembeli", email.ToString());
                         cmd.Parameters.AddWithValue("@Nama_sepatu", lb_namaproduk.Text);
                         cmd.Parameters.AddWithValue("@Size", dl_size.SelectedItem.Text);
@@ -318,6 +318,7 @@ namespace faiproyek
                         cmd.Parameters.AddWithValue("@Id_detail", getid_detail);
                         cmd.Parameters.AddWithValue("@Id_sepatu", getid);
                         cmd.Parameters.AddWithValue("@Id_order", "");
+                        cmd.Parameters.AddWithValue("@Email_seller", "");
                         cmd.ExecuteNonQuery();
                         sqlconn.Close();
                     }

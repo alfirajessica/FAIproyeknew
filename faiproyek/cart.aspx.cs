@@ -267,7 +267,7 @@ namespace faiproyek
                 cmd.Parameters.AddWithValue("@Total", int.Parse(total.ToString()));
                 cmd.Parameters.AddWithValue("@Status", "UP"); //BELUM DIBAYAR
                 cmd.Parameters.AddWithValue("@Email_pembeli",email);
-                cmd.Parameters.AddWithValue("@Email_seller", email);
+                cmd.Parameters.AddWithValue("@Email_seller", "");
                 cmd.ExecuteNonQuery();
                 sqlconn.Close();
 
