@@ -86,6 +86,7 @@ namespace faiproyek
         {
             id_order = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label1") as Label).Text;
             Label7.Text = id_order;
+            Label7.Visible = false;
             get_detail();
 
             GetChartData();
@@ -94,7 +95,7 @@ namespace faiproyek
         public void get_detail()
         {
             email = Session["email"].ToString();
-            email = Session["email"].ToString();
+         
             connection();
             SqlCommand cmd = new SqlCommand("select * from Cart where Email_seller='" + email + "' and Id_order=" + Label7.Text + "", sqlconn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);

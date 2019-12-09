@@ -62,6 +62,7 @@ namespace faiproyek
         {
             id_order = (GridView1.Rows[e.NewSelectedIndex].FindControl("Label1") as Label).Text;
             Label7.Text = id_order;
+            Label7.Visible = false;
             get_detail();
         }
 
@@ -89,17 +90,52 @@ namespace faiproyek
 
         public void get_header_history()
         {
+            string idcart; Boolean cek = false;
             connection();
             email = Session["email"].ToString();
             SqlCommand cmd = new SqlCommand("", sqlconn);
             cmd.CommandText = "SELECT * FROM H_Order where Email_pembeli='"+email + "'";
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adapter.Fill(ds, "H_Order");
 
-            GridView1.DataSource = ds.Tables[0];
-            GridView1.DataBind();
+            SqlDataReader myReader = null;
+            myReader = cmd.ExecuteReader();
+
+            while (myReader.Read())
+            {
+                idcart = (myReader["Id_order"].ToString());
+                if (idcart != "")
+                {
+                    cek = true;
+                }
+                else if (idcart == null)
+                {
+                    cek = false;
+                }
+            }
             sqlconn.Close();
+            if (cek == true)
+            {
+                connection();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "H_Order");
+
+                GridView1.DataSource = ds.Tables[0];
+                GridView1.DataBind();
+                sqlconn.Close();
+            }
+            if (cek == false)
+            {
+                GridView1.Visible = false;
+                //string script = "alert(\"Tidak ada history!\");";
+                //ScriptManager.RegisterStartupScript(this, GetType(),
+                //                      "ServerControlScript", script, true);
+                Label7.Text = "Tidak Ada History";
+            }
+
+            sqlconn.Close();
+
+           
+
         }
 
     }
