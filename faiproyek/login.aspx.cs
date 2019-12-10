@@ -48,6 +48,7 @@ namespace faiproyek
         protected void btn_login_Click(object sender, EventArgs e)
         {
             Boolean cek = false;
+            Boolean pass = false;
             String role = "";  //B (pembeli) buyer -- S (seller) penjual
             connection();
             SqlDataAdapter da = new SqlDataAdapter("select * from Person where Status='C'", sqlconn);
@@ -56,14 +57,18 @@ namespace faiproyek
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (tx_email.Text == dt.Rows[i]["Email"].ToString() &&
-                    tx_password.Text == dt.Rows[i]["Password"].ToString())
+                if (tx_email.Text == dt.Rows[i]["Email"].ToString())
                 {
                     cek = true;
+                    if (tx_password.Text == dt.Rows[i]["Password"].ToString())
+                    {
+                        pass = true;
+                        //pengecekan password salah K
+                    }
                 }
 
             }
-            if (cek == true)
+            if (cek == true && pass == true)
             {
                 try
                 {
@@ -103,6 +108,12 @@ namespace faiproyek
             {
                 lb_notif.Text = "Anda belum terdaftar";
             }
+
+            if (cek == true && pass == false)
+            {
+                lb_notif.Text = "Password salah";
+            }
+
             sqlconn.Close();
             reset();
         }
