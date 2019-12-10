@@ -103,7 +103,6 @@ namespace faiproyek
             {
                 lb_notif.Text = "Anda belum terdaftar";
             }
-
             sqlconn.Close();
             reset();
         }

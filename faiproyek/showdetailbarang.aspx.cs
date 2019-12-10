@@ -286,7 +286,6 @@ namespace faiproyek
             //Update Cart == cart ke showdetailbarang -- edit 
             if (btn_addtocart.Text == "Add to Cart")
             {
-
                 try
                 {
                     //jika ternyata sepatu yang dimasukkan ke cart sudah pernah sebelumnya dipilih dan ditambahkan ke cart
