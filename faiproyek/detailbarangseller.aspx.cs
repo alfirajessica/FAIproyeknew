@@ -52,6 +52,7 @@ namespace faiproyek
         {
             detail_Hsepatu();
             btn_ok.Enabled = true;
+            btn_ok.Visible = true;
             lb_notif1.Visible = true;
         }
 
@@ -185,6 +186,8 @@ namespace faiproyek
             sqlconn.Close();
             getData_Dsepatu();
             reset();
+            lb_deskripsi.Text = "";
+            Label1.Text = "";
             lb_notif3.Visible = false;
             btn_addDetail.Visible = true;
             btn_update.Visible = false;
@@ -227,6 +230,8 @@ namespace faiproyek
             tx_sizesepatu.Text = "";
             tx_stoksepatu.Text = "";
             dl_warnasepatu.SelectedIndex = -1;
+           
+            
         }
 
         
@@ -285,7 +290,7 @@ namespace faiproyek
             Label1.Enabled = true;
             lb_deskripsi.Enabled = true;
             dl_daftarsepatu.Enabled = true;
-            btn_ok.Enabled = false;
+            btn_ok.Enabled = true;
             lb_notif1.Visible = false;
 
         }

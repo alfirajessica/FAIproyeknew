@@ -37,9 +37,7 @@
                             <li>
                                 <a href="homeseller.aspx"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                             </li>
-                            <li>
-                                <asp:HyperLink ID="HyperLink2" runat="server">Pesanan</asp:HyperLink>
-                            </li>
+                          
                            
                             <!-- /.menu-title MASTER-->
                             <h3 class="menu-title">Master</h3>
@@ -56,12 +54,7 @@
                             <li class="menu-item-has-children dropdown">
                                 <asp:HyperLink ID="HyperLink3" runat="server">My Account</asp:HyperLink>
                             </li>
-                            <li class="menu-item-has-children dropdown">
-                                <asp:HyperLink ID="HyperLink4" runat="server">Ubah Akun</asp:HyperLink>
-                            </li>
-                            <li class="menu-item-has-children dropdown">
-                                <asp:HyperLink ID="HyperLink5" runat="server">Ubah Password</asp:HyperLink>
-                            </li>
+                            
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>

@@ -50,7 +50,7 @@
     <div class="bor8 m-b-20 how-pos4-parent" ID="submitpass" runat="server">
         <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" runat="server" Text="Submit password baru" ID="btn_submitpassbaru" OnClick="btn_submitpassbaru_Click" />
 	</div>
-    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/home.aspx">Back to Home</asp:HyperLink>
-
+    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Back to Home</asp:LinkButton>
+   
 
 </asp:Content>

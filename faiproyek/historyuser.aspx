@@ -18,7 +18,7 @@
             <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
                 <div class="m-l-25 m-r--38 m-lr-0-xl">
                     <div class="wrap-table-shopping-cart">
-                        <asp:GridView ID="GridView1" class="table-shopping-cart" runat="server" AutoGenerateColumns="False" BorderStyle="None" CellPadding="10" CellSpacing="10" AllowPaging="True" GridLines="None" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
+                        <asp:GridView ID="GridView1" class="table table-bordered" runat="server" AutoGenerateColumns="False" BorderStyle="None" CellPadding="10" CellSpacing="10" AllowPaging="True" GridLines="None" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
                             <Columns>
                                 <asp:TemplateField HeaderText="Order Id">
                                     <EditItemTemplate>
@@ -73,8 +73,8 @@
                             </Columns>
                         </asp:GridView>
                     </div>
-                    <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
-                     <asp:DetailsView ID="DetailsView1" class="table-shopping-cart"  runat="server" Height="50px" Width="210px" AllowPaging="True" AutoGenerateRows="False" BackColor="#CCCCFF" BorderStyle="Solid" OnPageIndexChanging="DetailsView1_PageIndexChanging">
+                    <asp:Label ID="Label7" runat="server" Text="Label" Visible="False"></asp:Label>
+                     <asp:DetailsView ID="DetailsView1" class="table-shopping-cart"  runat="server" Height="50px" Width="210px" AllowPaging="True" AutoGenerateRows="False" BackColor="#CCCCFF" BorderStyle="Solid" OnPageIndexChanging="DetailsView1_PageIndexChanging" CellSpacing="10" TabIndex="10">
                          <Fields>
                              
                              <asp:TemplateField HeaderText="Image">
@@ -89,8 +89,8 @@
                                  </ItemTemplate>
                              </asp:TemplateField>
                              
-                             <asp:BoundField DataField="Id_order" HeaderText="Id_order" />
-                             <asp:BoundField DataField="Id_cart" HeaderText="Id_cart" />
+                             <asp:BoundField DataField="Id_order" HeaderText="Id_order" Visible="False" />
+                             <asp:BoundField DataField="Id_cart" HeaderText="Id_cart" Visible="False" />
                              <asp:BoundField DataField="Nama_sepatu" HeaderText="Nama_sepatu" />
                              <asp:BoundField DataField="Size" HeaderText="Size" />
                              <asp:BoundField DataField="Warna" HeaderText="Warna" />

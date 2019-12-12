@@ -50,6 +50,7 @@ namespace faiproyek
             tx_namasepatu.Text = "";
             dl_gender.SelectedIndex = -1;
             dl_jenissepatu.SelectedIndex = -1;
+           
         }
         //function utk menemukan nama user setelah user melakukan login
         //nama user akan ditampilkan di bagian paling kanan
@@ -87,48 +88,76 @@ namespace faiproyek
        
         protected void btn_submitsepatu1_Click(object sender, EventArgs e)
         {
-
-            //Condition to check if the file uploaded or not
-            if (FileUpload1.HasFile)
+            if (btn_submitsepatu1.Text == "Update")
             {
-                //getting length of uploaded file
-                int length = FileUpload1.PostedFile.ContentLength;
-                //create a byte array to store the binary image data
-                byte[] imgbyte = new byte[length];
-                //store the currently selected file in memeory
-                HttpPostedFile img = FileUpload1.PostedFile;
-                //set the binary data
-                img.InputStream.Read(imgbyte, 0, length);
-
                 connection();
                 try
                 {
-
-                    email = Session["email"].ToString();
-                    SqlCommand cmd = new SqlCommand("insert into H_sepatu values(@Email_seller, @Nama_sepatu, @Jenis_sepatu, @Deskripsi, @Gambar, @Harga, @Gender)", sqlconn);
-                    cmd.Parameters.AddWithValue("@Email_seller", email);
+                    SqlCommand cmd = new SqlCommand("update H_sepatu set Nama_sepatu=@Nama_sepatu, Jenis_Sepatu=@Jenis_Sepatu, Deskripsi=@Deskripsi, Gender=@Gender where Id_sepatu=" + Label1.Text + "", sqlconn);
                     cmd.Parameters.AddWithValue("@Nama_sepatu", tx_namasepatu.Text);
-                    cmd.Parameters.AddWithValue("@Jenis_sepatu", dl_jenissepatu.SelectedItem.Text);
+                    cmd.Parameters.AddWithValue("@Jenis_Sepatu", dl_jenissepatu.SelectedItem.ToString());
                     cmd.Parameters.AddWithValue("@Deskripsi", tx_deskripsi.Text);
-                    cmd.Parameters.AddWithValue("@Harga", tx_harga.Text);
-                    cmd.Parameters.Add("@Gambar", SqlDbType.Image).Value = imgbyte;
-                    cmd.Parameters.AddWithValue("@Gender", dl_gender.SelectedItem.Text);
+                    cmd.Parameters.AddWithValue("@Gender", dl_gender.SelectedItem.ToString());
                     cmd.ExecuteNonQuery();
-
-                    Label1.Text = "Uploaded successfully";
+                    Label1.Text = "Update berhasil";
+                    btn_submitsepatu1.Text = "Submit";
                     datatable();
                     reset();
+
                 }
                 catch (Exception ex)
                 {
-                    Label1.Text = ex.Message.ToLower();
+
+                    Label1.Text = ex.Message.ToString();
                 }
                 sqlconn.Close();
             }
-            else
+            else if (btn_submitsepatu1.Text == "Submit")
             {
-                Label1.Text = "gagal";
+                //Condition to check if the file uploaded or not
+                if (FileUpload1.HasFile)
+                {
+                    //getting length of uploaded file
+                    int length = FileUpload1.PostedFile.ContentLength;
+                    //create a byte array to store the binary image data
+                    byte[] imgbyte = new byte[length];
+                    //store the currently selected file in memeory
+                    HttpPostedFile img = FileUpload1.PostedFile;
+                    //set the binary data
+                    img.InputStream.Read(imgbyte, 0, length);
+
+                    connection();
+                    try
+                    {
+
+                        email = Session["email"].ToString();
+                        SqlCommand cmd = new SqlCommand("insert into H_sepatu values(@Email_seller, @Nama_sepatu, @Jenis_sepatu, @Deskripsi, @Gambar, @Harga, @Gender)", sqlconn);
+                        cmd.Parameters.AddWithValue("@Email_seller", email);
+                        cmd.Parameters.AddWithValue("@Nama_sepatu", tx_namasepatu.Text);
+                        cmd.Parameters.AddWithValue("@Jenis_sepatu", dl_jenissepatu.SelectedItem.Text);
+                        cmd.Parameters.AddWithValue("@Deskripsi", tx_deskripsi.Text);
+                        cmd.Parameters.AddWithValue("@Harga", tx_harga.Text);
+                        cmd.Parameters.Add("@Gambar", SqlDbType.Image).Value = imgbyte;
+                        cmd.Parameters.AddWithValue("@Gender", dl_gender.SelectedItem.Text);
+                        cmd.ExecuteNonQuery();
+
+                        Label1.Text = "Uploaded successfully";
+                        datatable();
+                        reset();
+                    }
+                    catch (Exception ex)
+                    {
+                        Label1.Text = ex.Message.ToLower();
+                    }
+                    sqlconn.Close();
+                }
+                else
+                {
+                    Label1.Text = "gagal";
+                }
             }
+
+            
            
         }
 
@@ -164,21 +193,73 @@ namespace faiproyek
         protected void GridView2_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             
-            string Id_sepatu, Nama_sepatu, Jenis_sepatu, Deskripsi = "";
-            Id_sepatu = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label1") as Label).Text;
-            Nama_sepatu = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label3") as Label).Text;
-            Jenis_sepatu = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label4") as Label).Text;
-            Deskripsi = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label5") as Label).Text;
-
-            tx_deskripsi.Text = Deskripsi.ToString();
-            tx_namasepatu.Text = Nama_sepatu.ToString();
-            dl_jenissepatu.SelectedItem.Text = Jenis_sepatu.ToString();
-            lb_idsepatu.Text = Id_sepatu.ToString();
+          
         }
 
         protected void tx_namasepatu_TextChanged(object sender, EventArgs e)
         {
-            Label1.Text = "";
+            if (btn_submitsepatu1.Text == "Submit")
+            {
+                Label1.Text = "";
+            }
+           
+        }
+
+        protected void GridView2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView2.PageIndex = e.NewPageIndex;
+            datatable();
+        }
+
+        //editt
+        protected void GridView2_SelectedIndexChanging1(object sender, GridViewSelectEventArgs e)
+        {
+            //Label1.Text = "cek";
+            category();
+            
+            Label1.Text = (GridView2.Rows[e.NewSelectedIndex].FindControl("Label1") as Label).Text;
+
+            connection();
+            SqlCommand cmd = new SqlCommand("", sqlconn);
+            cmd.CommandText = "select * from H_sepatu where Id_sepatu=" + Label1.Text + "";
+            SqlDataReader myReader = null;
+            myReader = cmd.ExecuteReader();
+            while (myReader.Read())
+            {
+                tx_namasepatu.Text = (myReader["Nama_sepatu"].ToString());
+                dl_gender.SelectedItem.Text = (myReader["Gender"].ToString());
+                dl_jenissepatu.SelectedItem.Text = (myReader["Jenis_Sepatu"].ToString());
+                tx_deskripsi.Text = (myReader["Deskripsi"].ToString());
+                tx_harga.Text = (myReader["Harga"].ToString());
+            }
+            sqlconn.Close();
+            btn_submitsepatu1.Text = "Update";
+
+        }
+
+        //delete data sepatu pilihan
+        protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            Label1.Text = (GridView2.Rows[e.RowIndex].FindControl("Label1") as Label).Text;
+
+            connection();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("Delete from H_sepatu where Id_sepatu=" + Label1.Text + "", sqlconn);
+              
+                cmd.ExecuteNonQuery();
+                Label1.Text = "Update berhasil";
+                btn_submitsepatu1.Text = "Submit";
+                datatable();
+
+            }
+            catch (Exception ex)
+            {
+
+                Label1.Text = ex.Message.ToString();
+            }
+            sqlconn.Close();
+            reset();
         }
 
         protected void btn_saveImage_Click(object sender, EventArgs e)

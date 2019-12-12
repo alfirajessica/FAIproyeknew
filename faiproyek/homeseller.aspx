@@ -16,6 +16,7 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="card">
+                    Pilih Grafik 
                     <asp:DropDownList ID="ddlChart" AutoPostBack="true" runat="server" CssClass="custom-select col-md-4" 
                         OnSelectedIndexChanged="ddlChart_SelectedIndexChanged"></asp:DropDownList> 
                     <asp:Chart ID="chart_category" runat="server" Palette="EarthTones" Width="524px" >
@@ -139,14 +140,94 @@
                                  </ItemTemplate>
                              </asp:TemplateField>
                              
-                             <asp:BoundField DataField="Id_order" HeaderText="Id_order" />
-                             <asp:BoundField DataField="Id_cart" HeaderText="Id_cart" />
-                             <asp:BoundField DataField="Nama_sepatu" HeaderText="Nama_sepatu" />
-                             <asp:BoundField DataField="Size" HeaderText="Size" />
-                             <asp:BoundField DataField="Warna" HeaderText="Warna" />
-                             <asp:BoundField DataField="Jumlah" HeaderText="Jumlah" />
-                             <asp:BoundField DataField="Total" HeaderText="Total" />
-                             <asp:BoundField DataField="Id_sepatu" HeaderText="Id_sepatu" Visible="False" />
+                             <asp:TemplateField HeaderText="Id_order">
+                                 <EditItemTemplate>
+                                     <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Id_order") %>'></asp:TextBox>
+                                 </EditItemTemplate>
+                                 <InsertItemTemplate>
+                                     <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Id_order") %>'></asp:TextBox>
+                                 </InsertItemTemplate>
+                                 <ItemTemplate>
+                                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("Id_order") %>'></asp:Label>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Id_cart" Visible="False">
+                                 <EditItemTemplate>
+                                     <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Id_cart") %>'></asp:TextBox>
+                                 </EditItemTemplate>
+                                 <InsertItemTemplate>
+                                     <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Id_cart") %>'></asp:TextBox>
+                                 </InsertItemTemplate>
+                                 <ItemTemplate>
+                                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("Id_cart") %>'></asp:Label>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Nama_sepatu">
+                                 <EditItemTemplate>
+                                     <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Nama_sepatu") %>'></asp:TextBox>
+                                 </EditItemTemplate>
+                                 <InsertItemTemplate>
+                                     <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Nama_sepatu") %>'></asp:TextBox>
+                                 </InsertItemTemplate>
+                                 <ItemTemplate>
+                                     <asp:Label ID="Label3" runat="server" Text='<%# Bind("Nama_sepatu") %>'></asp:Label>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Size">
+                                 <EditItemTemplate>
+                                     <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Size") %>'></asp:TextBox>
+                                 </EditItemTemplate>
+                                 <InsertItemTemplate>
+                                     <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Size") %>'></asp:TextBox>
+                                 </InsertItemTemplate>
+                                 <ItemTemplate>
+                                     <asp:Label ID="Label4" runat="server" Text='<%# Bind("Size") %>'></asp:Label>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Warna">
+                                 <EditItemTemplate>
+                                     <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Warna") %>'></asp:TextBox>
+                                 </EditItemTemplate>
+                                 <InsertItemTemplate>
+                                     <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Warna") %>'></asp:TextBox>
+                                 </InsertItemTemplate>
+                                 <ItemTemplate>
+                                     <asp:Label ID="Label5" runat="server" Text='<%# Bind("Warna") %>'></asp:Label>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Jumlah">
+                                 <EditItemTemplate>
+                                     <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Jumlah") %>'></asp:TextBox>
+                                 </EditItemTemplate>
+                                 <InsertItemTemplate>
+                                     <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Jumlah") %>'></asp:TextBox>
+                                 </InsertItemTemplate>
+                                 <ItemTemplate>
+                                     <asp:Label ID="Label6" runat="server" Text='<%# Bind("Jumlah") %>'></asp:Label>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Total">
+                                 <EditItemTemplate>
+                                     <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("Total") %>'></asp:TextBox>
+                                 </EditItemTemplate>
+                                 <InsertItemTemplate>
+                                     <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("Total") %>'></asp:TextBox>
+                                 </InsertItemTemplate>
+                                 <ItemTemplate>
+                                     <asp:Label ID="Label7" runat="server" Text='<%# Bind("Total", "{0:C}") %>'></asp:Label>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Id_sepatu" Visible="False">
+                                 <EditItemTemplate>
+                                     <asp:TextBox ID="TextBox9" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:TextBox>
+                                 </EditItemTemplate>
+                                 <InsertItemTemplate>
+                                     <asp:TextBox ID="TextBox9" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:TextBox>
+                                 </InsertItemTemplate>
+                                 <ItemTemplate>
+                                     <asp:Label ID="Label8" runat="server" Text='<%# Bind("Id_sepatu") %>'></asp:Label>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
                          </Fields>
                     </asp:DetailsView>
             </div>

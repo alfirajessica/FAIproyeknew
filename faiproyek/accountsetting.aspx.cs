@@ -185,5 +185,29 @@ namespace faiproyek
 
             sqlconn.Close();
         }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            string role;
+            connection();
+            SqlCommand da = new SqlCommand("select * from Person where Email='" + tx_email.Text + "'", sqlconn);
+            SqlDataReader myReader = null;
+            myReader = da.ExecuteReader();
+            while (myReader.Read())
+            {
+                role = (myReader["Role"].ToString());
+                if (role == "B")
+                {
+                    Session["email"] = tx_email.Text;
+                    Response.Redirect("home.aspx");
+                }
+                if (role == "S")
+                {
+                    Session["email"] = tx_email.Text;
+                    Response.Redirect("homeseller.aspx");
+                }
+            }
+            
+        }
     }
 }

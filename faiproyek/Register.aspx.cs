@@ -33,46 +33,92 @@ namespace faiproyek
             tx_notelp.Text = "";
             tx_pass.Text = "";
             Label1.Text = "";
+            tx_captcha.Text = "";
+            captcha();
         }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 connection();
-                //Untuk random captcha
-                Random ra = new Random();
-                int noc = ra.Next(6, 10);
-                string cap = "";
-                int tot = 0;
-                do
-                {
-                    int ch = ra.Next(48, 123);
-                    if ((ch >= 48 && ch <= 57) || (ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122))
-                    {
-                        cap = cap + (char)ch;
-                        tot++;
-                        if (tot == noc)
-                        {
-                            break;
-                        }
-                    }
-                } while (true);
-                Label3.Text = cap;
+                captcha();
             }
+            
+            
+        }
 
+        public void captcha()
+        {
+            lb_notif.Text = "";
+            tx_captcha.Text = "";
+            //Untuk random captcha
+            Random ra = new Random();
+            int noc = ra.Next(6, 10);
+            string cap = "";
+            int tot = 0;
+            do
+            {
+                int ch = ra.Next(48, 123);
+                if ((ch >= 48 && ch <= 57) || (ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122))
+                {
+                    cap = cap + (char)ch;
+                    tot++;
+                    if (tot == noc)
+                    {
+                        break;
+                    }
+                }
+            } while (true);
+            Label3.Text = cap;
             Label4.Text = Label3.Text;
         }
 
         public void register_insertDB()
         {
-            SqlCommand cmd = new SqlCommand("insert into Person values(@Email, @Nama, @Password, @NoTelp, @Role, @Status)", sqlconn);
-            cmd.Parameters.AddWithValue("@Email", tx_email.Text);
-            cmd.Parameters.AddWithValue("@Nama", tx_nama.Text);
-            cmd.Parameters.AddWithValue("@Password", tx_pass.Text);
-            cmd.Parameters.AddWithValue("@NoTelp", tx_notelp.Text);
-            cmd.Parameters.AddWithValue("@Role", role.ToString());
-            cmd.Parameters.AddWithValue("@Status", status.ToString());
-            cmd.ExecuteNonQuery();
+            string email; Boolean cek = false;
+            connection();
+          
+            SqlCommand cmd = new SqlCommand("", sqlconn);
+            cmd.CommandText = "SELECT Email from Person where Email='"+tx_email.Text+"'";
+
+            SqlDataReader myReader = null;
+            myReader = cmd.ExecuteReader();
+
+            while (myReader.Read())
+            {
+                email = (myReader["Email"].ToString());
+                if (email != "")
+                {
+                    cek = true;
+                }
+                else if (email == null)
+                {
+                    cek = false;
+                }
+            }
+            sqlconn.Close();
+            if (cek == true)
+            {
+                Response.Write("<script>alert('register failed, Email telah digunakan');</script>");
+                reset();
+            }
+            if (cek == false)
+            {
+                connection();
+                SqlCommand cmd1 = new SqlCommand("insert into Person values(@Email, @Nama, @Password, @NoTelp, @Role, @Status)", sqlconn);
+                cmd1.Parameters.AddWithValue("@Email", tx_email.Text);
+                cmd1.Parameters.AddWithValue("@Nama", tx_nama.Text);
+                cmd1.Parameters.AddWithValue("@Password", tx_pass.Text);
+                cmd1.Parameters.AddWithValue("@NoTelp", tx_notelp.Text);
+                cmd1.Parameters.AddWithValue("@Role", role.ToString());
+                cmd1.Parameters.AddWithValue("@Status", status.ToString());
+                cmd1.ExecuteNonQuery();
+                sqlconn.Close();
+            }
+
+            sqlconn.Close();
+
+            
         }
 
         public void sent_emailkonfirmasi()
@@ -101,103 +147,112 @@ namespace faiproyek
             mail.CC.Add(tx_email.Text);
             mail.IsBodyHtml = true;
             client.Send(mail);
-            Response.Write("email terkirim");
+            
         }
 
-        protected void btn_regist_pembeli_Click(object sender, EventArgs e)
-        {
-            if (Page.IsValid)
-            {
-                connection();
-                try
-                {
-                    role = "B"; status = "U";
-                    if (tx_captcha.Text == Label3.Text)
-                    {
-                        if (tx_email.Text == null || tx_nama.Text == null ||
-                       tx_notelp.Text == null || tx_pass == null)
-                        {
-                            Label1.Text = "tidak dapat register";
-                        }
-                        if (tx_email.Text != "" && tx_nama.Text != "" &&
-                             tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
-
-                        {
-                            register_insertDB();
-                            sent_emailkonfirmasi();
-
-                            Response.Write("<script>alert('register successful, Konfirmasi email anda sekarang!');</script>");
-                            reset();
-                        }
-                    }
-                    else if (tx_captcha.Text != Label3.Text)
-                    {
-                        lb_notif.Text = "CAPTCHA SALAH";
-                    }
-
-
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("<script>alert('register failed, Email telah digunakan');</script>");
-                    Label1.Text = ex.Message.ToString();
-                    Response.Write("<script>alert('" + ex.Message.ToString() + "');</script>");
-                    reset();
-
-                }
-                sqlconn.Close();
-            }
         
-        }
-
         protected void btn_regist_penjual_Click(object sender, EventArgs e)
         {
             //menuju dashboard
-            if (Page.IsValid)
+            Boolean hasil = false;
+            connection();
+            try
             {
-                connection();
-                try
+                role = "S"; status = "U";
+                if (tx_captcha.Text == Label3.Text)
                 {
-                    role = "S"; status = "U";
-                    if (tx_captcha.Text == Label3.Text)
+                    if (tx_email.Text == null || tx_nama.Text == null ||
+                    tx_notelp.Text == null || tx_pass == null)
                     {
-                        if (tx_email.Text == null || tx_nama.Text == null ||
-                        tx_notelp.Text == null || tx_pass == null)
-                        {
-                            Label1.Text = "tidak dapat register";
-                        }
-                        if (tx_email.Text != "" && tx_nama.Text != "" &&
-                             tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
-
-                        {
-                            register_insertDB();
-                            sent_emailkonfirmasi();
-
-                            Response.Write("<script>alert('register successful, Konfirmasi email anda sekarang!');</script>");
-                            reset();
-                        }
+                        Label1.Text = "tidak dapat register";
                     }
-                    else if (tx_captcha.Text != Label3.Text)
+                    if (tx_email.Text != "" && tx_nama.Text != "" &&
+                            tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
+
                     {
-                        lb_notif.Text = " CAPTCHA SALAH";
+                        register_insertDB();
+                        sent_emailkonfirmasi();
+                        hasil = true;
                     }
-
                 }
-                catch (Exception ex)
+                else if (tx_captcha.Text != Label3.Text)
                 {
-                    Response.Write("<script>alert('register failed, Email telah digunakan');</script>");
-                    Label1.Text = ex.Message.ToString();
-                    Response.Write("<script>alert('" + ex.Message.ToString() + "');</script>");
-                    reset();
-
+                    lb_notif.Text = " CAPTCHA SALAH";
                 }
-                sqlconn.Close();
+
             }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('register failed, Email telah digunakan');</script>");
+                Label1.Text = ex.Message.ToString();
+                Response.Write("<script>alert('" + ex.Message.ToString() + "');</script>");
+                reset();
+
+            }
+            if (hasil == true)
+            {
+                lb_notif.Text = "register berhasil";
+                Response.Write("<script>alert('register successful, Konfirmasi email anda sekarang!');</script>");
+                reset();
+            }
+            sqlconn.Close();
+            
 
         }
-        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+
+        protected void btn_regist_pembeli_Click1(object sender, EventArgs e)
         {
-          
+            //menuju dashboard
+            Boolean hasil = false;
+            connection();
+            try
+            {
+                role = "B"; status = "U";
+                if (tx_captcha.Text == Label3.Text)
+                {
+                    if (tx_email.Text == null || tx_nama.Text == null ||
+                    tx_notelp.Text == null || tx_pass == null)
+                    {
+                        Label1.Text = "tidak dapat register";
+                    }
+                    if (tx_email.Text != "" && tx_nama.Text != "" &&
+                            tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
+
+                    {
+                        register_insertDB();
+                        sent_emailkonfirmasi();
+                        hasil = true;
+                       
+                    }
+                }
+                else if (tx_captcha.Text != Label3.Text)
+                {
+                    lb_notif.Text = " CAPTCHA SALAH";
+                    captcha();
+                        
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Label1.Text = ex.Message.ToString();
+                Response.Write("<script>alert('" + ex.Message.ToString() + "');</script>");
+                reset();
+
+            }
+            if (hasil == true)
+            {
+                lb_notif.Text = "register berhasil";
+                Response.Write("<script>alert('register successful, Konfirmasi email anda sekarang!');</script>");
+                reset();
+            }
+            sqlconn.Close();
+            
+        }
+
+        protected void tx_pass_TextChanged(object sender, EventArgs e)
+        {
+            lb_notif.Text = "";
         }
     }
 }

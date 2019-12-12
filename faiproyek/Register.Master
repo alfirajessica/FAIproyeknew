@@ -35,30 +35,33 @@
     </asp:ContentPlaceHolder>
 </head>
 <body class="animsition">
-    <!-- Content page -->
-	<section class="bg0 p-t-104 p-b-116">
-		<div class="container">
-			<div class="flex-w flex-tr">
-				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form>
-						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							REGISTER
-						</h4>
-                        <form id="form1" runat="server">
-                            <div>
-                              
-                                        
-                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-                           
-                             </div>
-                        </form>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>	
+    <form id="form1" runat="server">
+        <div>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <!-- Content page -->
+                <section class="bg0 p-t-104 p-b-116">
+                <div class="container">
+                <div class="flex-w flex-tr">
+                <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+	               
+		            <h4 class="mtext-105 cl2 txt-center p-b-30">
+			            REGISTER
+		            </h4>
+                                               
+                    
+                            <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+                            </asp:contentplaceholder>
+                        
+
+                </div>
+
+                </div>
+
+                </div>
+
+                </section>	
 	
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
@@ -74,6 +77,7 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-    
+        </div>
+     </form>
 </body>
 </html>

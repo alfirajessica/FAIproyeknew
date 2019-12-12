@@ -40,7 +40,7 @@ namespace faiproyek
 
                     // isi filter
                     category();
-                    get_warna();
+                   // get_warna();
                     this.GetCustomersPageWise(1);
 
                 }
@@ -112,16 +112,16 @@ namespace faiproyek
 
 
         //get semua warna dari table warna
-        public void get_warna()
-        {
-            connection();
-            SqlCommand cmd = new SqlCommand("select Id_warna, Nama_warna from Warna", sqlconn);
-            dl_warnasepatu.DataSource = cmd.ExecuteReader();
-            dl_warnasepatu.DataTextField = "Nama_warna";
-            dl_warnasepatu.DataValueField = "Id_warna";
-            dl_warnasepatu.DataBind();
-            sqlconn.Close();
-        }
+        //public void get_warna()
+        //{
+        //    connection();
+        //    SqlCommand cmd = new SqlCommand("select Id_warna, Nama_warna from Warna", sqlconn);
+        //    dl_warnasepatu.DataSource = cmd.ExecuteReader();
+        //    dl_warnasepatu.DataTextField = "Nama_warna";
+        //    dl_warnasepatu.DataValueField = "Id_warna";
+        //    dl_warnasepatu.DataBind();
+        //    sqlconn.Close();
+        //}
 
         //------------------ paging ------------------------------------------------------//
         private void GetCustomersPageWise(int pageIndex)
@@ -238,6 +238,7 @@ namespace faiproyek
                 connection();
                 SqlCommand cmd = new SqlCommand("select H.Id_sepatu, H.Nama_sepatu, P.Nama, H.Jenis_sepatu, H.Gambar, H.Harga " +
                    "from H_sepatu H, Person P where H.Email_seller=P.Email and H.Harga >=" + 100000 + "and H.Harga < " + 1000000 + "", sqlconn);
+
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds, "H_sepatu");
@@ -291,6 +292,11 @@ namespace faiproyek
             DataList1.DataSource = ds.Tables[0];
             DataList1.DataBind();
             sqlconn.Close();
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            product_Datalist();
         }
 
         public void filter_gender()

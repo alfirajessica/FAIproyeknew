@@ -56,6 +56,7 @@
                             <asp:ListItem>Man</asp:ListItem>
                             <asp:ListItem>Women</asp:ListItem>
                             <asp:ListItem>Unisex</asp:ListItem>
+                            
                         </asp:DropDownList>
                     </li>
                 </ul>
@@ -78,23 +79,6 @@
                 </ul>
 
             </div>
-
-            <div class="filter-col3 p-r-15 p-b-27">
-                <div class="mtext-102 cl2 p-b-15">
-                    Color
-                </div>
-                <ul>
-                    <li class="p-b-6">
-                        <asp:DropDownList ID="dl_warnasepatu" runat="server" AutoPostBack="True" class="form-control">
-                           
-                        </asp:DropDownList>
-                    </li>
-
-                </ul>
-
-            </div>
-            
-
             <div class="filter-col4 p-b-27">
                 <div class="mtext-102 cl2 p-b-15">
                     Category
@@ -103,6 +87,12 @@
                     <asp:DropDownList ID="dl_category" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="dl_category_SelectedIndexChanged"></asp:DropDownList>
                 </div>
 
+            </div>
+            <div class="filter-col2 p-r-15 p-b-27">
+                <div class="mtext-102 cl2 p-b-15">
+                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Reset filter</asp:LinkButton>
+                </div>
+               
             </div>
 
         </div>
@@ -131,15 +121,6 @@
                     </span>
 
                 </div>
-                
-                <div class="block2-txt-child2 flex-r p-t-3">
-                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                        <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
-
-                    </a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-
             </div>
                 
         </ItemTemplate>

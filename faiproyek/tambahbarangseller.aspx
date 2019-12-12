@@ -15,6 +15,8 @@
 
 <%--Master Tambah barang baru -- Edit Barang lama -- Hapus Barang--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -78,8 +80,7 @@
                         </div>
                     </div>
                     
-                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
+                    
                             
                             <%--gambar sepatu--%>
                             <div class="row form-group">
@@ -99,7 +100,7 @@
 
                            <%-- ajax tidak bisa jalan di fileupload karena ada postbacktrigger--%>
                             <%--table barang apa saja yang dimilki seller/user/vendor--%>
-                            <asp:GridView class="table table-bordered" ID="GridView2" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanging="GridView2_SelectedIndexChanging" AllowPaging="True">
+                            <asp:GridView class="table table-bordered" ID="GridView2" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanging="GridView2_SelectedIndexChanging1" AllowPaging="True" OnPageIndexChanging="GridView2_PageIndexChanging" OnRowDeleting="GridView2_RowDeleting">
                                 <Columns>
                                     <asp:TemplateField HeaderText="#">
                                         <EditItemTemplate>
@@ -154,17 +155,21 @@
                                         </ItemTemplate>
                                         <HeaderStyle BackColor="Black" ForeColor="White" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField AccessibleHeaderText="Action" HeaderText="Action" ShowHeader="False">
+                                    <asp:TemplateField HeaderText="Action" ShowHeader="False">
                                         <ItemTemplate>
-                                            <%--kalau edit isi dari table row yg dipilih masuk ke detal barang--%>
-                                            <asp:Button class="btn btn-primary btn-sm" ID="Button1" runat="server" CausesValidation="False" CommandName="Select" Text="Edit" />
-                                            <asp:Button class="btn btn-danger btn-sm" ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                                            <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Select" Text="Edit" />
+                                            <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
                                         </ItemTemplate>
-                                        <HeaderStyle BackColor="Black" ForeColor="White" />
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
-                        </ContentTemplate>
+                       
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>  <%--close row--%>
+                             </ContentTemplate>
                         
                         <%--fungsi trigger agar fileupload.hashfile dapat bernilai true--%>
                         <%--dan dapat upload gambar--%>
@@ -172,11 +177,6 @@
                             <asp:PostBackTrigger ControlID="btn_submitsepatu1" />
                         </Triggers>
                     </asp:UpdatePanel>
-                    <br />
-                </div>
-            </div>
-        </div>
-    </div>  <%--close row--%>
 </asp:Content>
  <%--TAMBAH BARANG BARU end --%>
 

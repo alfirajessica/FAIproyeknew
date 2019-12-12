@@ -2,9 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
 
 <%--            REGISTER--%>
@@ -25,7 +22,7 @@
          <%-- password--%>
           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="password tidak boleh kosong" Display="Dynamic" Font-Bold="False" Font-Size="8pt" ForeColor="Red" ControlToValidate="tx_pass"></asp:RequiredFieldValidator>
           <div class="bor8 m-b-20 how-pos4-parent">
-          <asp:TextBox placeholder="password" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_pass" runat="server" MaxLength="8" TextMode="Password"></asp:TextBox>
+          <asp:TextBox placeholder="password" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_pass" runat="server" MaxLength="8" TextMode="Password" OnTextChanged="tx_pass_TextChanged"></asp:TextBox>
 		  <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
 	      </div>
 
@@ -56,12 +53,11 @@
 	    </div>
 
          <asp:Label ID="lb_notif" runat="server"></asp:Label>
-         <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_regist_pembeli" runat="server" Text="Register sebagai Pembeli" OnClick="btn_regist_pembeli_Click" ValidateRequestMode="Enabled" />
+         <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_regist_pembeli" runat="server" Text="Register sebagai Pembeli" OnClick="btn_regist_pembeli_Click1" />
          <br />
-         <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_regist_penjual" runat="server" Text="Register sebagai penjual" OnClick="btn_regist_penjual_Click" />
+         <asp:Button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" ID="btn_regist_penjual" runat="server" Text="Register sebagai penjual" OnClick="btn_regist_penjual_Click" CausesValidation="False" />
 
             <asp:Label ID="Label2" runat="server" Text="Sudah punya akun?"></asp:Label>
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/login.aspx">Login disini</asp:HyperLink>
-        </ContentTemplate>
-    </asp:UpdatePanel>     
+
 </asp:Content>
