@@ -46,10 +46,11 @@
         <%--captcha--%>
         <div class="bor8 m-b-20 how-pos4-parent">
             <asp:Label ID="Label3" runat="server" Text="Ini Captcha" Font-Bold="True" Font-Italic="True" Font-Size="20pt"></asp:Label>
-	    </div>
+            <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+        </div>
 
         <%--Re type captcha--%>
-        <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Captcha salah" ControlToValidate="tx_captcha"></asp:CompareValidator>
+       <%-- <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Captcha salah" ControlToValidate="tx_captcha"></asp:CompareValidator>--%>
         <div class="bor8 m-b-20 how-pos4-parent">
               <asp:TextBox placeholder="Retype Captcha" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_captcha" runat="server" MaxLength="12"></asp:TextBox>   
 	    </div>

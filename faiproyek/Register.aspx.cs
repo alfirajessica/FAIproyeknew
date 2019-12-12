@@ -39,27 +39,28 @@ namespace faiproyek
             if (!Page.IsPostBack)
             {
                 connection();
+                //Untuk random captcha
+                Random ra = new Random();
+                int noc = ra.Next(6, 10);
+                string cap = "";
+                int tot = 0;
+                do
+                {
+                    int ch = ra.Next(48, 123);
+                    if ((ch >= 48 && ch <= 57) || (ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122))
+                    {
+                        cap = cap + (char)ch;
+                        tot++;
+                        if (tot == noc)
+                        {
+                            break;
+                        }
+                    }
+                } while (true);
+                Label3.Text = cap;
             }
 
-            //Untuk random captcha
-            Random ra = new Random();
-            int noc = ra.Next(6, 10);
-            string cap = "";
-            int tot = 0;
-            do
-            {
-                int ch = ra.Next(48, 123);
-                if ((ch >= 48 && ch <= 57) || (ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122))
-                {
-                    cap = cap + (char)ch;
-                    tot++;
-                    if (tot == noc)
-                    {
-                        break;
-                    }
-                }
-            } while (true);
-            Label3.Text = cap;
+            Label4.Text = Label3.Text;
         }
 
         public void register_insertDB()
@@ -111,21 +112,29 @@ namespace faiproyek
                 try
                 {
                     role = "B"; status = "U";
-                    if (tx_email.Text == null || tx_nama.Text == null ||
-                        tx_notelp.Text == null || tx_pass == null)
+                    if (tx_captcha.Text == Label3.Text)
                     {
-                        Label1.Text = "tidak dapat register";
-                    }
-                    if (tx_email.Text != "" && tx_nama.Text != "" &&
-                         tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
+                        if (tx_email.Text == null || tx_nama.Text == null ||
+                       tx_notelp.Text == null || tx_pass == null)
+                        {
+                            Label1.Text = "tidak dapat register";
+                        }
+                        if (tx_email.Text != "" && tx_nama.Text != "" &&
+                             tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
 
+                        {
+                            register_insertDB();
+                            sent_emailkonfirmasi();
+
+                            Response.Write("<script>alert('register successful, Konfirmasi email anda sekarang!');</script>");
+                            reset();
+                        }
+                    }
+                    else if (tx_captcha.Text != Label3.Text)
                     {
-                        register_insertDB();
-                        sent_emailkonfirmasi();
-
-                        Response.Write("<script>alert('register successful, Konfirmasi email anda sekarang!');</script>");
-                        reset();
+                        lb_notif.Text = "CAPTCHA SALAH";
                     }
+
 
                 }
                 catch (Exception ex)
@@ -150,20 +159,27 @@ namespace faiproyek
                 try
                 {
                     role = "S"; status = "U";
-                    if (tx_email.Text == null || tx_nama.Text == null ||
+                    if (tx_captcha.Text == Label3.Text)
+                    {
+                        if (tx_email.Text == null || tx_nama.Text == null ||
                         tx_notelp.Text == null || tx_pass == null)
-                    {
-                        Label1.Text = "tidak dapat register";
+                        {
+                            Label1.Text = "tidak dapat register";
+                        }
+                        if (tx_email.Text != "" && tx_nama.Text != "" &&
+                             tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
+
+                        {
+                            register_insertDB();
+                            sent_emailkonfirmasi();
+
+                            Response.Write("<script>alert('register successful, Konfirmasi email anda sekarang!');</script>");
+                            reset();
+                        }
                     }
-                    if (tx_email.Text != "" && tx_nama.Text != "" &&
-                         tx_notelp.Text != "" && tx_pass.Text != "" && tx_konpass.Text != "")
-
+                    else if (tx_captcha.Text != Label3.Text)
                     {
-                        register_insertDB();
-                        sent_emailkonfirmasi();
-
-                        Response.Write("<script>alert('register successful, Konfirmasi email anda sekarang!');</script>");
-                        reset();
+                        lb_notif.Text = " CAPTCHA SALAH";
                     }
 
                 }
