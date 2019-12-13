@@ -12,7 +12,7 @@
      <%-- email--%>
     <div class="bor8 m-b-20 how-pos4-parent">
         <asp:TextBox placeholder="email" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_email" runat="server" TextMode="Email" Enabled="False"></asp:TextBox>
-        <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+        <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON" aria-hidden="True">
     </div>
 
      <%--nama--%>

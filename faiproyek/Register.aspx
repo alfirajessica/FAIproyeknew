@@ -43,7 +43,7 @@
         <%--captcha--%>
         <div class="bor8 m-b-20 how-pos4-parent">
             <asp:Label ID="Label3" runat="server" Text="Ini Captcha" Font-Bold="True" Font-Italic="True" Font-Size="20pt"></asp:Label>
-            <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="Label4" runat="server" Text="Label" Visible="False"></asp:Label>
         </div>
 
         <%--Re type captcha--%>

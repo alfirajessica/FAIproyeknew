@@ -155,10 +155,10 @@
                                         </ItemTemplate>
                                         <HeaderStyle BackColor="Black" ForeColor="White" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Action" ShowHeader="False">
+                                    <asp:TemplateField ShowHeader="False">
                                         <ItemTemplate>
                                             <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Select" Text="Edit" />
-                                            <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                                            <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" Visible="False" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>

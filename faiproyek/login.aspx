@@ -11,7 +11,7 @@
    
 
    <div class="bor8 m-b-20 how-pos4-parent">
-        <asp:TextBox class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_password" runat="server"> </asp:TextBox>		
+        <asp:TextBox class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" ID="tx_password" runat="server" TextMode="Password"> </asp:TextBox>		
        <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
 
    </div>

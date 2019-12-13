@@ -202,7 +202,10 @@ namespace faiproyek
             {
                 Label1.Text = "";
             }
-           
+           else if (btn_submitsepatu1.Text == "Update")
+            {
+                Label1.Text = "";
+            }
         }
 
         protected void GridView2_PageIndexChanging(object sender, GridViewPageEventArgs e)
