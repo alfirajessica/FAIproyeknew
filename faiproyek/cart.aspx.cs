@@ -261,7 +261,7 @@ namespace faiproyek
                 //insert ke table H_order
                 connection();                
                 SqlCommand cmd = new SqlCommand("insert into H_Order values(@Tgl_order, @City, @Address, @Total, @Status, @Email_pembeli, @Email_seller)", sqlconn);
-                cmd.Parameters.AddWithValue("@Tgl_order", tglskrg);
+                cmd.Parameters.AddWithValue("@Tgl_order", dateTime);
                 cmd.Parameters.AddWithValue("@City", dl_city.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@Address", tx_address.Text);
                 cmd.Parameters.AddWithValue("@Total", int.Parse(total.ToString()));
