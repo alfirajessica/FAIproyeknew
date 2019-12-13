@@ -32,14 +32,14 @@
 
 <div class="flex-w flex-sb-m p-b-52">
    <!-- Search product -->
-    <div class="panel-search w-full p-t-10 p-b-15">
+    <%--<div class="panel-search w-full p-t-10 p-b-15">
         <div class="bor8 dis-flex p-l-15">
             <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
                 <i class="zmdi zmdi-search"></i>
             </button>
-            <asp:TextBox ID="tx_search" runat="server" placeholder="Search" class="mtext-107 cl2 size-114 plh2 p-r-15" TextMode="Search" style="width: 990px"></asp:TextBox>           
+            <asp:TextBox ID="tx_search" runat="server" placeholder="Search" class="mtext-107 cl2 size-114 plh2 p-r-15" TextMode="Search" style="width: 990px" OnTextChanged="tx_search_TextChanged" Visible="False"></asp:TextBox>           
         </div>	
-    </div>
+    </div>--%>
     <!-- end of Search product -->
 
     <!-- Filter -->

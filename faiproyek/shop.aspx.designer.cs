@@ -22,15 +22,6 @@ namespace faiproyek {
         protected global::System.Web.UI.WebControls.Label lb_namaUser;
         
         /// <summary>
-        /// tx_search control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tx_search;
-        
-        /// <summary>
         /// dl_gender control.
         /// </summary>
         /// <remarks>
